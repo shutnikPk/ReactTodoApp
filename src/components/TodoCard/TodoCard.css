@@ -1,7 +1,10 @@
+.todo-card--text {
+  min-width: 350px;
+}
 .todo-card {
   border: 5px rgb(15, 128, 0) solid;
   display: flex;
   gap: 10px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 }

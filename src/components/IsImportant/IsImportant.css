@@ -1,0 +1,7 @@
+.important {
+  font-size: 25px;
+  cursor: pointer;
+}
+.important__active {
+  color: red;
+}
