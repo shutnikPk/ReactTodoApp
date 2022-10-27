@@ -1,30 +1,37 @@
 export default [
   {
     isImportant: false,
-    text: "Learn JS",
+    text: "Learn Javascript",
     deadline: "5",
     id: "1",
     isFinished: true,
   },
   {
     isImportant: true,
-    text: "Listnen some important things",
+    text: "Start your first React app",
     deadline: "2",
     id: "2",
     isFinished: false,
   },
   {
     isImportant: true,
-    text: "Finished 1st ",
+    text: "Create TODO app",
     deadline: "1",
     id: "3",
     isFinished: true,
   },
   {
     isImportant: true,
-    text: "Be Happy",
+    text: "Open first Pull Request",
     deadline: "1",
     id: "4",
+    isFinished: false,
+  },
+  {
+    isImportant: true,
+    text: "Setup eslint",
+    deadline: "1",
+    id: "5",
     isFinished: false,
   },
 ];
