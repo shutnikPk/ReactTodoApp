@@ -1,10 +1,29 @@
-.todo-card--text {
-  min-width: 350px;
-}
 .todo-card {
-  border: 5px rgb(15, 128, 0) solid;
+  border: 1px black solid;
+  width: 500px;
+  min-height: 50px;
   display: flex;
-  gap: 10px;
   align-items: center;
-  justify-content: space-around;
+}
+.todo-card--number {
+  width: 48px;
+  height: 48px;
+  padding-top: 14px;
+  background: #e3e3e3;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+}
+.todo-card--text {
+  margin-left: 18px;
+  height: 16px;
+  min-width: 350px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
 }
