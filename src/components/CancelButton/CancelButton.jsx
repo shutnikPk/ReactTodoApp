@@ -1,11 +1,13 @@
 import React from 'react';
-function AddButton() {
-    
+
+function CancelButton() {
+
     return (
         <button>
-            Add Todo
+            Cancel
         </button>
     );
+
 }
 
-export default AddButton;
+export default CancelButton;
