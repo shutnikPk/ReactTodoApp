@@ -1,6 +1,10 @@
 import React from 'react';
 function AddButton() {
-    return (null);
+    return (
+        <button>
+            Add Todo
+        </button>
+    );
 }
 
 export default AddButton;
