@@ -1,0 +1,14 @@
+.todos-container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  gap: 10px;
+  width: 550px;
+}
+.todo-card--text {
+  font-size: 20px;
+}
+.todo-card--deeadline {
+  font-weight: bold;
+}
