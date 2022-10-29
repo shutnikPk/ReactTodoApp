@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './TodoCard.css'
 
 function TodoCard({ todo }) {

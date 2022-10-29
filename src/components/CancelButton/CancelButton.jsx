@@ -1,9 +1,16 @@
 import React from 'react';
+import './CancelButton.css'
 
-function CancelButton() {
+function CancelButton({ toggleActivity, onClearInput }) {
+
+    const cancelHandler = (event) => {
+        event.preventDefault()
+        toggleActivity()
+        onClearInput()
+    }
 
     return (
-        <button>
+        <button className='cancel-button' onClick={cancelHandler}>
             Cancel
         </button>
     );

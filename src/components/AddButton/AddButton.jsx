@@ -1,8 +1,15 @@
 import React from 'react';
-function AddButton() {
-    
+import './AddButton.css'
+
+function AddButton({ toggleActivity }) {
+
+    const toggleActivityInputHandler = (event) => {
+        event.preventDefault()
+        toggleActivity()
+    }
+
     return (
-        <button>
+        <button className='add-button' onClick={toggleActivityInputHandler}>
             Add Todo
         </button>
     );

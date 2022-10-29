@@ -6,9 +6,7 @@
   gap: 10px;
   width: 550px;
 }
-.todo-card--text {
-  font-size: 20px;
-}
+
 .todo-card--deeadline {
   font-weight: bold;
 }

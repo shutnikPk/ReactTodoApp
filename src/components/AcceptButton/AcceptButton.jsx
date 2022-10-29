@@ -1,13 +1,16 @@
 import React from 'react';
-function AcceptButton({ getAcceptTrigerHandler }) {
+import './AcceptButton.css'
+
+function AcceptButton({ getAcceptTrigerHandler, toggleActivity }) {
 
     const acceptHandler = (event) => {
         event.preventDefault()
         getAcceptTrigerHandler()
+        toggleActivity()
     }
 
     return (
-        <button onClick={acceptHandler}>
+        <button className='accept-button' onClick={acceptHandler}>
             Accept
         </button>
     );
