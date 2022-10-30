@@ -1,7 +1,7 @@
 import React from 'react';
-import "./InputField.css"
+import './InputField.css';
 
-function InputField({ inputValue, onClearInput, onChangeInput }) {
+function InputField({ inputValue, onChangeInput }) {
 
     const handleChange = (event) => {
         onChangeInput(event.target.value)
@@ -9,7 +9,13 @@ function InputField({ inputValue, onClearInput, onChangeInput }) {
 
 
     return (
-        <input className='input-field' value={inputValue} type="text" onChange={handleChange} placeholder='Add task' />
+        <input
+            className='input-field'
+            value={inputValue}
+            type='text'
+            onChange={handleChange}
+            placeholder='Add task'
+        />
     );
 }
 

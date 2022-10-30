@@ -1,11 +1,11 @@
 import React from 'react';
 import './AcceptButton.css'
 
-function AcceptButton({ getAcceptTrigerHandler, toggleActivity }) {
+function AcceptButton({ onAddTodoName, toggleActivity }) {
 
     const acceptHandler = (event) => {
         event.preventDefault()
-        getAcceptTrigerHandler()
+        onAddTodoName()
         toggleActivity()
     }
 
