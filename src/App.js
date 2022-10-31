@@ -21,10 +21,16 @@ function App() {
     setActiveClass(!activeClass);
   };
 
+  const onDelete=(id)=>{
+    let tmpArr = [...todoItems]
+    tmpArr=tmpArr.filter(e=>e.id!==id)
+    setTodoItems(tmpArr)
+  }
+
   return (
     <div className="App">
       <AddButton activeClass={activeClass} toggleActivity={toggleActivity} />
-      <TodoCards todos={todoItems} />
+      <TodoCards onDelete={onDelete} todos={todoItems} />
       <AddForm
         activeClass={activeClass}
         toggleActivity={toggleActivity}

@@ -4,6 +4,7 @@
   min-height: 50px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 .todo-card--number {
   width: 48px;
@@ -18,7 +19,7 @@
   text-align: center;
 }
 .todo-card--text {
-  margin-left: 18px;
+  /* margin-left: 18px; */
   height: 16px;
   min-width: 350px;
   font-family: "Inter";
