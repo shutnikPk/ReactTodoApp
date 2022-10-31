@@ -1,0 +1,26 @@
+.add-form {
+  margin: 0 auto;
+  display: flex;
+  width: 500px;
+  /* justify-content: center; */
+  flex-direction: column;
+  align-items: center;
+}
+.add-form--row-container {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.add-form--btn-container {
+  margin: 0 auto;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.inactive {
+  display: none;
+}

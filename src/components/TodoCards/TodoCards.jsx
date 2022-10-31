@@ -1,7 +1,5 @@
 import React from 'react';
-
 import TodoCard from '../TodoCard/TodoCard';
-
 import './TodoCards.css'
 
 function TodoCards({ todos }) {
