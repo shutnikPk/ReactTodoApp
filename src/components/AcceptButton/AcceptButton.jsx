@@ -6,11 +6,11 @@ function AcceptButton({ onAddTodoName, toggleActivity }) {
     const acceptHandler = (event) => {
         event.preventDefault()
         onAddTodoName()
-        toggleActivity()
+        toggleActivity({ 'addbtn': true, 'form': false })
     }
 
     return (
-        <button className='accept-button' onClick={acceptHandler}>
+        <button className='base-button' onClick={acceptHandler}>
             Accept
         </button>
     );

@@ -5,8 +5,9 @@ function AddButton({ toggleActivity, activeClass }) {
 
     const toggleActivityInputHandler = (event) => {
         event.preventDefault()
-        toggleActivity()
+        toggleActivity({ 'addbtn': false, 'form': true })
     }
+
 
     return (
         <button

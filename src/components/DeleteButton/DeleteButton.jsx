@@ -1,9 +1,12 @@
 import React from 'react';
 import './DeleteButton.css'
 
-function DeleteButton({ id, onDelete }) {
+function DeleteButton({ postId, toggleActivity,getId }) {
 
-    const onDeleteHandler = () => onDelete(id)
+    const onDeleteHandler = () => {        
+        toggleActivity({ 'popup': true })
+        getId(postId)
+    }
 
     return (
         <button className='delete-button' onClick={onDeleteHandler}>

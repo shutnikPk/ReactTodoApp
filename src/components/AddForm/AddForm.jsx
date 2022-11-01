@@ -43,12 +43,10 @@ function AddForm({
         addTodoHandler()
     }
 
-
-
     return (
         <form className={
             'add-form '
-            + (activeClass ? 'inactive' : '')}
+            + (activeClass ? '' : 'inactive')}
         >
             <div className='add-form--row-container'>
                 <InputField

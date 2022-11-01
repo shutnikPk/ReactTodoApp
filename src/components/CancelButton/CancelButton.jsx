@@ -5,12 +5,12 @@ function CancelButton({ toggleActivity, onClearInput }) {
 
     const cancelHandler = (event) => {
         event.preventDefault()
-        toggleActivity()
+        toggleActivity({ 'addbtn': true, 'form': false })
         onClearInput()
     }
 
     return (
-        <button className='cancel-button' onClick={cancelHandler}>
+        <button className='danger-button' onClick={cancelHandler}>
             Cancel
         </button>
     );
