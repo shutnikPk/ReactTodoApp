@@ -1,0 +1,15 @@
+.delete-button {
+  width: 48px;
+  height: 48px;
+  background: #ffffff;
+  border: none;
+  border-left: 1px black solid;
+  cursor: pointer;
+}
+.delete-button::after {
+  content: "✕";
+  font-size: 25px;
+}
+.delete-button:hover {
+  background: #d9d9d97d;
+}
