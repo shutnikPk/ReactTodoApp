@@ -18,6 +18,7 @@ function App() {
   const [postId, setPostId] = useState(null);
 
   const addTodo = (todo) => {
+    if (!todo.text.trim()) return;
     todo.id = todoItems.length + 1;
     const tmpArr = [...todoItems, todo];
     setTodoItems(tmpArr);
@@ -33,31 +34,38 @@ function App() {
   const onDelete = (id) => {
     let tmpArr = [...todoItems];
     tmpArr = tmpArr.filter((e) => e.id !== id);
+    tmpArr = reCalculateId(tmpArr);
     setTodoItems(tmpArr);
+  };
+
+  const reCalculateId = (arr) => {
+    let tmpArr = arr.map((e, i) => {
+      e.id = i + 1;
+      return e;
+    });
+    return tmpArr;
   };
 
   return (
     <div className="App">
       <Popup
-        onDelete={onDelete}
+        onDelete={() => onDelete(postId)}
         toggleActivity={toggleActivity}
-        postId={postId}
         activeClass={activeClass.popup}
       />
       <AddButton
         activeClass={activeClass.addbtn}
         toggleActivity={toggleActivity}
       />
-      <TodoCards
-        getId={getId}
-        toggleActivity={toggleActivity}
-        onDelete={onDelete}
-        todos={todoItems}
-      />
       <AddForm
         activeClass={activeClass.form}
         toggleActivity={toggleActivity}
         addTodo={addTodo}
+      />
+      <TodoCards
+        getId={getId}
+        toggleActivity={toggleActivity}
+        todos={todoItems}
       />
     </div>
   );

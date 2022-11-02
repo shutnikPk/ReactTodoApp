@@ -1,14 +1,24 @@
 import React from 'react';
-import TodoCard from '../TodoCard/TodoCard';
+import TodoCard from './TodoCard/TodoCard';
 import './TodoCards.css'
 
-function TodoCards({ todos, onDelete, toggleActivity, getId }) {
+function TodoCards({
+    todos,
+    toggleActivity,
+    getId
+}) {
 
     return (
         <div className='todos-container'>
-            {todos.map(e => <TodoCard getId={getId} toggleActivity={toggleActivity} onDelete={onDelete} key={e.id} todo={e} />)}
+            {todos.map(e =>
+                <TodoCard
+                    getId={getId}
+                    toggleActivity={toggleActivity}
+                    key={e.id}
+                    todo={e}
+                />
+            )}
         </div>
     );
 }
-
 export default TodoCards;

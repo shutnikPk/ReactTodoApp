@@ -1,5 +1,6 @@
 import React from 'react';
 import './AddButton.css'
+import PropTypes from 'prop-types';
 
 function AddButton({ toggleActivity, activeClass }) {
 
@@ -19,6 +20,10 @@ function AddButton({ toggleActivity, activeClass }) {
             Add Todo
         </button>
     );
+}
+
+AddButton.propTypes = {
+    activeClass: PropTypes.bool.isRequired
 }
 
 export default AddButton;
