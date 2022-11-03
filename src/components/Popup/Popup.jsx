@@ -24,16 +24,12 @@ function Popup({
                         {() => toggleActivity(
                             {
                                 'popup': false,
-                                'addbtn': true,
-                                'form': false
                             }
                         )} />
                     <CancelDelete toggleActivity=
                         {() => toggleActivity(
                             {
                                 'popup': false,
-                                'addbtn': true,
-                                'form': false
                             }
                         )} />
                 </div>

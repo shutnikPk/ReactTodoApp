@@ -29,7 +29,7 @@ function App() {
     setActiveClass(tmpObj);
   };
 
-  const getId = (id) => setPostId(id);
+  const setId = (id) => setPostId(id);
 
   const onDelete = (id) => {
     let tmpArr = [...todoItems];
@@ -55,7 +55,7 @@ function App() {
       />
       <AddButton
         activeClass={activeClass.addbtn}
-        toggleActivity={toggleActivity}
+        toggleActivity={() => toggleActivity({ addbtn: false, form: true })}
       />
       <AddForm
         activeClass={activeClass.form}
@@ -63,7 +63,7 @@ function App() {
         addTodo={addTodo}
       />
       <TodoCards
-        getId={getId}
+        setId={setId}
         toggleActivity={toggleActivity}
         todos={todoItems}
       />

@@ -6,7 +6,7 @@ function AddButton({ toggleActivity, activeClass }) {
 
     const toggleActivityInputHandler = (event) => {
         event.preventDefault()
-        toggleActivity({ 'addbtn': false, 'form': true })
+        toggleActivity()
     }
 
 
@@ -23,7 +23,8 @@ function AddButton({ toggleActivity, activeClass }) {
 }
 
 AddButton.propTypes = {
-    activeClass: PropTypes.bool.isRequired
+    activeClass: PropTypes.bool.isRequired,
+    toggleActivity: PropTypes.func.isRequired
 }
 
 export default AddButton;

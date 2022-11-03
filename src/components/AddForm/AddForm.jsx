@@ -77,7 +77,9 @@ function AddForm({
 }
 
 AddForm.propTypes = {
-    activeClass: PropTypes.bool.isRequired
+    activeClass: PropTypes.bool.isRequired,
+    addTodo: PropTypes.func.isRequired,
+    toggleActivity: PropTypes.func.isRequired
 }
 
 export default AddForm;

@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 
 function DeleteButton({
     toggleActivity,
-    getId
+    setId
 }) {
 
     const onDeleteHandler = () => {
         toggleActivity()
-        getId()
+        setId()
     }
 
     return (
@@ -22,7 +22,7 @@ function DeleteButton({
 
 DeleteButton.propTypes = {
     toggleActivity: PropTypes.func.isRequired,
-    getId: PropTypes.func.isRequired
+    setId: PropTypes.func.isRequired
 }
 
 export default DeleteButton;

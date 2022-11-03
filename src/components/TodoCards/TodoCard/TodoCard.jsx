@@ -6,15 +6,15 @@ import PropTypes from 'prop-types';
 function TodoCard({
     todo,
     toggleActivity,
-    getId
+    setId
 }) {
 
     return (
-        <div key={todo?.id} className='todo-card'>
+        <div  className='todo-card'>
             <p className='todo-card--number'>{todo?.id}</p>
             <p className='todo-card--text'>{todo?.text}</p>
             <DeleteButton
-                getId={() => getId(todo?.id)}
+                setId={() => setId(todo?.id)}
                 toggleActivity={() => toggleActivity({ 'popup': true })}
             />
         </div>
@@ -29,7 +29,9 @@ TodoCard.propTypes = {
         deadline: PropTypes.string,
         id: PropTypes.number,
         isFinished: PropTypes.bool
-    }).isRequired
+    }).isRequired,
+    toggleActivity: PropTypes.func.isRequired,
+    setId: PropTypes.func.isRequired
 }
 
 export default TodoCard;
