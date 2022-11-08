@@ -1,6 +1,6 @@
 .my-datepicker-container {
   border: none;
-  width: 150px;
+  width: 170px;
 
   font-family: "Inter";
   font-style: normal;
@@ -8,8 +8,12 @@
   font-size: 20px;
   line-height: 15px;
 
+  background: url("./Assets/timesheet.png") no-repeat 145px 1px;
+  background-size: auto 95%;
+
   outline: none;
 }
+
 .my-datepicker-container::placeholder {
   font-family: "Inter";
   font-style: italic;
