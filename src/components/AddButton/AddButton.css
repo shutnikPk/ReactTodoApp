@@ -5,6 +5,7 @@
   background: #0075ff;
   border: 1px solid #ffffff;
   border-radius: 5px;
+  cursor: pointer;
 
   font-family: "Inter";
   font-style: normal;
@@ -13,4 +14,9 @@
   line-height: 15px;
 
   color: #ffffff;
+  margin-bottom: 85px;
+}
+
+.add-button:hover {
+  background: #0077ffc2;
 }

@@ -1,11 +1,12 @@
-.cancel-button {
+.danger-button {
   width: 100px;
   height: 40px;
-
   background: #ed0303;
   border: 1px solid #ffffff;
   border-radius: 5px;
+  cursor: pointer;
 
+  text-transform: uppercase;
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
@@ -13,4 +14,8 @@
   line-height: 15px;
 
   color: #ffffff;
+}
+
+.danger-button:hover {
+  background: #cc0000e0;
 }

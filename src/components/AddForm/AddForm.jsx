@@ -1,9 +1,10 @@
 import React from 'react';
 import './AddForm.css'
-import CancelButton from '../CancelButton/CancelButton'
-import AcceptButton from '../AcceptButton/AcceptButton'
-import InputField from '../InputField/InputField'
+import CancelButton from './CancelButton/CancelButton'
+import AcceptButton from './AcceptButton/AcceptButton'
+import InputField from './InputField/InputField'
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 function AddForm({
     addTodo,
@@ -43,33 +44,42 @@ function AddForm({
         addTodoHandler()
     }
 
-
-
     return (
         <form className={
             'add-form '
-            + (activeClass ? 'inactive' : '')}
+            + (activeClass ? '' : 'inactive')}
         >
             <div className='add-form--row-container'>
                 <InputField
                     inputValue={inputValue}
-                    onClearInput={onClearInput}
                     onChangeInput={onChangeInput}
                 />
                 <div className='add-form--btn-container'>
-                    <CancelButton
-                        toggleActivity={toggleActivity}
-                        onClearInput={onClearInput}
-                    />
                     <AcceptButton
-                        toggleActivity={toggleActivity}
+                        toggleActivity={() => toggleActivity({
+                            'addbtn': true,
+                            'form': false
+                        })}
                         onAddTodoName={onAddTodoName}
+                    />
+                    <CancelButton
+                        toggleActivity={() => toggleActivity({
+                            'addbtn': true,
+                            'form': false
+                        })}
+                        onClearInput={onClearInput}
                     />
                 </div>
             </div>
 
         </form >
     );
+}
+
+AddForm.propTypes = {
+    activeClass: PropTypes.bool.isRequired,
+    addTodo: PropTypes.func.isRequired,
+    toggleActivity: PropTypes.func.isRequired
 }
 
 export default AddForm;

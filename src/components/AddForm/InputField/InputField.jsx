@@ -1,7 +1,11 @@
 import React from 'react';
 import './InputField.css';
+import PropTypes from 'prop-types';
 
-function InputField({ inputValue, onChangeInput }) {
+function InputField({
+    inputValue,
+    onChangeInput
+}) {
 
     const handleChange = (event) => {
         onChangeInput(event.target.value)
@@ -17,6 +21,11 @@ function InputField({ inputValue, onChangeInput }) {
             placeholder='Add task'
         />
     );
+}
+
+InputField.propTypes = {
+    inputValue: PropTypes.string,
+    onChangeInput: PropTypes.func
 }
 
 export default InputField;

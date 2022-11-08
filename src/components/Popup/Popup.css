@@ -1,0 +1,39 @@
+.popup--background {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 1;
+  background: #6d6d6d99 60%;
+  display: flex;
+  align-items: center;
+}
+.popup--container {
+  margin: 0 auto;
+
+  width: 580px;
+  height: 155px;
+  background: #ffffff;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+.popup--text {
+  margin: 0 auto;
+
+  margin-top: 50px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #000000;
+}
+.popud--row {
+  margin: 0 auto;
+  display: flex;
+  margin-top: 25px;
+  gap: 15px;
+}
+.inactive {
+  display: none;
+}
