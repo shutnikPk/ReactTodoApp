@@ -4,13 +4,17 @@ import PropTypes from 'prop-types';
 
 function AcceptButton({
     onAddTodoName,
-    toggleActivity
+    toggleActivity,
+    setTodoDeadline,
+    onClearDeadlineInput
 }) {
 
     const acceptHandler = (event) => {
         event.preventDefault()
         onAddTodoName()
         toggleActivity()
+        setTodoDeadline()
+        onClearDeadlineInput()
     }
 
     return (

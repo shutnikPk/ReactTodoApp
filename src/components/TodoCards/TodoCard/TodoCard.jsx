@@ -9,10 +9,33 @@ function TodoCard({
     setId
 }) {
 
+    const setFormateDate = () => {
+        const day = todo?.deadline.getDate()
+        const month = todo?.deadline.getMonth()
+        const year = todo?.deadline.getFullYear()
+
+        return (
+            [
+                day,
+                month,
+                year
+            ].join('/')
+        )
+    }
+
+    const compareDeadline = () => todo?.deadline <= new Date(Date.now()) ?
+        ' todo-card--deadline__danger'
+        :
+        ''
+
+
+    compareDeadline()
+
     return (
-        <div  className='todo-card'>
+        <div className='todo-card'>
             <p className='todo-card--number'>{todo?.id}</p>
             <p className='todo-card--text'>{todo?.text}</p>
+            <p className={'todo-card--deadline' + compareDeadline()}>{setFormateDate()}</p >
             <DeleteButton
                 setId={() => setId(todo?.id)}
                 toggleActivity={() => toggleActivity({ 'popup': true })}
@@ -26,7 +49,7 @@ TodoCard.propTypes = {
     todo: PropTypes.shape({
         isImportant: PropTypes.bool,
         text: PropTypes.string,
-        deadline: PropTypes.string,
+        deadline: PropTypes.object,
         id: PropTypes.number,
         isFinished: PropTypes.bool
     }).isRequired,
