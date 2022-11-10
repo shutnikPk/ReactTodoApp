@@ -1,10 +1,13 @@
 import React from 'react';
 import './InputField.css';
 import PropTypes from 'prop-types';
+import MyDatePicker from './MyDatePicker/MyDatePicker';
 
 function InputField({
     inputValue,
-    onChangeInput
+    onChangeInput,
+    deadline,
+    onChangeDeadline
 }) {
 
     const handleChange = (event) => {
@@ -13,13 +16,16 @@ function InputField({
 
 
     return (
-        <input
-            className='input-field'
-            value={inputValue}
-            type='text'
-            onChange={handleChange}
-            placeholder='Add task'
-        />
+        <div className='input-container'>
+            <input
+                className='input-field'
+                value={inputValue}
+                type='text'
+                onChange={handleChange}
+                placeholder='Add task'
+            />
+            <MyDatePicker deadline={deadline} onChangeDeadline={onChangeDeadline} />
+        </div>
     );
 }
 

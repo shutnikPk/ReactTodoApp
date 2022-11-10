@@ -4,13 +4,16 @@ import PropTypes from 'prop-types';
 
 function CancelButton({
     toggleActivity,
-    onClearInput
+    onClearInput,
+    onClearDeadlineInput
 }) {
 
     const cancelHandler = (event) => {
         event.preventDefault()
         toggleActivity()
         onClearInput()
+        onClearDeadlineInput()
+
     }
 
     return (

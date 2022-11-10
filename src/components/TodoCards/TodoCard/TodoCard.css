@@ -21,10 +21,25 @@
 .todo-card--text {
   /* margin-left: 18px; */
   height: 16px;
-  min-width: 350px;
+  min-width: 250px;
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 15px;
+}
+.todo-card--deadline {
+  text-align: center;
+  padding-top: 3px;
+  height: 22px;
+  min-width: 150px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 15px;
+}
+.todo-card--deadline__danger {
+  background: red;
+  color: aliceblue;
 }
