@@ -10,20 +10,10 @@ function TodoCard({
 }) {
 
     const setFormateDate = () => {
-        const day = todo?.deadline.getDate()
-        const month = todo?.deadline.getMonth()
-        const year = todo?.deadline.getFullYear()
-
-        return (
-            [
-                day,
-                month,
-                year
-            ].join('/')
-        )
+        return todo?.deadline.toLocaleString([], { day: 'numeric', month: 'numeric', year: 'numeric' })
     }
 
-    const compareDeadline = () => todo?.deadline <= new Date(Date.now()) ?
+    const compareDeadline = () => todo?.deadline <= new Date() ?
         ' todo-card--deadline__danger'
         :
         ''

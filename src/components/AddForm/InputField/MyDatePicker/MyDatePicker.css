@@ -8,7 +8,8 @@
   font-size: 20px;
   line-height: 15px;
 
-  background: url("./Assets/timesheet.png") no-repeat 145px 1px;
+  background: url("./Assets/monthly-calendar-svgrepo-com.svg") no-repeat 145px
+    1px;
   background-size: auto 95%;
 
   outline: none;
