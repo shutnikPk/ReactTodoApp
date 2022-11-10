@@ -18,14 +18,13 @@ function AddForm({
     const todo = {
         isImportant: true,
         text: 'tasksText',
-        deadline: null,
         isFinished: false,
     }
 
     const setTodoDeadline = () => {
         deadline ?
-            todo.deadline = deadline :
-            todo.deadline = new Date(Date.now())
+            todo.deadline = deadline.toISOString() :
+            todo.deadline = new Date().toISOString()
     }
 
     const onChangeDeadline = (date) => {
@@ -42,6 +41,7 @@ function AddForm({
 
     const addTodoHandler = () => {
         addTodo(todo)
+
     }
 
 
@@ -54,6 +54,8 @@ function AddForm({
     }
 
     const onAddTodoName = () => {
+
+        setTodoDeadline()
         changeTodoText()
         onClearInput()
         addTodoHandler()
@@ -74,7 +76,6 @@ function AddForm({
                 <div className='add-form--btn-container'>
                     <AcceptButton
                         onClearDeadlineInput={onClearDeadlineInput}
-                        setTodoDeadline={setTodoDeadline}
                         toggleActivity={() => toggleActivity({
                             'addbtn': true,
                             'form': false

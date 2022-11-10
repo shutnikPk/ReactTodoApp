@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 function AcceptButton({
     onAddTodoName,
     toggleActivity,
-    setTodoDeadline,
     onClearDeadlineInput
 }) {
 
@@ -13,7 +12,6 @@ function AcceptButton({
         event.preventDefault()
         onAddTodoName()
         toggleActivity()
-        setTodoDeadline()
         onClearDeadlineInput()
     }
 

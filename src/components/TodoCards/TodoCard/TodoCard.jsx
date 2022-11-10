@@ -10,16 +10,17 @@ function TodoCard({
 }) {
 
     const setFormateDate = () => {
-        return todo?.deadline.toLocaleString([], { day: 'numeric', month: 'numeric', year: 'numeric' })
+        return new Date(todo?.deadline).toLocaleString([], { day: 'numeric', month: 'numeric', year: 'numeric' }).replaceAll('.', '/')
     }
 
-    const compareDeadline = () => todo?.deadline <= new Date() ?
+    const compareDeadline = () => new Date(todo?.deadline) <= new Date() ?
         ' todo-card--deadline__danger'
         :
         ''
 
 
-    compareDeadline()
+
+    console.log(typeof todo.deadline)
 
     return (
         <div className='todo-card'>
@@ -39,7 +40,7 @@ TodoCard.propTypes = {
     todo: PropTypes.shape({
         isImportant: PropTypes.bool,
         text: PropTypes.string,
-        deadline: PropTypes.object,
+        deadline: PropTypes.string,
         id: PropTypes.number,
         isFinished: PropTypes.bool
     }).isRequired,

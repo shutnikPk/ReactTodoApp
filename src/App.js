@@ -1,4 +1,3 @@
-import todos from "./TestTodoTasks/testTasks";
 import "./App.css";
 
 import { useState } from "react";
@@ -9,7 +8,9 @@ import AddButton from "./components/AddButton/AddButton";
 import Popup from "./components/Popup/Popup";
 
 function App() {
-  const [todoItems, setTodoItems] = useState(todos);
+  const [todoItems, setTodoItems] = useState(
+    JSON.parse(localStorage.getItem("Todos")) || []
+  );
   const [activeClass, setActiveClass] = useState({
     form: false,
     popup: false,
@@ -21,6 +22,7 @@ function App() {
     if (!todo.text.trim()) return;
     todo.id = todoItems.length + 1;
     const tmpArr = [...todoItems, todo];
+    localStorage.setItem("Todos", JSON.stringify(tmpArr));
     setTodoItems(tmpArr);
   };
 
@@ -35,6 +37,7 @@ function App() {
     let tmpArr = [...todoItems];
     tmpArr = tmpArr.filter((e) => e.id !== id);
     tmpArr = reCalculateId(tmpArr);
+    localStorage.setItem("Todos", JSON.stringify(tmpArr));
     setTodoItems(tmpArr);
   };
 
@@ -62,11 +65,15 @@ function App() {
         toggleActivity={toggleActivity}
         addTodo={addTodo}
       />
-      <TodoCards
-        setId={setId}
-        toggleActivity={toggleActivity}
-        todos={todoItems}
-      />
+      {todoItems.length ? (
+        <TodoCards
+          setId={setId}
+          toggleActivity={toggleActivity}
+          todos={todoItems}
+        />
+      ) : (
+        <p>No Tasks Yet</p>
+      )}
     </div>
   );
 }
