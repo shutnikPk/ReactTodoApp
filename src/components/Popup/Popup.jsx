@@ -1,6 +1,7 @@
 import React from 'react';
-import './Popup.css'
+import './Popup.css';
 import PropTypes from 'prop-types';
+
 import Button from '../Button/Button';
 
 function Popup({
@@ -26,7 +27,9 @@ function Popup({
                     <Button
                         name={'Cancel'}
                         className={'button'}
-                        onClick={() => toggleVisability({ 'popup': false })}
+                        onClick={() => toggleVisability({
+                            'popup': false
+                        })}
                     />
                 </div>
             </div>
@@ -38,11 +41,11 @@ Popup.propTypes = {
     onClickDeleteButton: PropTypes.func.isRequired,
     toggleVisability: PropTypes.func.isRequired,
     visible: PropTypes.bool.isRequired
-}
+};
 
 Popup.defaultProps = {
-    onClickDeleteButton: (() => console.error('onClickDeleteButton() is Required')),
-    toggleVisability: (() => console.error('toggleVisability() is Required')),
+    onClickDeleteButton: (() => new Error('onClickDeleteButton() is Required')),
+    toggleVisability: (() => new Error('toggleVisability() is Required')),
     visible: true
 };
 

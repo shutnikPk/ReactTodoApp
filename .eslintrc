@@ -1,12 +1,10 @@
 {
   "extends": ["react-app", "react-app/jest"],
   "rules": {
-    "quotes": ["warning", "single"],
-    "jsx-quotes": ["warning", "single"],
+    "quotes": ["warn", "single"],
     "no-console": "warn",
     "prefer-const": "error",
-    "indent": ["warn", 2],
-    "react/jsx-indent": ["error", 4],
+    "indent": ["warn", 4],
     "max-len": [
       "error",
       {
@@ -26,7 +24,8 @@
           "index",
           "object",
           "type"
-        ]
+        ],
+        "newlines-between": "always-and-inside-groups"
       }
     ],
     "object-curly-newline": [

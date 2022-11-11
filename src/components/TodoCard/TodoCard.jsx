@@ -1,6 +1,7 @@
 import React from 'react';
-import './TodoCard.css'
+import './TodoCard.css';
 import PropTypes from 'prop-types';
+
 import Button from '../Button/Button';
 
 function TodoCard({
@@ -9,13 +10,15 @@ function TodoCard({
 }) {
 
     const setFormateDate = () => {
-        return new Date(todo?.deadline).toLocaleString([], { day: 'numeric', month: 'numeric', year: 'numeric' }).replaceAll('.', '/')
-    }
+        return new Date(todo?.deadline).toLocaleString([], {
+            day: 'numeric', month: 'numeric', year: 'numeric'
+        }).replaceAll('.', '/');
+    };
 
     const compareDeadline = () => new Date(todo?.deadline) <= new Date() ?
         ' todo-card--deadline__danger'
         :
-        ''
+        '';
 
     return (
         <div className='todo-card'>
@@ -41,11 +44,12 @@ TodoCard.propTypes = {
         isFinished: PropTypes.bool
     }).isRequired,
     onClickCrossButton: PropTypes.func.isRequired,
-}
+};
 
 TodoCard.defaultProps = {
-    todo: ({}),
-    onClickCrossButton: (() => console.error('onClickCrossButton() is Required')),
+    todo: ({
+    }),
+    onClickCrossButton: (() => new Error('onClickCrossButton() is Required')),
 };
 
 export default TodoCard;

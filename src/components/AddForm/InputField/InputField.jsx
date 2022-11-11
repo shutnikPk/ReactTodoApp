@@ -1,6 +1,7 @@
 import React from 'react';
 import './InputField.css';
 import PropTypes from 'prop-types';
+
 import MyDatePicker from './MyDatePicker/MyDatePicker';
 
 function InputField({
@@ -11,8 +12,8 @@ function InputField({
 }) {
 
     const handleChange = (event) => {
-        onChangeInput(event.target.value)
-    }
+        onChangeInput(event.target.value);
+    };
 
 
     return (
@@ -32,6 +33,6 @@ function InputField({
 InputField.propTypes = {
     inputValue: PropTypes.string,
     onChangeInput: PropTypes.func
-}
+};
 
 export default InputField;

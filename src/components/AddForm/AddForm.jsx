@@ -1,9 +1,14 @@
 import React from 'react';
-import './AddForm.css'
-import InputField from './InputField/InputField'
-import { useState } from 'react';
+
+import './AddForm.css';
+import {
+    useState
+} from 'react';
 import PropTypes from 'prop-types';
+
 import Button from '../Button/Button';
+
+import InputField from './InputField/InputField';
 
 function AddForm({
     addTodo,
@@ -11,66 +16,66 @@ function AddForm({
     visible
 }) {
 
-    const [inputValue, setInputValue] = useState('')
+    const [inputValue, setInputValue] = useState('');
     const [deadline, setDeadline] = useState('');
 
     const todo = {
         isImportant: true,
         text: 'tasksText',
         isFinished: false,
-    }
+    };
 
     const setTodoDeadline = () => {
         deadline ?
             todo.deadline = deadline.toISOString() :
-            todo.deadline = new Date().toISOString()
-    }
+            todo.deadline = new Date().toISOString();
+    };
 
     const onChangeDeadline = (date) => {
         setDeadline(date);
-    }
+    };
 
     const onClearDeadlineInput = () => {
-        setDeadline('')
-    }
+        setDeadline('');
+    };
 
     const changeTodoText = () => {
-        todo.text = inputValue
-    }
+        todo.text = inputValue;
+    };
 
     const addTodoHandler = () => {
-        addTodo(todo)
+        addTodo(todo);
 
-    }
+    };
 
 
     const onClearInput = () => {
-        setInputValue('')
-    }
+        setInputValue('');
+    };
 
     const onChangeInput = (text) => {
         setInputValue(text);
-    }
+    };
 
     const onClickSaveButton = () => {
         toggleVisability({
             'addbtn': true,
             'form': false
-        })
-        onClearInput()
-        setTodoDeadline()
-        changeTodoText()
-        addTodoHandler()
-    }
+        });
+        onClearInput();
+        setTodoDeadline();
+        changeTodoText();
+        addTodoHandler();
+    };
 
     const onClickCancelButton = () => {
         toggleVisability({
             'addbtn': true,
             'form': false
-        })
-        onClearDeadlineInput()
-        onClearInput()
-    }
+        });
+        onClearDeadlineInput();
+        onClearInput();
+    };
 
     return (
         <form className={
@@ -106,11 +111,11 @@ AddForm.propTypes = {
     visible: PropTypes.bool.isRequired,
     addTodo: PropTypes.func.isRequired,
     toggleVisability: PropTypes.func.isRequired
-}
+};
 
 AddForm.defaultProps = {
-    addTodo: (() => console.error('addTodo() is Required')),
-    toggleVisability: (() => console.error('toggleVisability() is Required')),
+    addTodo: (() => new Error('addTodo() is Required')),
+    toggleVisability: (() => new Error('toggleVisability() is Required')),
     visible: true
 };
 
