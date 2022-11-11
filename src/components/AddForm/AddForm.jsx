@@ -1,15 +1,14 @@
 import React from 'react';
 import './AddForm.css'
-import CancelButton from './CancelButton/CancelButton'
-import AcceptButton from './AcceptButton/AcceptButton'
 import InputField from './InputField/InputField'
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import Button from '../Button/Button';
 
 function AddForm({
     addTodo,
-    toggleActivity,
-    activeClass
+    toggleVisability,
+    visible
 }) {
 
     const [inputValue, setInputValue] = useState('')
@@ -53,18 +52,30 @@ function AddForm({
         setInputValue(text);
     }
 
-    const onAddTodoName = () => {
-
+    const onClickSaveButton = () => {
+        toggleVisability({
+            'addbtn': true,
+            'form': false
+        })
+        onClearInput()
         setTodoDeadline()
         changeTodoText()
-        onClearInput()
         addTodoHandler()
+    }
+
+    const onClickCancelButton = () => {
+        toggleVisability({
+            'addbtn': true,
+            'form': false
+        })
+        onClearDeadlineInput()
+        onClearInput()
     }
 
     return (
         <form className={
             'add-form '
-            + (activeClass ? '' : 'inactive')}
+            + (visible ? '' : 'inactive')}
         >
             <div className='add-form--row-container'>
                 <InputField
@@ -74,21 +85,15 @@ function AddForm({
                     onChangeDeadline={onChangeDeadline}
                 />
                 <div className='add-form--btn-container'>
-                    <AcceptButton
-                        onClearDeadlineInput={onClearDeadlineInput}
-                        toggleActivity={() => toggleActivity({
-                            'addbtn': true,
-                            'form': false
-                        })}
-                        onAddTodoName={onAddTodoName}
+                    <Button
+                        name={"Save"}
+                        className={"button"}
+                        onClick={onClickSaveButton}
                     />
-                    <CancelButton
-                        onClearDeadlineInput={onClearDeadlineInput}
-                        toggleActivity={() => toggleActivity({
-                            'addbtn': true,
-                            'form': false
-                        })}
-                        onClearInput={onClearInput}
+                    <Button
+                        name={"Cancel"}
+                        className={"button button__danger"}
+                        onClick={onClickCancelButton}
                     />
                 </div>
             </div>
@@ -98,9 +103,9 @@ function AddForm({
 }
 
 AddForm.propTypes = {
-    activeClass: PropTypes.bool.isRequired,
+    visible: PropTypes.bool.isRequired,
     addTodo: PropTypes.func.isRequired,
-    toggleActivity: PropTypes.func.isRequired
+    toggleVisability: PropTypes.func.isRequired
 }
 
 export default AddForm;

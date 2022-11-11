@@ -2,16 +2,16 @@ import "./App.css";
 
 import { useState } from "react";
 
-import TodoCards from "./components/TodoCards/TodoCards";
 import AddForm from "./components/AddForm/AddForm";
-import AddButton from "./components/AddButton/AddButton";
 import Popup from "./components/Popup/Popup";
+import Button from "./components/Button/Button";
+import TodoCard from "./components/TodoCard/TodoCard";
 
 function App() {
   const [todoItems, setTodoItems] = useState(
     JSON.parse(localStorage.getItem("Todos")) || []
   );
-  const [activeClass, setActiveClass] = useState({
+  const [visible, setVisible] = useState({
     form: false,
     popup: false,
     addbtn: true,
@@ -26,9 +26,9 @@ function App() {
     setTodoItems(tmpArr);
   };
 
-  const toggleActivity = (obj) => {
-    let tmpObj = { ...activeClass, ...obj };
-    setActiveClass(tmpObj);
+  const toggleVisability = (obj) => {
+    let tmpObj = { ...visible, ...obj };
+    setVisible(tmpObj);
   };
 
   const setId = (id) => setPostId(id);
@@ -49,28 +49,46 @@ function App() {
     return tmpArr;
   };
 
+  const onClickDeleteButton = () => {
+    onDelete(postId);
+    toggleVisability({
+      popup: false,
+    });
+  };
+
+  const onClickCrossButton = (id) => {
+    toggleVisability({ popup: true });
+    setId(id);
+  };
+
   return (
     <div className="App">
       <Popup
-        onDelete={() => onDelete(postId)}
-        toggleActivity={toggleActivity}
-        activeClass={activeClass.popup}
+        onClickDeleteButton={onClickDeleteButton}
+        visible={visible.popup}
+        toggleVisability={toggleVisability}
       />
-      <AddButton
-        activeClass={activeClass.addbtn}
-        toggleActivity={() => toggleActivity({ addbtn: false, form: true })}
+      <Button
+        name={"Add Todo"}
+        className={"button button__add"}
+        visible={visible.addbtn}
+        onClick={() => toggleVisability({ addbtn: false, form: true })}
       />
       <AddForm
-        activeClass={activeClass.form}
-        toggleActivity={toggleActivity}
+        visible={visible.form}
+        toggleVisability={toggleVisability}
         addTodo={addTodo}
       />
       {todoItems.length ? (
-        <TodoCards
-          setId={setId}
-          toggleActivity={toggleActivity}
-          todos={todoItems}
-        />
+        <div className="todos-container">
+          {todoItems.map((e) => (
+            <TodoCard
+              onClickCrossButton={onClickCrossButton}
+              key={e.id}
+              todo={e}
+            />
+          ))}
+        </div>
       ) : (
         <p>No Tasks Yet</p>
       )}

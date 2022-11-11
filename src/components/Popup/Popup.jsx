@@ -1,37 +1,33 @@
 import React from 'react';
-import CancelDelete from './CancelDelete/CancelDelete';
-import DeletePost from './DeletePost/DeletePost';
 import './Popup.css'
 import PropTypes from 'prop-types';
+import Button from '../Button/Button';
 
 function Popup({
-    onDelete,
-    activeClass,
-    toggleActivity
+    onClickDeleteButton,
+    visible,
+    toggleVisability
 }) {
 
     return (
         <div className=
             {
-                'popup--background ' + (activeClass ? '' : 'inactive')
+                'popup--background ' + (visible ? '' : 'hidden')
             }
         >
             <div className="popup--container">
                 <p className="popup--text">This action can not be undone. Are you sure?</p>
                 <div className="popud--row">
-                    <DeletePost onDelete={onDelete}
-                        toggleActivity=
-                        {() => toggleActivity(
-                            {
-                                'popup': false,
-                            }
-                        )} />
-                    <CancelDelete toggleActivity=
-                        {() => toggleActivity(
-                            {
-                                'popup': false,
-                            }
-                        )} />
+                    <Button
+                        name={"Delete"}
+                        className={"button button__danger"}
+                        onClick={() => onClickDeleteButton()}
+                    />
+                    <Button
+                        name={"Cancel"}
+                        className={"button"}
+                        onClick={() => toggleVisability({ 'popup': false })}
+                    />
                 </div>
             </div>
         </div>
@@ -39,7 +35,7 @@ function Popup({
 }
 
 Popup.propTypes = {
-    activeClass: PropTypes.bool.isRequired
+    visible: PropTypes.bool.isRequired
 }
 
 export default Popup;

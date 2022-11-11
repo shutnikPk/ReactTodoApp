@@ -1,12 +1,11 @@
 import React from 'react';
-import DeleteButton from './DeleteButton/DeleteButton';
 import './TodoCard.css'
 import PropTypes from 'prop-types';
+import Button from '../Button/Button';
 
 function TodoCard({
     todo,
-    toggleActivity,
-    setId
+    onClickCrossButton
 }) {
 
     const setFormateDate = () => {
@@ -18,18 +17,15 @@ function TodoCard({
         :
         ''
 
-
-
-    console.log(typeof todo.deadline)
-
     return (
         <div className='todo-card'>
             <p className='todo-card--number'>{todo?.id}</p>
             <p className='todo-card--text'>{todo?.text}</p>
             <p className={'todo-card--deadline' + compareDeadline()}>{setFormateDate()}</p >
-            <DeleteButton
-                setId={() => setId(todo?.id)}
-                toggleActivity={() => toggleActivity({ 'popup': true })}
+            <Button
+                name={""}
+                className={"button__delete"}
+                onClick={() => onClickCrossButton(todo?.id)}
             />
         </div>
     );
@@ -44,8 +40,8 @@ TodoCard.propTypes = {
         id: PropTypes.number,
         isFinished: PropTypes.bool
     }).isRequired,
-    toggleActivity: PropTypes.func.isRequired,
-    setId: PropTypes.func.isRequired
+    onClickCrossButton: PropTypes.func.isRequired,
+
 }
 
 export default TodoCard;
