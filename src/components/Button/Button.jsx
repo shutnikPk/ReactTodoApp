@@ -20,9 +20,9 @@ Button.propTypes = {
 }
 
 Button.defaultProps = {
-    className: "button button__base",
+    className: 'button button__base',
     onClick: (() => null),
-    name: "Button",
+    name: 'Button',
     visible: true
 };
 

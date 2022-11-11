@@ -23,8 +23,8 @@ function TodoCard({
             <p className='todo-card--text'>{todo?.text}</p>
             <p className={'todo-card--deadline' + compareDeadline()}>{setFormateDate()}</p >
             <Button
-                name={""}
-                className={"button__delete"}
+                name={''}
+                className={'button__delete'}
                 onClick={() => onClickCrossButton(todo?.id)}
             />
         </div>
@@ -41,7 +41,11 @@ TodoCard.propTypes = {
         isFinished: PropTypes.bool
     }).isRequired,
     onClickCrossButton: PropTypes.func.isRequired,
-
 }
+
+TodoCard.defaultProps = {
+    todo: ({}),
+    onClickCrossButton: (() => console.error('onClickCrossButton() is Required')),
+};
 
 export default TodoCard;

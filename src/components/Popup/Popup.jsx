@@ -19,13 +19,13 @@ function Popup({
                 <p className="popup--text">This action can not be undone. Are you sure?</p>
                 <div className="popud--row">
                     <Button
-                        name={"Delete"}
-                        className={"button button__danger"}
+                        name={'Delete'}
+                        className={'button button__danger'}
                         onClick={() => onClickDeleteButton()}
                     />
                     <Button
-                        name={"Cancel"}
-                        className={"button"}
+                        name={'Cancel'}
+                        className={'button'}
                         onClick={() => toggleVisability({ 'popup': false })}
                     />
                 </div>
@@ -35,7 +35,15 @@ function Popup({
 }
 
 Popup.propTypes = {
+    onClickDeleteButton: PropTypes.func.isRequired,
+    toggleVisability: PropTypes.func.isRequired,
     visible: PropTypes.bool.isRequired
 }
+
+Popup.defaultProps = {
+    onClickDeleteButton: (() => console.error('onClickDeleteButton() is Required')),
+    toggleVisability: (() => console.error('toggleVisability() is Required')),
+    visible: true
+};
 
 export default Popup;

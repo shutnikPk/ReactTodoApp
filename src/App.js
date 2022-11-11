@@ -1,15 +1,15 @@
-import "./App.css";
+import './App.css';
 
-import { useState } from "react";
+import { useState } from 'react';
 
-import AddForm from "./components/AddForm/AddForm";
-import Popup from "./components/Popup/Popup";
-import Button from "./components/Button/Button";
-import TodoCard from "./components/TodoCard/TodoCard";
+import AddForm from './components/AddForm/AddForm';
+import Popup from './components/Popup/Popup';
+import Button from './components/Button/Button';
+import TodoCard from './components/TodoCard/TodoCard';
 
 function App() {
   const [todoItems, setTodoItems] = useState(
-    JSON.parse(localStorage.getItem("Todos")) || []
+    JSON.parse(localStorage.getItem('Todos')) || []
   );
   const [visible, setVisible] = useState({
     form: false,
@@ -22,7 +22,7 @@ function App() {
     if (!todo.text.trim()) return;
     todo.id = todoItems.length + 1;
     const tmpArr = [...todoItems, todo];
-    localStorage.setItem("Todos", JSON.stringify(tmpArr));
+    localStorage.setItem('Todos', JSON.stringify(tmpArr));
     setTodoItems(tmpArr);
   };
 
@@ -37,7 +37,7 @@ function App() {
     let tmpArr = [...todoItems];
     tmpArr = tmpArr.filter((e) => e.id !== id);
     tmpArr = reCalculateId(tmpArr);
-    localStorage.setItem("Todos", JSON.stringify(tmpArr));
+    localStorage.setItem('Todos', JSON.stringify(tmpArr));
     setTodoItems(tmpArr);
   };
 
@@ -69,8 +69,8 @@ function App() {
         toggleVisability={toggleVisability}
       />
       <Button
-        name={"Add Todo"}
-        className={"button button__add"}
+        name={'Add Todo'}
+        className={'button button__add'}
         visible={visible.addbtn}
         onClick={() => toggleVisability({ addbtn: false, form: true })}
       />

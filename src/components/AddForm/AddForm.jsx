@@ -86,13 +86,13 @@ function AddForm({
                 />
                 <div className='add-form--btn-container'>
                     <Button
-                        name={"Save"}
-                        className={"button"}
+                        name={'Save'}
+                        className={'button'}
                         onClick={onClickSaveButton}
                     />
                     <Button
-                        name={"Cancel"}
-                        className={"button button__danger"}
+                        name={'Cancel'}
+                        className={'button button__danger'}
                         onClick={onClickCancelButton}
                     />
                 </div>
@@ -107,5 +107,11 @@ AddForm.propTypes = {
     addTodo: PropTypes.func.isRequired,
     toggleVisability: PropTypes.func.isRequired
 }
+
+AddForm.defaultProps = {
+    addTodo: (() => console.error('addTodo() is Required')),
+    toggleVisability: (() => console.error('toggleVisability() is Required')),
+    visible: true
+};
 
 export default AddForm;
