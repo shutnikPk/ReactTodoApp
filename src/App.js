@@ -20,8 +20,7 @@ function App() {
     });
     const [postId, setPostId] = useState(null);
 
-    const addTodo = (todo) => {
-        if (!todo.text.trim()) return;
+    const addTodo = (todo) => {        
         todo.id = todoItems.length + 1;
         const tmpArr = [...todoItems, todo];
         localStorage.setItem('Todos', JSON.stringify(tmpArr));
@@ -73,7 +72,21 @@ function App() {
                 onClickDeleteButton={onClickDeleteButton}
                 visible={visible.popup}
                 toggleVisability={toggleVisability}
-            />
+            >
+                <Button
+                    name={'Delete'}
+                    className={'button button__danger'}
+                    onClick={() => onClickDeleteButton()}
+                />
+                <Button
+                    name={'Cancel'}
+                    className={'button'}
+                    onClick={() => toggleVisability({
+                        'popup': false
+                    })}
+                />
+
+            </Popup>
             <Button
                 name={'Add Todo'}
                 className={'button button__add'}
@@ -84,7 +97,10 @@ function App() {
             />
             <AddForm
                 visible={visible.form}
-                toggleVisability={toggleVisability}
+                toggleVisability={()=>toggleVisability({
+                    'addbtn': true,
+                    'form': false
+                })}
                 addTodo={addTodo}
             />
             {todoItems.length ? (

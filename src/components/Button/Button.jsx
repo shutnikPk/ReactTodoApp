@@ -4,7 +4,7 @@ import './Button.css';
 
 function Button({ className, onClick, name, visible }) {
 
-    const onClickHandler = () => onClick();
+    const onClickHandler = (event) => onClick(event);
 
     return (
         <button className={className + `${visible ? '' : ' hidden'}`} onClick={onClickHandler}>{name}</button>

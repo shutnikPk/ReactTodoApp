@@ -8,6 +8,8 @@ import PropTypes from 'prop-types';
 
 import Button from '../Button/Button';
 
+import ValidationMessage from '../ValidationMessage/ValidationMessage';
+
 import InputField from './InputField/InputField';
 
 function AddForm({
@@ -18,17 +20,22 @@ function AddForm({
 
     const [inputValue, setInputValue] = useState('');
     const [deadline, setDeadline] = useState('');
+    const [validMsg, setValidMsg] = useState(false);
 
     const todo = {
         isImportant: true,
-        text: 'tasksText',
         isFinished: false,
     };
 
     const setTodoDeadline = () => {
-        deadline ?
-            todo.deadline = deadline.toISOString() :
-            todo.deadline = new Date().toISOString();
+        if (!deadline) {
+            showValidMsg();
+            return;
+        }
+
+        todo.deadline = deadline.toISOString();
+        return true;
+
     };
 
     const onChangeDeadline = (date) => {
@@ -40,14 +47,19 @@ function AddForm({
     };
 
     const changeTodoText = () => {
+        if (!inputValue.trim()) {
+            showValidMsg();
+            return;
+        }
+
         todo.text = inputValue;
+        return true;
     };
 
     const addTodoHandler = () => {
         addTodo(todo);
 
     };
-
 
     const onClearInput = () => {
         setInputValue('');
@@ -57,24 +69,35 @@ function AddForm({
         setInputValue(text);
     };
 
-    const onClickSaveButton = () => {
-        toggleVisability({
-            'addbtn': true,
-            'form': false
-        });
+    const onSave = (e) => {
+        e.preventDefault();
+        if (
+            !changeTodoText() ||
+            !setTodoDeadline()
+        ) { return; }
+        toggleVisability();
         onClearInput();
         setTodoDeadline();
         changeTodoText();
         addTodoHandler();
+        onClearDeadlineInput();
+        hideValidMsg();
     };
 
-    const onClickCancelButton = () => {
-        toggleVisability({
-            'addbtn': true,
-            'form': false
-        });
+    const onCancel = (e) => {
+        e.preventDefault();
+        toggleVisability();
         onClearDeadlineInput();
         onClearInput();
+        hideValidMsg();
+    };
+
+    const showValidMsg = () => {
+        setValidMsg(true);
+    };
+
+    const hideValidMsg = () => {
+        setValidMsg(false);
     };
 
     return (
@@ -93,14 +116,15 @@ function AddForm({
                     <Button
                         name={'Save'}
                         className={'button'}
-                        onClick={onClickSaveButton}
+                        onClick={onSave}
                     />
                     <Button
                         name={'Cancel'}
                         className={'button button__danger'}
-                        onClick={onClickCancelButton}
+                        onClick={onCancel}
                     />
                 </div>
+                <ValidationMessage visible={validMsg} textMsg={'Empty todo name or date!'} />
             </div>
 
         </form >
@@ -108,14 +132,12 @@ function AddForm({
 }
 
 AddForm.propTypes = {
-    visible: PropTypes.bool.isRequired,
+    visible: PropTypes.bool,
     addTodo: PropTypes.func.isRequired,
     toggleVisability: PropTypes.func.isRequired
 };
 
 AddForm.defaultProps = {
-    addTodo: (() => new Error('addTodo() is Required')),
-    toggleVisability: (() => new Error('toggleVisability() is Required')),
     visible: true
 };
 
