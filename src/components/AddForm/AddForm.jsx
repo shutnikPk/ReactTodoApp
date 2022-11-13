@@ -20,7 +20,10 @@ function AddForm({
 
     const [inputValue, setInputValue] = useState('');
     const [deadline, setDeadline] = useState('');
-    const [validMsg, setValidMsg] = useState(false);
+    const [validMsg, setValidMsg] = useState({
+        visible: false,
+        text: ''
+    });
 
     const todo = {
         isImportant: true,
@@ -28,10 +31,17 @@ function AddForm({
     };
 
     const setTodoDeadline = () => {
+        // console.log(deadline <= new Date(Date.now() - 86400000));
         if (!deadline) {
-            showValidMsg();
+            showValidMsg('Empty tasks Date!');
             return;
         }
+
+        if (deadline <= new Date(Date.now() - 86400000)) {
+            showValidMsg('Greeting time Travel!');
+            return;
+        }
+
 
         todo.deadline = deadline.toISOString();
         return true;
@@ -46,9 +56,9 @@ function AddForm({
         setDeadline('');
     };
 
-    const changeTodoText = () => {
+    const setTodoText = () => {
         if (!inputValue.trim()) {
-            showValidMsg();
+            showValidMsg('Empty tasks Name!');
             return;
         }
 
@@ -72,13 +82,13 @@ function AddForm({
     const onSave = (e) => {
         e.preventDefault();
         if (
-            !changeTodoText() ||
+            !setTodoText() ||
             !setTodoDeadline()
         ) { return; }
         toggleVisability();
         onClearInput();
         setTodoDeadline();
-        changeTodoText();
+        setTodoText();
         addTodoHandler();
         onClearDeadlineInput();
         hideValidMsg();
@@ -92,12 +102,15 @@ function AddForm({
         hideValidMsg();
     };
 
-    const showValidMsg = () => {
-        setValidMsg(true);
+    const showValidMsg = (text) => {
+        setValidMsg({
+            visible: true,
+            text: text
+        });
     };
 
     const hideValidMsg = () => {
-        setValidMsg(false);
+        setValidMsg(false, '');
     };
 
     return (
@@ -124,7 +137,7 @@ function AddForm({
                         onClick={onCancel}
                     />
                 </div>
-                <ValidationMessage visible={validMsg} textMsg={'Empty todo name or date!'} />
+                <ValidationMessage visible={validMsg.visible} textMsg={validMsg.text} />
             </div>
 
         </form >

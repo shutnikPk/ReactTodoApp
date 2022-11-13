@@ -20,7 +20,6 @@ function MyDatePicker(
             }
             }
             placeholderText="DD/MM/YYYY"
-            minDate={Date.now()}
         />
     );
 }
