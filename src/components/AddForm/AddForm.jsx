@@ -20,10 +20,7 @@ function AddForm({
 
     const [inputValue, setInputValue] = useState('');
     const [deadline, setDeadline] = useState('');
-    const [validMsg, setValidMsg] = useState({
-        visible: false,
-        text: ''
-    });
+    const [validMsg, setValidMsg] = useState('');
 
     const todo = {
         isImportant: true,
@@ -31,7 +28,6 @@ function AddForm({
     };
 
     const setTodoDeadline = () => {
-        // console.log(deadline <= new Date(Date.now() - 86400000));
         if (!deadline) {
             showValidMsg('Empty tasks Date!');
             return;
@@ -103,10 +99,7 @@ function AddForm({
     };
 
     const showValidMsg = (text) => {
-        setValidMsg({
-            visible: true,
-            text: text
-        });
+        setValidMsg(text);
     };
 
     const hideValidMsg = () => {
@@ -137,7 +130,7 @@ function AddForm({
                         onClick={onCancel}
                     />
                 </div>
-                <ValidationMessage visible={validMsg.visible} textMsg={validMsg.text} />
+                <ValidationMessage visible={Boolean(validMsg)} textMsg={validMsg} />
             </div>
 
         </form >

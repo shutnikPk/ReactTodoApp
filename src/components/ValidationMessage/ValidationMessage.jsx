@@ -8,9 +8,12 @@ import './ValidationMessage.css';
 function ValidationMessage({ textMsg, visible }) {
 
     return (
-        <div className={'danger-msg pop-outin ' + (visible ? '' : 'inactive')}>
-            {textMsg}
-        </div>
+        <>
+            <div className={'danger-msg pop-outin ' + (visible ? '' : 'inactive')}>
+                {textMsg}
+            </div>
+        </>
+
     );
 
 }
