@@ -19,10 +19,12 @@ function ValidationMessage({ textMsg, visible }) {
 }
 
 ValidationMessage.propTypes = {
+    textMsg: PropTypes.string,
     visible: PropTypes.bool
 };
 
 ValidationMessage.defaultProps = {
+    textMsg: 'Somthing wrong',
     visible: false
 };
 
