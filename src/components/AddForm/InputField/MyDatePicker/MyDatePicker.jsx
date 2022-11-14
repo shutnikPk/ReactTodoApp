@@ -6,13 +6,15 @@ import 'react-datepicker/dist/react-datepicker.css';
 function MyDatePicker(
     {
         deadline,
-        onChangeDeadline
+        onChangeDeadline,
+        dangerClass
     }
 ) {
 
+
     return (
         <DatePicker
-            className='my-datepicker-container'
+            className={'my-datepicker-container ' + (dangerClass ? 'my-datepicker-container__danger' : '')}
             dateFormat="dd/MM/yyyy"
             selected={deadline}
             onChange={(date) => {

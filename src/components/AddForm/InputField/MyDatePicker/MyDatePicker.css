@@ -24,3 +24,19 @@
 
   color: #7e7c7c;
 }
+.my-datepicker-container__danger{  
+  color: #b10000;
+  animation: 0.5s my-datepicker-container__danger ease infinite;
+}
+.my-datepicker-container__danger::placeholder{  
+  color: #ff0000;
+}
+
+@keyframes my-datepicker-container__danger {
+  0% {
+    color: #b10000;
+  }
+  100% {
+    color: #ff0000;
+  }
+}

@@ -10,6 +10,10 @@ import {
     useEffect
 } from 'react';
 
+import {
+    useRef
+} from 'react';
+
 import Button from '../Button/Button';
 
 import ValidationMessage from '../ValidationMessage/ValidationMessage';
@@ -24,22 +28,26 @@ function AddForm({
 }) {
 
     const [inputValue, setInputValue] = useState('');
-    const [deadline, setDeadline] = useState('');
+    const [deadline, setDeadline] = useState(new Date());
     const [validMsg, setValidMsg] = useState('');
     const [dangerClass, setDangerClass] = useState(false);
+    const [dangerClassDate, setDangerClassDate] = useState(false);
+
+    const inputContainer = useRef(null);
 
     useEffect(() => {
         switch (validMsg) {
-
             case 'Empty tasks Date!':
                 setDangerClass(true);
+                setDangerClassDate(true);
                 break;
             case 'Greeting time Travel!':
                 setDangerClass(true);
+                setDangerClassDate(true);
                 break;
             case 'Empty tasks Name!':
                 setDangerClass(true);
-
+                inputContainer.current.focus();
         }
     }, [validMsg]);
 
@@ -147,13 +155,18 @@ function AddForm({
 
                 <div className={'input-container ' + (dangerClass ? 'danger' : '')}>
                     <input
-                        className='input-field'
+                        ref={inputContainer}
+                        className={'input-field'}
                         value={inputValue}
                         type='text'
                         onChange={onChangeInput}
                         placeholder='Add task'
                     />
-                    <MyDatePicker deadline={deadline} onChangeDeadline={onChangeDeadline} />
+                    <MyDatePicker
+                        dangerClass={dangerClassDate}
+                        deadline={deadline}
+                        onChangeDeadline={onChangeDeadline}
+                    />
                 </div>
 
 
