@@ -6,11 +6,16 @@ import {
 } from 'react';
 import PropTypes from 'prop-types';
 
+import {
+    useEffect
+} from 'react';
+
 import Button from '../Button/Button';
 
 import ValidationMessage from '../ValidationMessage/ValidationMessage';
 
 import InputField from './InputField/InputField';
+import MyDatePicker from './InputField/MyDatePicker/MyDatePicker';
 
 function AddForm({
     addTodo,
@@ -21,6 +26,22 @@ function AddForm({
     const [inputValue, setInputValue] = useState('');
     const [deadline, setDeadline] = useState('');
     const [validMsg, setValidMsg] = useState('');
+    const [dangerClass, setDangerClass] = useState(false);
+
+    useEffect(() => {
+        switch (validMsg) {
+
+            case 'Empty tasks Date!':
+                setDangerClass(true);
+                break;
+            case 'Greeting time Travel!':
+                setDangerClass(true);
+                break;
+            case 'Empty tasks Name!':
+                setDangerClass(true);
+
+        }
+    }, [validMsg]);
 
     const todo = {
         isImportant: true,
@@ -30,11 +51,13 @@ function AddForm({
     const setTodoDeadline = () => {
         if (!deadline) {
             showValidMsg('Empty tasks Date!');
+
             return;
         }
 
         if (deadline <= new Date(Date.now() - 86400000)) {
             showValidMsg('Greeting time Travel!');
+
             return;
         }
 
@@ -59,6 +82,7 @@ function AddForm({
         }
 
         todo.text = inputValue;
+
         return true;
     };
 
@@ -71,8 +95,8 @@ function AddForm({
         setInputValue('');
     };
 
-    const onChangeInput = (text) => {
-        setInputValue(text);
+    const onChangeInput = (e) => {
+        setInputValue(e.target.value);
     };
 
     const onSave = (e) => {
@@ -96,6 +120,7 @@ function AddForm({
         onClearDeadlineInput();
         onClearInput();
         hideValidMsg();
+        setDangerClass(false);
     };
 
     const showValidMsg = (text) => {
@@ -112,12 +137,26 @@ function AddForm({
             + (visible ? '' : 'inactive')}
         >
             <div className='add-form--row-container'>
-                <InputField
+                {/* <InputField
+                    dangerClass={dangerClass}
                     inputValue={inputValue}
                     onChangeInput={onChangeInput}
                     deadline={deadline}
                     onChangeDeadline={onChangeDeadline}
-                />
+                /> */}
+
+                <div className={'input-container ' + (dangerClass ? 'danger' : '')}>
+                    <input
+                        className='input-field'
+                        value={inputValue}
+                        type='text'
+                        onChange={onChangeInput}
+                        placeholder='Add task'
+                    />
+                    <MyDatePicker deadline={deadline} onChangeDeadline={onChangeDeadline} />
+                </div>
+
+
                 <div className='add-form--btn-container'>
                     <Button
                         name={'Save'}

@@ -29,3 +29,7 @@
 
   color: #7e7c7c;
 }
+
+.danger{
+  border: 2px solid #ff0000;
+}

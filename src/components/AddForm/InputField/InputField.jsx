@@ -8,7 +8,8 @@ function InputField({
     inputValue,
     onChangeInput,
     deadline,
-    onChangeDeadline
+    onChangeDeadline,
+    dangerClass
 }) {
 
     const handleChange = (event) => {
@@ -17,7 +18,7 @@ function InputField({
 
 
     return (
-        <div className='input-container'>
+        <div className={'input-container ' + (dangerClass ? 'danger' : '')}>
             <input
                 className='input-field'
                 value={inputValue}
@@ -31,8 +32,15 @@ function InputField({
 }
 
 InputField.propTypes = {
-    inputValue: PropTypes.string,
-    onChangeInput: PropTypes.func
+    onChangeInput: PropTypes.func.isRequired,
+    deadline: PropTypes.string.isRequired,
+    onChangeDeadline: PropTypes.func.isRequired,
+    dangerClass: PropTypes.bool,
+    inputValue: PropTypes.string.isRequired,
+};
+
+InputField.defaultProps = {
+    dangerClass: false,
 };
 
 export default InputField;
