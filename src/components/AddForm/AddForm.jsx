@@ -79,11 +79,8 @@ function AddForm({
         if (!inputValue.trim()) {
             setErrorMessage(ERROR_MESSAGES.emptyTask);
             inputRef.current.focus();
-
             return false;
-
         };
-
         return true;
 
     };

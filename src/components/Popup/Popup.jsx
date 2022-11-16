@@ -3,16 +3,10 @@ import './Popup.css';
 import PropTypes from 'prop-types';
 
 
-function Popup({
-    visible,
-    children
-}) {
+function Popup({ children }) {
 
     return (
-        <div className=
-            {
-                'popup--background ' + (visible ? '' : 'hidden')
-            }
+        <div className={'popup--background '}
         >
             <div className="popup--container">
                 <p className="popup--text">This action can not be undone. Are you sure?</p>
@@ -29,7 +23,6 @@ Popup.propTypes = {
 };
 
 Popup.defaultProps = {
-    visible: true
 };
 
 export default Popup;

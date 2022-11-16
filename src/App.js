@@ -68,25 +68,27 @@ function App() {
 
     return (
         <div className="App">
-            <Popup
-                onClickDeleteButton={onClickDeleteButton}
-                visible={visible.popup}
-                toggleVisability={toggleVisability}
-            >
-                <Button
-                    name={'Delete'}
-                    className={'button button__danger'}
-                    onClick={() => onClickDeleteButton()}
-                />
-                <Button
-                    name={'Cancel'}
-                    className={'button'}
-                    onClick={() => toggleVisability({
-                        'popup': false
-                    })}
-                />
+            {visible.popup &&
+            (
+                <Popup
+                    
+                >
+                    <Button
+                        name={'Delete'}
+                        className={'button button__danger'}
+                        onClick={() => onClickDeleteButton()}
+                    />
+                    <Button
+                        name={'Cancel'}
+                        className={'button'}
+                        onClick={() => toggleVisability({
+                            'popup': false
+                        })}
+                    />
 
-            </Popup>
+                </Popup>
+            )}
+
             <Button
                 name={'Add Todo'}
                 className={'button button__add'}
