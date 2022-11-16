@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 import './ValidationMessage.css';
 
 
-function ValidationMessage({ textMsg, visible }) {
+function ValidationMessage({ textMsg }) {
 
     return (
         <>
-            <div className={'danger-msg pop-outin ' + (visible ? '' : 'inactive')}>
+            <div className='danger-msg pop-outin'>
                 {textMsg}
             </div>
         </>
@@ -20,12 +20,10 @@ function ValidationMessage({ textMsg, visible }) {
 
 ValidationMessage.propTypes = {
     textMsg: PropTypes.string,
-    visible: PropTypes.bool
 };
 
 ValidationMessage.defaultProps = {
     textMsg: 'Somthing wrong',
-    visible: false
 };
 
 export default ValidationMessage;

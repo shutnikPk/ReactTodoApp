@@ -14,42 +14,79 @@ import {
     useRef
 } from 'react';
 
+import DatePicker from 'react-datepicker';
+
 import Button from '../Button/Button';
 
 import ValidationMessage from '../ValidationMessage/ValidationMessage';
 
-import InputField from './InputField/InputField';
-import MyDatePicker from './InputField/MyDatePicker/MyDatePicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 function AddForm({
     addTodo,
     toggleVisability,
-    visible
+
 }) {
 
     const [inputValue, setInputValue] = useState('');
-    const [deadline, setDeadline] = useState(new Date());
-    const [validMsg, setValidMsg] = useState('');
-    const [dangerClass, setDangerClass] = useState(false);
+    const [deadline, setDeadline] = useState();
+    const [errorMessage, setErrorMessage] = useState('');
+    const [isDangerClass, setIsDangerClass] = useState(false);
     const [dangerClassDate, setDangerClassDate] = useState(false);
+    const [isCheck, setIsCheck] = useState(true);
 
-    const inputContainer = useRef(null);
+    const inputRef = useRef(null);
 
     useEffect(() => {
-        switch (validMsg) {
-            case 'Empty tasks Date!':
-                setDangerClass(true);
-                setDangerClassDate(true);
-                break;
-            case 'Greeting time Travel!':
-                setDangerClass(true);
-                setDangerClassDate(true);
-                break;
-            case 'Empty tasks Name!':
-                setDangerClass(true);
-                inputContainer.current.focus();
+        setDeadline(new Date());
+        inputRef.current.focus();
+
+    }, []);
+
+    const ERROR_MESSAGES = {
+        emptyTask: 'Empty tasks Name!',
+        emptyDate: 'Empty tasks Date!',
+        wrongDate: 'Greeting time Travel!'
+    };
+
+    const isValidationDate = () => {
+        const DAY_IN_MS = 86400000;
+        if (!deadline) {
+            setErrorMessage(ERROR_MESSAGES.emptyDate);
+
+            setDangerClassDate(true);
+
+            return false;
+
         }
-    }, [validMsg]);
+
+        if (deadline <= new Date(Date.now() - DAY_IN_MS)) {
+
+            setErrorMessage(ERROR_MESSAGES.wrongDate);
+
+            setDangerClassDate(true);
+
+            return false;
+
+        }
+
+        return true;
+
+    };
+
+    const isValidationName = () => {
+
+        if (!inputValue.trim()) {
+            setErrorMessage(ERROR_MESSAGES.emptyTask);
+            inputRef.current.focus();
+
+            return false;
+
+        };
+
+        return true;
+
+    };
 
     const todo = {
         isImportant: true,
@@ -57,22 +94,7 @@ function AddForm({
     };
 
     const setTodoDeadline = () => {
-        if (!deadline) {
-            showValidMsg('Empty tasks Date!');
-
-            return;
-        }
-
-        if (deadline <= new Date(Date.now() - 86400000)) {
-            showValidMsg('Greeting time Travel!');
-
-            return;
-        }
-
-
         todo.deadline = deadline.toISOString();
-        return true;
-
     };
 
     const onChangeDeadline = (date) => {
@@ -84,14 +106,7 @@ function AddForm({
     };
 
     const setTodoText = () => {
-        if (!inputValue.trim()) {
-            showValidMsg('Empty tasks Name!');
-            return;
-        }
-
         todo.text = inputValue;
-
-        return true;
     };
 
     const addTodoHandler = () => {
@@ -109,17 +124,20 @@ function AddForm({
 
     const onSave = (e) => {
         e.preventDefault();
-        if (
-            !setTodoText() ||
-            !setTodoDeadline()
-        ) { return; }
+        const isValidDate = isValidationDate();
+        const isValidName = isValidationName();
+        if (!isValidDate || !isValidName) {
+            setIsDangerClass(true);
+            setIsCheck(false);
+            return;
+        }
         toggleVisability();
         onClearInput();
         setTodoDeadline();
         setTodoText();
         addTodoHandler();
         onClearDeadlineInput();
-        hideValidMsg();
+        hideerrorMessage();
     };
 
     const onCancel = (e) => {
@@ -127,45 +145,45 @@ function AddForm({
         toggleVisability();
         onClearDeadlineInput();
         onClearInput();
-        hideValidMsg();
-        setDangerClass(false);
+        hideerrorMessage();
+        setIsDangerClass(false);
     };
 
-    const showValidMsg = (text) => {
-        setValidMsg(text);
-    };
-
-    const hideValidMsg = () => {
-        setValidMsg(false, '');
+    const hideerrorMessage = () => {
+        setIsCheck(true);
     };
 
     return (
-        <form className={
-            'add-form '
-            + (visible ? '' : 'inactive')}
-        >
+        <form className='add-form' >
             <div className='add-form--row-container'>
-                {/* <InputField
-                    dangerClass={dangerClass}
-                    inputValue={inputValue}
-                    onChangeInput={onChangeInput}
-                    deadline={deadline}
-                    onChangeDeadline={onChangeDeadline}
-                /> */}
-
-                <div className={'input-container ' + (dangerClass ? 'danger' : '')}>
+                <div className={'input-container ' +
+                    (isDangerClass
+                        ?
+                        'danger'
+                        : ''
+                    )}>
                     <input
-                        ref={inputContainer}
+                        ref={inputRef}
                         className={'input-field'}
                         value={inputValue}
                         type='text'
                         onChange={onChangeInput}
-                        placeholder='Add task'
+                        placeholder='Task name'
                     />
-                    <MyDatePicker
-                        dangerClass={dangerClassDate}
-                        deadline={deadline}
-                        onChangeDeadline={onChangeDeadline}
+                    <DatePicker
+                        className={'my-datepicker-container '
+                            + (dangerClassDate
+                                ?
+                                'my-datepicker-container__danger'
+                                : ''
+                            )}
+                        dateFormat="dd/MM/yyyy"
+                        selected={deadline}
+                        onChange={(date) => {
+                            onChangeDeadline(date);
+                        }
+                        }
+                        placeholderText="DD/MM/YYYY"
                     />
                 </div>
 
@@ -182,7 +200,7 @@ function AddForm({
                         onClick={onCancel}
                     />
                 </div>
-                <ValidationMessage visible={Boolean(validMsg)} textMsg={validMsg} />
+                {!isCheck && (<ValidationMessage textMsg={errorMessage} />)}
             </div>
 
         </form >
@@ -190,13 +208,9 @@ function AddForm({
 }
 
 AddForm.propTypes = {
-    visible: PropTypes.bool,
     addTodo: PropTypes.func.isRequired,
     toggleVisability: PropTypes.func.isRequired
 };
 
-AddForm.defaultProps = {
-    visible: true
-};
 
 export default AddForm;

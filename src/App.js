@@ -92,17 +92,20 @@ function App() {
                 className={'button button__add'}
                 visible={visible.addbtn}
                 onClick={() => toggleVisability({
-                    addbtn: false, form: true 
+                    'addbtn': false, 'form': true 
                 })}
             />
-            <AddForm
-                visible={visible.form}
-                toggleVisability={()=>toggleVisability({
-                    'addbtn': true,
-                    'form': false
-                })}
-                addTodo={addTodo}
-            />
+
+            {visible.form && (
+                <AddForm
+                    toggleVisability={()=>toggleVisability({
+                        'addbtn': true,
+                        'form': false
+                    })}
+                    addTodo={addTodo}
+                />)
+            }
+           
             {todoItems.length ? (
                 <div className="todos-container">
                     {todoItems.map((e) => (
