@@ -157,11 +157,8 @@ function AddForm({
         <form className='add-form' >
             <div className='add-form--row-container'>
                 <div className={'input-container ' +
-                    (isDangerClass
-                        ?
-                        'danger'
-                        : ''
-                    )}>
+                    (isDangerClass ? 'danger' : '')
+                }>
                     <input
                         ref={inputRef}
                         className={'input-field'}
@@ -172,11 +169,8 @@ function AddForm({
                     />
                     <DatePicker
                         className={'my-datepicker-container '
-                            + (dangerClassDate
-                                ?
-                                'my-datepicker-container__danger'
-                                : ''
-                            )}
+                            + (dangerClassDate ? 'my-datepicker-container__danger' : '')
+                        }
                         dateFormat="dd/MM/yyyy"
                         selected={deadline}
                         onChange={(date) => {
