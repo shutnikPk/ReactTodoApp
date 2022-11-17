@@ -19,10 +19,7 @@ function Popup({ children }) {
 }
 
 Popup.propTypes = {
-    visible: PropTypes.bool
-};
-
-Popup.defaultProps = {
+    children: PropTypes.array.isRequired
 };
 
 export default Popup;

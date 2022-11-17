@@ -1,7 +1,7 @@
 import './App.css';
 
 import {
-    useState 
+    useState
 } from 'react';
 
 import AddForm from './components/AddForm/AddForm';
@@ -20,7 +20,7 @@ function App() {
     });
     const [postId, setPostId] = useState(null);
 
-    const addTodo = (todo) => {        
+    const addTodo = (todo) => {
         todo.id = todoItems.length + 1;
         const tmpArr = [...todoItems, todo];
         localStorage.setItem('Todos', JSON.stringify(tmpArr));
@@ -29,7 +29,7 @@ function App() {
 
     const toggleVisability = (obj) => {
         const tmpObj = {
-            ...visible, ...obj 
+            ...visible, ...obj
         };
         setVisible(tmpObj);
     };
@@ -61,7 +61,7 @@ function App() {
 
     const onClickCrossButton = (id) => {
         toggleVisability({
-            popup: true 
+            popup: true
         });
         setId(id);
     };
@@ -69,53 +69,57 @@ function App() {
     return (
         <div className="App">
             {visible.popup &&
-            (
-                <Popup
-                    
-                >
-                    <Button
-                        name={'Delete'}
-                        className={'button button__danger'}
-                        onClick={() => onClickDeleteButton()}
-                    />
-                    <Button
-                        name={'Cancel'}
-                        className={'button'}
-                        onClick={() => toggleVisability({
-                            'popup': false
-                        })}
-                    />
+                (
+                    <Popup>
+                        <Button
+                            name={'Delete'}
+                            className={'button button__danger'}
+                            onClick={() => onClickDeleteButton()}
+                        />
+                        <Button
+                            name={'Cancel'}
+                            className={'button'}
+                            onClick={() => toggleVisability({
+                                'popup': false
+                            })}
+                        />
 
-                </Popup>
-            )}
+                    </Popup>
+                )}
 
-            <Button
-                name={'Add Todo'}
-                className={'button button__add'}
-                visible={visible.addbtn}
-                onClick={() => toggleVisability({
-                    'addbtn': false, 'form': true 
-                })}
-            />
+            {visible.addbtn &&
+                <Button
+                    name={'Add Todo'}
+                    className={'button button__add'}
+                    onClick={() => toggleVisability({
+                        'addbtn': false,
+                        'form': true
+                    })}
+                />}
 
             {visible.form && (
                 <AddForm
-                    toggleVisability={()=>toggleVisability({
+                    toggleVisability={() => toggleVisability({
                         'addbtn': true,
                         'form': false
                     })}
                     addTodo={addTodo}
                 />)
             }
-           
+
             {todoItems.length ? (
                 <div className="todos-container">
                     {todoItems.map((e) => (
                         <TodoCard
-                            onClickCrossButton={onClickCrossButton}
                             key={e.id}
                             todo={e}
-                        />
+                        >
+                            <Button
+                                name={''}
+                                className={'button__delete'}
+                                onClick={() => onClickCrossButton(e?.id)}
+                            />
+                        </TodoCard>
                     ))}
                 </div>
             ) : (
