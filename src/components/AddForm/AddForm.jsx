@@ -119,6 +119,13 @@ function AddForm({
         setInputValue(e.target.value);
     };
 
+    const defaultButtonClickAction = () => {
+        toggleVisability();
+        onClearInput();
+        onClearDeadlineInput();
+        hideerrorMessage();
+    };
+
     const onSave = (e) => {
         e.preventDefault();
         const isValidDate = isValidationDate();
@@ -128,22 +135,21 @@ function AddForm({
             setIsCheck(false);
             return;
         }
-        toggleVisability();
-        onClearInput();
+
         setTodoDeadline();
         setTodoText();
         addTodoHandler();
-        onClearDeadlineInput();
-        hideerrorMessage();
+
+        defaultButtonClickAction();
+
     };
 
     const onCancel = (e) => {
         e.preventDefault();
-        toggleVisability();
-        onClearDeadlineInput();
-        onClearInput();
-        hideerrorMessage();
+
         setIsDangerClass(false);
+
+        defaultButtonClickAction();
     };
 
     const hideerrorMessage = () => {
@@ -177,8 +183,6 @@ function AddForm({
                         placeholderText="DD/MM/YYYY"
                     />
                 </div>
-
-
                 <div className='add-form--btn-container'>
                     <Button
                         name={'Save'}
