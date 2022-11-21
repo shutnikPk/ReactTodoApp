@@ -24,7 +24,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 function AddForm({
     addTodo,
-    toggleVisability,
+    toggleFormVisability,
 
 }) {
 
@@ -81,6 +81,7 @@ function AddForm({
             inputRef.current.focus();
             return false;
         };
+
         return true;
 
     };
@@ -120,7 +121,7 @@ function AddForm({
     };
 
     const defaultButtonClickAction = () => {
-        toggleVisability();
+        toggleFormVisability();
         onClearInput();
         onClearDeadlineInput();
         hideerrorMessage();
@@ -204,7 +205,7 @@ function AddForm({
 
 AddForm.propTypes = {
     addTodo: PropTypes.func.isRequired,
-    toggleVisability: PropTypes.func.isRequired
+    toggleFormVisability: PropTypes.func.isRequired
 };
 
 

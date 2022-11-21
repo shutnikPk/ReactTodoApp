@@ -13,11 +13,11 @@ function App() {
     const [todoItems, setTodoItems] = useState(
         JSON.parse(localStorage.getItem('Todos')) || []
     );
-    const [visible, setVisible] = useState({
-        form: false,
-        popup: false,
-        addbtn: true,
-    });
+
+    const [visibleForm, setVisibleForm] = useState(false);
+    const [visiblePopup, setVisiblePopup] = useState(false);
+    const [visibleAddBtn, setVisibleAddBtn] = useState(true);
+
     const [postId, setPostId] = useState(null);
 
     const addTodo = (todo) => {
@@ -25,13 +25,6 @@ function App() {
         const tmpArr = [...todoItems, todo];
         localStorage.setItem('Todos', JSON.stringify(tmpArr));
         setTodoItems(tmpArr);
-    };
-
-    const toggleVisability = (obj) => {
-        const tmpObj = {
-            ...visible, ...obj
-        };
-        setVisible(tmpObj);
     };
 
     const setId = (id) => setPostId(id);
@@ -54,21 +47,27 @@ function App() {
 
     const onClickDeleteButton = () => {
         onDelete(postId);
-        toggleVisability({
-            popup: false,
-        });
+        setVisiblePopup(false);
     };
 
     const onClickCrossButton = (id) => {
-        toggleVisability({
-            popup: true
-        });
+        setVisiblePopup(true);
         setId(id);
+    };
+
+    const onClickAddTodoButton = () => {
+        setVisibleForm(true);
+        setVisibleAddBtn(false);
+    };
+
+    const toggleFormVisability = () => {
+        setVisibleForm(false);
+        setVisibleAddBtn(true);
     };
 
     return (
         <div className="App">
-            {visible.popup &&
+            {visiblePopup &&
                 (
                     <Popup>
                         <Button
@@ -79,30 +78,22 @@ function App() {
                         <Button
                             name={'Cancel'}
                             className={'button'}
-                            onClick={() => toggleVisability({
-                                'popup': false
-                            })}
+                            onClick={() => setVisiblePopup(false)}
                         />
 
                     </Popup>
                 )}
 
-            {visible.addbtn &&
+            {visibleAddBtn &&
                 <Button
                     name={'Add Todo'}
                     className={'button button__add'}
-                    onClick={() => toggleVisability({
-                        'addbtn': false,
-                        'form': true
-                    })}
+                    onClick={() => onClickAddTodoButton()}
                 />}
 
-            {visible.form && (
+            {visibleForm && (
                 <AddForm
-                    toggleVisability={() => toggleVisability({
-                        'addbtn': true,
-                        'form': false
-                    })}
+                    toggleFormVisability={() => toggleFormVisability()}
                     addTodo={addTodo}
                 />)
             }

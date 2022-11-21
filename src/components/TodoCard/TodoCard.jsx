@@ -36,7 +36,7 @@ TodoCard.propTypes = {
         id: PropTypes.number,
         isFinished: PropTypes.bool
     }).isRequired,
-    children: PropTypes.array.isRequired
+    children: PropTypes.object
 };
 
 export default TodoCard;
