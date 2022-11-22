@@ -24,7 +24,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 function AddForm({
     addTodo,
-    toggleVisability,
+    toggleFormVisability,
 
 }) {
 
@@ -79,9 +79,7 @@ function AddForm({
         if (!inputValue.trim()) {
             setErrorMessage(ERROR_MESSAGES.emptyTask);
             inputRef.current.focus();
-
             return false;
-
         };
 
         return true;
@@ -122,6 +120,13 @@ function AddForm({
         setInputValue(e.target.value);
     };
 
+    const defaultButtonClickAction = () => {
+        toggleFormVisability();
+        onClearInput();
+        onClearDeadlineInput();
+        hideerrorMessage();
+    };
+
     const onSave = (e) => {
         e.preventDefault();
         const isValidDate = isValidationDate();
@@ -131,22 +136,21 @@ function AddForm({
             setIsCheck(false);
             return;
         }
-        toggleVisability();
-        onClearInput();
+
         setTodoDeadline();
         setTodoText();
         addTodoHandler();
-        onClearDeadlineInput();
-        hideerrorMessage();
+
+        defaultButtonClickAction();
+
     };
 
     const onCancel = (e) => {
         e.preventDefault();
-        toggleVisability();
-        onClearDeadlineInput();
-        onClearInput();
-        hideerrorMessage();
+
         setIsDangerClass(false);
+
+        defaultButtonClickAction();
     };
 
     const hideerrorMessage = () => {
@@ -180,8 +184,6 @@ function AddForm({
                         placeholderText="DD/MM/YYYY"
                     />
                 </div>
-
-
                 <div className='add-form--btn-container'>
                     <Button
                         name={'Save'}
@@ -203,7 +205,7 @@ function AddForm({
 
 AddForm.propTypes = {
     addTodo: PropTypes.func.isRequired,
-    toggleVisability: PropTypes.func.isRequired
+    toggleFormVisability: PropTypes.func.isRequired
 };
 
 
