@@ -115,7 +115,7 @@ function App() {
                 </div>
             ) : (
                 <p>No Tasks Yet</p>
-            )}
+            )}            
         </div>
     );
 }
