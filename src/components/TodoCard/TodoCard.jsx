@@ -22,6 +22,7 @@ function TodoCard({
             <p className='todo-card--number'>{todo?.id}</p>
             <p className='todo-card--text'>{todo?.text}</p>
             <p className={'todo-card--deadline' + compareDeadline()}>{setFormateDate()}</p >
+            <p className='todo-card--priority'>{todo?.priority}</p>
             {children}
         </div>
     );
@@ -34,7 +35,8 @@ TodoCard.propTypes = {
         text: PropTypes.string,
         deadline: PropTypes.string,
         id: PropTypes.number,
-        isFinished: PropTypes.bool
+        isFinished: PropTypes.bool,
+        priority: PropTypes.number
     }).isRequired,
     children: PropTypes.object
 };

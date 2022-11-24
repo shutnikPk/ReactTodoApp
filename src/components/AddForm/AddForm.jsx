@@ -51,12 +51,12 @@ function AddForm({
     ];
 
     const [inputValue, setInputValue] = useState('');
-    const [deadline, setDeadline] = useState();
+    const [deadline, setDeadline] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
     const [isDangerClass, setIsDangerClass] = useState(false);
     const [dangerClassDate, setDangerClassDate] = useState(false);
     const [isCheck, setIsCheck] = useState(true);
-    const [selected, setSelected] = useState(priorityOption[0].value);
+    const [selectedPriority, setSelectedPriority] = useState(priorityOption[0].value);
 
     const inputRef = useRef(null);
 
@@ -71,8 +71,6 @@ function AddForm({
         emptyDate: 'Empty tasks Date!',
         wrongDate: 'Greeting time Travel!'
     };
-
-
 
     const isValidationDate = () => {
         const DAY_IN_MS = 86400000;
@@ -120,12 +118,16 @@ function AddForm({
         todo.deadline = deadline.toISOString();
     };
 
+    const setTodoPriority = () => {
+        todo.priority = Number(selectedPriority);
+    };
+
     const onChangeDeadline = (date) => {
         setDeadline(date);
     };
 
     const onClearDeadlineInput = () => {
-        setDeadline('');
+        setDeadline(null);
     };
 
     const setTodoText = () => {
@@ -164,6 +166,7 @@ function AddForm({
 
         setTodoDeadline();
         setTodoText();
+        setTodoPriority();
         addTodoHandler();
 
         defaultButtonClickAction();
@@ -183,8 +186,7 @@ function AddForm({
     };
 
     const handleChangePriority = event => {
-        console.log(event.target.value);
-        setSelected(event.target.value);
+        setSelectedPriority(event.target.value);
     };
 
     return (
@@ -215,8 +217,8 @@ function AddForm({
                     />
                     <Priority
                         priorityOption={priorityOption}
-                        value={selected}
-                        onChange={(() => handleChangePriority())}
+                        value={selectedPriority}
+                        handleChangePriority={handleChangePriority}
                     />
                 </div>
                 <div className='add-form--btn-container'>
