@@ -1,13 +1,16 @@
 import React from 'react';
 
+import './Priority.css';
+
 function Priority({ selectedPriority, priorityOption, handleChangePriority }) {
 
     return (
         <div>
-            <select onChange={handleChangePriority} value={selectedPriority} >
+            <select className='priority' onChange={handleChangePriority} value={selectedPriority} >
                 {priorityOption.map(option => (
-                    <option key={option.value} value={option.value}>
-                        {option.value}
+                    <option
+                        className={`priority--option priority--option${option.value}`}
+                        key={option.value} value={option.value}>
                     </option>
                 ))}
             </select>

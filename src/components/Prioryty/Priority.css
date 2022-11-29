@@ -1,0 +1,35 @@
+.priority{
+    appearance: none;
+    border: none;
+    appearance: none;
+    outline: none;
+    width: 50px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    background: url('./Assets/Arrow.svg') no-repeat;
+    background-position: center;
+
+
+}
+
+.priority--option{   
+    display: flex;
+    align-items: center;
+    height: 48px;
+}
+
+.priority--option1{
+    background: url('./Assets/Arrow.svg') no-repeat;
+    background-position: center;
+
+}
+.priority--option2{
+    background: url('./Assets/Arrow.svg') no-repeat;
+    background-position: center;
+}
+.priority--option3{
+    background: url('./Assets/Arrow.svg') no-repeat;
+    background-position: center;
+}
