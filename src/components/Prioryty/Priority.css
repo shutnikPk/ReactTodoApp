@@ -1,35 +1,38 @@
 .priority{
-    appearance: none;
-    border: none;
-    appearance: none;
-    outline: none;
     width: 50px;
-    height: 48px;
-    display: flex;
-    align-items: center;
     text-align: center;
-    background: url('./Assets/Arrow.svg') no-repeat;
     background-position: center;
+    position: absolute;
 
+    top: 0px;
+    left: 450px;
 
 }
 
 .priority--option{   
-    display: flex;
-    align-items: center;
+    width: 50px;
     height: 48px;
+   color: rgb(44, 132, 180);
 }
 
 .priority--option1{
-    background: url('./Assets/Arrow.svg') no-repeat;
-    background-position: center;
-
+    fill: yellowgreen;
 }
-.priority--option2{
-    background: url('./Assets/Arrow.svg') no-repeat;
-    background-position: center;
+.option-value2{
+    color: rgb(255, 47, 120);
 }
 .priority--option3{
-    background: url('./Assets/Arrow.svg') no-repeat;
-    background-position: center;
+
 }
+
+.priority--option4{
+
+  }
+
+  .priority--option6{
+
+  }
+
+  .priority--option6{
+
+  }

@@ -32,7 +32,7 @@ function AddForm({
     const priorityOption = [
         {
             value: '1',
-            content:''
+            content: ''
         },
         {
             value: '2'
@@ -187,7 +187,9 @@ function AddForm({
     };
 
     const handleChangePriority = event => {
+        console.log(event.target.value);
         setSelectedPriority(event.target.value);
+        console.log(event.target.value);
     };
 
     return (
