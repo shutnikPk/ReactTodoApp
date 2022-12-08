@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './AddForm.css';
+
 import {
     useState
 } from 'react';
@@ -21,7 +22,7 @@ import Button from '../Button/Button';
 import ValidationMessage from '../ValidationMessage/ValidationMessage';
 
 import 'react-datepicker/dist/react-datepicker.css';
-import Priority from '../Prioryty/Priority';
+import PriorityOption from '../PriorityOption/PriorityOption';
 
 function AddForm({
     addTodo,
@@ -29,35 +30,13 @@ function AddForm({
 
 }) {
 
-    const priorityOption = [
-        {
-            value: '1',
-            content: ''
-        },
-        {
-            value: '2'
-        },
-        {
-            value: '3'
-        },
-        {
-            value: '4'
-        },
-        {
-            value: '5'
-        },
-        {
-            value: '6'
-        },
-    ];
-
     const [inputValue, setInputValue] = useState('');
     const [deadline, setDeadline] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
     const [isDangerClass, setIsDangerClass] = useState(false);
     const [dangerClassDate, setDangerClassDate] = useState(false);
     const [isCheck, setIsCheck] = useState(true);
-    const [selectedPriority, setSelectedPriority] = useState(priorityOption[0].value);
+
 
     const inputRef = useRef(null);
 
@@ -119,9 +98,6 @@ function AddForm({
         todo.deadline = deadline.toISOString();
     };
 
-    const setTodoPriority = () => {
-        todo.priority = Number(selectedPriority);
-    };
 
     const onChangeDeadline = (date) => {
         setDeadline(date);
@@ -167,7 +143,6 @@ function AddForm({
 
         setTodoDeadline();
         setTodoText();
-        setTodoPriority();
         addTodoHandler();
 
         defaultButtonClickAction();
@@ -186,10 +161,8 @@ function AddForm({
         setIsCheck(true);
     };
 
-    const handleChangePriority = event => {
-        console.log(event.target.value);
-        setSelectedPriority(event.target.value);
-        console.log(event.target.value);
+    const handleChangePriority = () => {
+
     };
 
     return (
@@ -218,10 +191,8 @@ function AddForm({
                         }
                         placeholderText="DD/MM/YYYY"
                     />
-                    <Priority
-                        priorityOption={priorityOption}
-                        value={selectedPriority}
-                        handleChangePriority={handleChangePriority}
+                    <PriorityOption
+                        onChange={handleChangePriority}
                     />
                 </div>
                 <div className='add-form--btn-container'>
