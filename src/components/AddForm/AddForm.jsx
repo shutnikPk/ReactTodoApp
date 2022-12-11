@@ -117,8 +117,6 @@ function AddForm({
     };
 
     const addTodoHandler = () => {
-        console.log(todo);
-        console.log(JSON.stringify(todo));
         addTodo(todo);
 
     };
