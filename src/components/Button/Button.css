@@ -37,17 +37,37 @@
   background: #0077ffc2;
 }
 
+.button__save {
+  background: #0075ff;
+  border: 1px solid #ffffff;
+
+  color: #ffffff;
+}
+
+.button__save:hover {
+  background: #0077ffc2;
+}
+
 .button__danger {
-  background: #ed0303;
+  
+  border: 1px solid #000000;
+  border-radius: 5px;
+  cursor: pointer;
+
+  color: #000000;
+}
+
+.button__danger:hover {
+  background: #ff0000;
+}
+
+.button__danger__delete {
+  background: #ED0303;
   border: 1px solid #ffffff;
   border-radius: 5px;
   cursor: pointer;
 
   color: #ffffff;
-}
-
-.button__danger:hover {
-  background: #cc0000e0;
 }
 
 

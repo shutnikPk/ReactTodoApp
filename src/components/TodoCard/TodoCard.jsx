@@ -11,11 +11,8 @@ import PriorityIcon from '../PriorityIcon/PriorityIcon';
 
 function TodoCard({
     todo,
-    priorityValue = 1
-    ,
     children
 }) {
-
     const setFormateDate = () => {
         return new Date(todo?.deadline).toLocaleString([], {
             day: 'numeric', month: 'numeric', year: 'numeric'
@@ -25,30 +22,29 @@ function TodoCard({
     const compareDeadline = () => new Date(todo?.deadline) <= new Date() ?
         ' todo-card--deadline__danger'
         : '';
-
     return (
         <div className='todo-card'>
             <p className='todo-card--number'>{todo?.id}</p>
             <p className='todo-card--text'>{todo?.text}</p>
             <p className={'todo-card--deadline' + compareDeadline()}>{setFormateDate()}</p >
             <div
-                className={`priority-option-container priority-option-container${priorityValue}`}
-                data-value={priorityValue}
+                className={`priority-option-container priority-option-container${todo.priority}`}
+                data-value={todo.priority}
             >
                 <PriorityIcon
-                    value={priorityValue}
-                    label={options[priorityValue - 1].label}
-                    className={`option-value option-value${priorityValue}`}
+                    value={todo.priority}
+                    label={options[todo.priority].label}
+                    className={`option-value option-value${todo.priority}`}
                 />
                 <PriorityIcon
-                    value={priorityValue}
-                    label={options[priorityValue - 1].label}
-                    className={`option-value option-value${priorityValue}`}
+                    value={todo.priority}
+                    label={options[todo.priority].label}
+                    className={`option-value option-value${todo.priority}`}
                 />
                 <PriorityIcon
-                    value={priorityValue}
-                    label={options[priorityValue - 1].label}
-                    className={`option-value option-value${priorityValue}`}
+                    value={todo.priority}
+                    label={options[todo.priority].label}
+                    className={`option-value option-value${todo.priority}`}
                 />
             </div>
             {children}
@@ -66,7 +62,6 @@ TodoCard.propTypes = {
         isFinished: PropTypes.bool,
         priority: PropTypes.number
     }).isRequired,
-    priorityValue: PropTypes.string
 };
 
 export default TodoCard;

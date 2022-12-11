@@ -26,48 +26,48 @@
  margin-bottom: 5px;
 }
 
-.option-value1{
+.option-value0{
   color: #E50000;
   transform: rotate(180deg);
 }
 
-.option-value2{
+.option-value1{
   color: #E23B04;
+  transform: rotate(180deg);
+}
+.option-value1:first-child{
+  display: none;
+}
+
+.option-value2{
+  color: #FF4915;
   transform: rotate(180deg);
 }
 .option-value2:first-child{
   display: none;
 }
+.option-value2:last-child{
+  display: none;
+}
+
+.option-value5{
+  color: #0300AC;
+}
+
+.option-value4{
+  color: #4944FF;
+}
+.option-value4:first-child{
+  display: none;
+}
 
 .option-value3{
-  color: #FF4915;
-  transform: rotate(180deg);
+  color: #07D7E4;
 }
 .option-value3:first-child{
   display: none;
 }
 .option-value3:last-child{
-  display: none;
-}
-
-.option-value6{
-  color: #0300AC;
-}
-
-.option-value5{
-  color: #4944FF;
-}
-.option-value5:first-child{
-  display: none;
-}
-
-.option-value4{
-  color: #07D7E4;
-}
-.option-value4:first-child{
-  display: none;
-}
-.option-value4:last-child{
   display: none;
 }
 

@@ -36,6 +36,7 @@ function AddForm({
     const [isDangerClass, setIsDangerClass] = useState(false);
     const [dangerClassDate, setDangerClassDate] = useState(false);
     const [isCheck, setIsCheck] = useState(true);
+    const [todoPriority, setTodoPriority] = useState(0);
 
 
     const inputRef = useRef(null);
@@ -94,6 +95,10 @@ function AddForm({
         isFinished: false,
     };
 
+    const addTodoPriority = () => {
+        todo.priority = todoPriority;
+    };
+
     const setTodoDeadline = () => {
         todo.deadline = deadline.toISOString();
     };
@@ -112,6 +117,8 @@ function AddForm({
     };
 
     const addTodoHandler = () => {
+        console.log(todo);
+        console.log(JSON.stringify(todo));
         addTodo(todo);
 
     };
@@ -140,13 +147,12 @@ function AddForm({
             setIsCheck(false);
             return;
         }
-
+        addTodoPriority();
         setTodoDeadline();
         setTodoText();
         addTodoHandler();
 
         defaultButtonClickAction();
-
     };
 
     const onCancel = (e) => {
@@ -161,9 +167,7 @@ function AddForm({
         setIsCheck(true);
     };
 
-    const handleChangePriority = () => {
 
-    };
 
     return (
         <form className='add-form' >
@@ -192,13 +196,13 @@ function AddForm({
                         placeholderText="DD/MM/YYYY"
                     />
                     <PriorityOption
-                        onChange={handleChangePriority}
+                        setTodoPriority={setTodoPriority}
                     />
                 </div>
                 <div className='add-form--btn-container'>
                     <Button
                         name={'Save'}
-                        className={'button'}
+                        className={'button button__save'}
                         onClick={onSave}
                     />
                     <Button

@@ -13,14 +13,16 @@ import {
     options
 } from '../../constants/constants';
 
-function PriorityOption({ defaultValue, onChange }) {
+function PriorityOption({ setTodoPriority }) {
 
-    const [selectedOption, setSelectedOption] = useState(defaultValue | 1);
+    const [selectedOption, setSelectedOption] = useState(0);
     const [isOpenList, SetIsOpenList] = useState(false);
 
     const handleClick = (value) => {
+        setTodoPriority(value);
         setSelectedOption(value);
         SetIsOpenList(!isOpenList);
+        // если я использую в setTodoPriority value, зачем мне стейт [selectedOption, setSelectedOption]
     };
 
     return (
@@ -34,17 +36,17 @@ function PriorityOption({ defaultValue, onChange }) {
                 >
                     <PriorityIcon
                         value={selectedOption}
-                        label={options[selectedOption - 1].label}
+                        label={options[selectedOption].label}
                         className={`option-value option-value${selectedOption}`}
                     />
                     <PriorityIcon
                         value={selectedOption}
-                        label={options[selectedOption - 1].label}
+                        label={options[selectedOption].label}
                         className={`option-value option-value${selectedOption}`}
                     />
                     <PriorityIcon
                         value={selectedOption}
-                        label={options[selectedOption - 1].label}
+                        label={options[selectedOption].label}
                         className={`option-value option-value${selectedOption}`}
                     />
                 </div>
