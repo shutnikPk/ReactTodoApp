@@ -1,9 +1,18 @@
 import React from 'react';
+
 import './TodoCard.css';
 import PropTypes from 'prop-types';
 
+import {
+    options
+} from '../../constants/constants';
+
+import PriorityIcon from '../PriorityIcon/PriorityIcon';
+
 function TodoCard({
     todo,
+    priorityValue = 1
+    ,
     children
 }) {
 
@@ -22,6 +31,26 @@ function TodoCard({
             <p className='todo-card--number'>{todo?.id}</p>
             <p className='todo-card--text'>{todo?.text}</p>
             <p className={'todo-card--deadline' + compareDeadline()}>{setFormateDate()}</p >
+            <div
+                className={`priority-option-container priority-option-container${priorityValue}`}
+                data-value={priorityValue}
+            >
+                <PriorityIcon
+                    value={priorityValue}
+                    label={options[priorityValue - 1].label}
+                    className={`option-value option-value${priorityValue}`}
+                />
+                <PriorityIcon
+                    value={priorityValue}
+                    label={options[priorityValue - 1].label}
+                    className={`option-value option-value${priorityValue}`}
+                />
+                <PriorityIcon
+                    value={priorityValue}
+                    label={options[priorityValue - 1].label}
+                    className={`option-value option-value${priorityValue}`}
+                />
+            </div>
             {children}
         </div>
     );
@@ -37,7 +66,7 @@ TodoCard.propTypes = {
         isFinished: PropTypes.bool,
         priority: PropTypes.number
     }).isRequired,
-    children: PropTypes.object
+    priorityValue: PropTypes.string
 };
 
 export default TodoCard;

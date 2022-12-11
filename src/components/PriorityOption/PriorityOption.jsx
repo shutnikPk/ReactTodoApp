@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 import {
     useState
 } from 'react';
@@ -10,44 +9,23 @@ import PriorityIcon from '../PriorityIcon/PriorityIcon';
 
 import './PriorityOption.css';
 
-const options = [
-    {
-        value: '1',
-        label: 'Highest'
-    },
-    {
-        value: '2',
-        label: 'Very hight'
-    },
-    {
-        value: '3',
-        label: 'Hight'
-    },
-    {
-        value: '4',
-        label: 'Low'
-    },
-    {
-        value: '5',
-        label: 'Very low'
-    },
-    {
-        value: '6',
-        label: 'Lowest'
-    },
-];
+import {
+    options
+} from '../../constants/constants';
 
 function PriorityOption({ defaultValue, onChange }) {
 
     const [selectedOption, setSelectedOption] = useState(defaultValue | 1);
+    const [isOpenList, SetIsOpenList] = useState(false);
 
     const handleClick = (value) => {
         setSelectedOption(value);
+        SetIsOpenList(!isOpenList);
     };
 
     return (
         <div className='priority' >
-            <div className={'selected-option'}>
+            <div className={`selected-option ${isOpenList ? 'hidden-list' : ''}`}>
                 <div
                     key={selectedOption}
                     className={`priority-option-container priority-option-container${selectedOption}`}
@@ -57,18 +35,21 @@ function PriorityOption({ defaultValue, onChange }) {
                     <PriorityIcon
                         value={selectedOption}
                         label={options[selectedOption - 1].label}
-                        className={`option-value option-value${selectedOption}`} />
+                        className={`option-value option-value${selectedOption}`}
+                    />
                     <PriorityIcon
                         value={selectedOption}
                         label={options[selectedOption - 1].label}
-                        className={`option-value option-value${selectedOption}`} />
+                        className={`option-value option-value${selectedOption}`}
+                    />
                     <PriorityIcon
                         value={selectedOption}
                         label={options[selectedOption - 1].label}
-                        className={`option-value option-value${selectedOption}`} />
+                        className={`option-value option-value${selectedOption}`}
+                    />
                 </div>
             </div>
-            <div className='priority-option-list'>
+            <div className={`priority-option-list ${isOpenList ? '' : 'hidden-list'}`}>
                 {
                     options.map(({ value, label = '' }) => (
                         <div

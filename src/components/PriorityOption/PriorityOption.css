@@ -1,7 +1,14 @@
 .priority{
     position: absolute;
-    top: 0px;
+    top: 5px;
     left: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.selected-option{
+  margin-top: 12px;
 }
 
 .priority-option-container{
@@ -61,5 +68,10 @@
   display: none;
 }
 .option-value4:last-child{
+  display: none;
+}
+
+
+.hidden-list{
   display: none;
 }
