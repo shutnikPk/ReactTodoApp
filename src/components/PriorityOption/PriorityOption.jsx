@@ -4,8 +4,9 @@ import {
     useState
 } from 'react';
 
-import PriorityIcon from '../PriorityIcon/PriorityIcon';
+import PropTypes from 'prop-types';
 
+import PriorityIcon from '../PriorityIcon/PriorityIcon';
 
 import './PriorityOption.css';
 
@@ -22,7 +23,6 @@ function PriorityOption({ setTodoPriority }) {
         setTodoPriority(value);
         setSelectedOption(value);
         SetIsOpenList(!isOpenList);
-        // если я использую в setTodoPriority value, зачем мне стейт [selectedOption, setSelectedOption]
     };
 
     return (
@@ -34,16 +34,6 @@ function PriorityOption({ setTodoPriority }) {
                     onClick={() => handleClick(selectedOption)}
                     data-value={selectedOption}
                 >
-                    <PriorityIcon
-                        value={selectedOption}
-                        label={options[selectedOption].label}
-                        className={`option-value option-value${selectedOption}`}
-                    />
-                    <PriorityIcon
-                        value={selectedOption}
-                        label={options[selectedOption].label}
-                        className={`option-value option-value${selectedOption}`}
-                    />
                     <PriorityIcon
                         value={selectedOption}
                         label={options[selectedOption].label}
@@ -65,16 +55,7 @@ function PriorityOption({ setTodoPriority }) {
                                 label={label}
                                 className={`option-value option-value${value}`}
                             />
-                            <PriorityIcon
-                                value={value}
-                                label={label}
-                                className={`option-value option-value${value}`}
-                            />
-                            <PriorityIcon
-                                value={value}
-                                label={label}
-                                className={`option-value option-value${value}`}
-                            />
+
                         </div>
                     ))
                 }
@@ -82,5 +63,9 @@ function PriorityOption({ setTodoPriority }) {
         </div >
     );
 }
+
+PriorityOption.propTypes = {
+    setTodoPriority: PropTypes.func.isRequired,
+};
 
 export default PriorityOption;

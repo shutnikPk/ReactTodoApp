@@ -36,16 +36,6 @@ function TodoCard({
                     label={options[todo.priority].label}
                     className={`option-value option-value${todo.priority}`}
                 />
-                <PriorityIcon
-                    value={todo.priority}
-                    label={options[todo.priority].label}
-                    className={`option-value option-value${todo.priority}`}
-                />
-                <PriorityIcon
-                    value={todo.priority}
-                    label={options[todo.priority].label}
-                    className={`option-value option-value${todo.priority}`}
-                />
             </div>
             {children}
         </div>
