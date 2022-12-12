@@ -17,6 +17,11 @@ import {
 
 import DatePicker from 'react-datepicker';
 
+import {
+    ReactComponent as CalendarIcon
+} from '../../Assets/monthly-calendar-svgrepo-com.svg';
+
+
 import Button from '../Button/Button';
 
 import ValidationMessage from '../ValidationMessage/ValidationMessage';
@@ -181,18 +186,25 @@ function AddForm({
                         onChange={onChangeInput}
                         placeholder='Task name'
                     />
-                    <DatePicker
-                        className={'my-datepicker-container '
-                            + (dangerClassDate ? 'my-datepicker-container__danger' : '')
-                        }
-                        dateFormat="dd/MM/yyyy"
-                        selected={deadline}
-                        onChange={(date) => {
-                            onChangeDeadline(date);
-                        }
-                        }
-                        placeholderText="DD/MM/YYYY"
-                    />
+                    <div className='datepicker-row'>
+                        <DatePicker
+                            className={'my-datepicker-container '
+                                + (dangerClassDate ? 'my-datepicker-container__danger' : '')
+                            }
+                            dateFormat="dd/MM/yyyy"
+                            selected={deadline}
+                            onChange={(date) => {
+                                onChangeDeadline(date);
+                            }
+                            }
+                            placeholderText="DD/MM/YYYY"
+                        />
+                        <CalendarIcon className={'calendar-icon ' +
+                            (dangerClassDate
+                                ? 'my-datepicker-container__danger'
+                                : ''
+                            )} />
+                    </div>
                     <PriorityOption
                         setTodoPriority={setTodoPriority}
                     />
