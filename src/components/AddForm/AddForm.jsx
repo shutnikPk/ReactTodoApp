@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './AddForm.css';
+
 import {
     useState
 } from 'react';
@@ -16,11 +17,17 @@ import {
 
 import DatePicker from 'react-datepicker';
 
+import {
+    ReactComponent as CalendarIcon
+} from '../../Assets/monthly-calendar-svgrepo-com.svg';
+
+
 import Button from '../Button/Button';
 
 import ValidationMessage from '../ValidationMessage/ValidationMessage';
 
 import 'react-datepicker/dist/react-datepicker.css';
+import PriorityOption from '../PriorityOption/PriorityOption';
 
 function AddForm({
     addTodo,
@@ -29,11 +36,13 @@ function AddForm({
 }) {
 
     const [inputValue, setInputValue] = useState('');
-    const [deadline, setDeadline] = useState();
+    const [deadline, setDeadline] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
     const [isDangerClass, setIsDangerClass] = useState(false);
     const [dangerClassDate, setDangerClassDate] = useState(false);
     const [isCheck, setIsCheck] = useState(true);
+    const [todoPriority, setTodoPriority] = useState(0);
+
 
     const inputRef = useRef(null);
 
@@ -91,16 +100,21 @@ function AddForm({
         isFinished: false,
     };
 
+    const addTodoPriority = () => {
+        todo.priority = todoPriority;
+    };
+
     const setTodoDeadline = () => {
         todo.deadline = deadline.toISOString();
     };
+
 
     const onChangeDeadline = (date) => {
         setDeadline(date);
     };
 
     const onClearDeadlineInput = () => {
-        setDeadline('');
+        setDeadline(null);
     };
 
     const setTodoText = () => {
@@ -136,13 +150,12 @@ function AddForm({
             setIsCheck(false);
             return;
         }
-
+        addTodoPriority();
         setTodoDeadline();
         setTodoText();
         addTodoHandler();
 
         defaultButtonClickAction();
-
     };
 
     const onCancel = (e) => {
@@ -156,6 +169,8 @@ function AddForm({
     const hideerrorMessage = () => {
         setIsCheck(true);
     };
+
+
 
     return (
         <form className='add-form' >
@@ -171,23 +186,33 @@ function AddForm({
                         onChange={onChangeInput}
                         placeholder='Task name'
                     />
-                    <DatePicker
-                        className={'my-datepicker-container '
-                            + (dangerClassDate ? 'my-datepicker-container__danger' : '')
-                        }
-                        dateFormat="dd/MM/yyyy"
-                        selected={deadline}
-                        onChange={(date) => {
-                            onChangeDeadline(date);
-                        }
-                        }
-                        placeholderText="DD/MM/YYYY"
+                    <div className='datepicker-row'>
+                        <DatePicker
+                            className={'my-datepicker-container '
+                                + (dangerClassDate ? 'my-datepicker-container__danger' : '')
+                            }
+                            dateFormat="dd/MM/yyyy"
+                            selected={deadline}
+                            onChange={(date) => {
+                                onChangeDeadline(date);
+                            }
+                            }
+                            placeholderText="DD/MM/YYYY"
+                        />
+                        <CalendarIcon className={'calendar-icon ' +
+                            (dangerClassDate
+                                ? 'my-datepicker-container__danger'
+                                : ''
+                            )} />
+                    </div>
+                    <PriorityOption
+                        setTodoPriority={setTodoPriority}
                     />
                 </div>
                 <div className='add-form--btn-container'>
                     <Button
                         name={'Save'}
-                        className={'button'}
+                        className={'button button__save'}
                         onClick={onSave}
                     />
                     <Button

@@ -21,6 +21,8 @@ function App() {
     const [postId, setPostId] = useState(null);
 
     const addTodo = (todo) => {
+        // console.log(todo);
+        // console.log(JSON.stringify(todo));
         todo.id = todoItems.length + 1;
         const tmpArr = [...todoItems, todo];
         localStorage.setItem('Todos', JSON.stringify(tmpArr));
@@ -72,7 +74,7 @@ function App() {
                     <Popup>
                         <Button
                             name={'Delete'}
-                            className={'button button__danger'}
+                            className={'button button__danger  button__danger__delete'}
                             onClick={() => onClickDeleteButton()}
                         />
                         <Button

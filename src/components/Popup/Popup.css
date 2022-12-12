@@ -16,6 +16,7 @@
   border-radius: 5px;
   display: flex;
   flex-direction: column;
+
 }
 .popup--text {
   margin: 0 auto;

@@ -22,20 +22,20 @@
   gap: 10px;
 }
 .input-container {
+  position: relative;
+
   display: flex;
-  width: 100%;
+  width: 500px;
   height: 50px;
   padding: 0 5px;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
 
   background: #ffffff;
   border: 1px solid #000000;
 }
 .input-field {
   border: none;
-
-  padding-left: 15px;
 
   font-family: "Inter";
   font-style: normal;
@@ -59,19 +59,19 @@
   border: 2px solid #ff0000;
 }
 
+.datepicker-row{
+  display: flex;
+}
+
 .my-datepicker-container {
   border: none;
-  width: 170px;
+  width: 110px;
 
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 15px;
-
-  background: url("./Assets/monthly-calendar-svgrepo-com.svg") no-repeat 145px
-    1px;
-  background-size: auto 95%;
 
   outline: none;
 }
@@ -91,6 +91,12 @@
 }
 .my-datepicker-container__danger::placeholder{  
   color: #ff0000;
+}
+
+.calendar-icon {
+width: 20px;
+height: 20px;
+
 }
 
 @keyframes my-datepicker-container__danger {
