@@ -1,0 +1,32 @@
+.sub-menu-button{        
+    width: 100px;
+    height: 30px;
+
+    outline: none;
+    border:none;
+    background: #fff;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    cursor: pointer;
+}
+.sub-menu-button:hover{
+    background: #a3a3a3;
+}
+
+.sub-menu-button--text{
+    margin-left: 5px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+.sub-menu-button--icon{
+    width: 14px;
+    height: 14px;
+    margin-right: 7px;
+}

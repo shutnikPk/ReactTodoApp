@@ -4,10 +4,15 @@ import {
     useState
 } from 'react';
 
+import {
+    ReactComponent as TrashBasket
+} from './Assets/TrashBasket.svg';
+
 import AddForm from './components/AddForm/AddForm';
 import Popup from './components/Popup/Popup';
 import Button from './components/Button/Button';
 import TodoCard from './components/TodoCard/TodoCard';
+import SubMenuButton from './components/SubMenuButton/SubMenuButton';
 
 function App() {
     const [todoItems, setTodoItems] = useState(
@@ -21,8 +26,6 @@ function App() {
     const [postId, setPostId] = useState(null);
 
     const addTodo = (todo) => {
-        // console.log(todo);
-        // console.log(JSON.stringify(todo));
         todo.id = todoItems.length + 1;
         const tmpArr = [...todoItems, todo];
         localStorage.setItem('Todos', JSON.stringify(tmpArr));
@@ -107,17 +110,24 @@ function App() {
                             key={e.id}
                             todo={e}
                         >
-                            <Button
+                            {/* <Button
                                 name={''}
                                 className={'button__delete'}
                                 onClick={() => onClickCrossButton(e?.id)}
-                            />
+                            /> */}
+                            <SubMenuButton
+                                onClick={() => onClickCrossButton(e?.id)}
+                                name={'Delete'}
+                            >
+                                <TrashBasket />
+                            </SubMenuButton>
                         </TodoCard>
                     ))}
                 </div>
             ) : (
                 <p>No Tasks Yet</p>
             )}
+
         </div>
     );
 }

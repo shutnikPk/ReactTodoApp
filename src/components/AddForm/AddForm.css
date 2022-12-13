@@ -1,6 +1,7 @@
 .add-form {
   margin: 0 auto;
   margin-top: 35px;
+  margin-bottom: 20px;
   display: flex;
   width: 500px;
   flex-direction: column;

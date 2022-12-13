@@ -1,26 +1,30 @@
 .priority{
-    position: absolute;
-    top: 5px;
-    left: 450px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  position: absolute;
+  top: 5px;
+  left: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .selected-option{
   margin-top: 12px;
 }
 
-.priority-option-container{
-  cursor: pointer;
+.priority-option-container{ 
+  width: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 2px;
-
 }
-.priority-option-container:hover{
-  background:rgba(128, 128, 128, 0.1)
+
+.priority-option-container__input{
+  cursor: pointer;
+}
+
+.priority-option-container__input:hover{
+  background:#a3a3a3
 }
 .option-value{
  margin-bottom: 5px;
