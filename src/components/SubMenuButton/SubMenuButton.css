@@ -1,5 +1,5 @@
 .sub-menu-button{        
-    width: 100px;
+    width: 98px;
     height: 30px;
 
     outline: none;
@@ -17,7 +17,7 @@
 }
 
 .sub-menu-button--text{
-    margin-left: 5px;
+    margin-left: 4px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
@@ -28,5 +28,5 @@
 .sub-menu-button--icon{
     width: 14px;
     height: 14px;
-    margin-right: 7px;
+    margin-right: 5px;
 }

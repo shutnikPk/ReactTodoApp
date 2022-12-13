@@ -8,11 +8,16 @@ import {
     ReactComponent as TrashBasket
 } from './Assets/TrashBasket.svg';
 
+import {
+    ReactComponent as Edit
+} from './Assets/Edit.svg';
+
 import AddForm from './components/AddForm/AddForm';
 import Popup from './components/Popup/Popup';
 import Button from './components/Button/Button';
 import TodoCard from './components/TodoCard/TodoCard';
 import SubMenuButton from './components/SubMenuButton/SubMenuButton';
+import SubMenu from './components/SubMenu/SubMenu';
 
 function App() {
     const [todoItems, setTodoItems] = useState(
@@ -110,17 +115,21 @@ function App() {
                             key={e.id}
                             todo={e}
                         >
-                            {/* <Button
-                                name={''}
-                                className={'button__delete'}
-                                onClick={() => onClickCrossButton(e?.id)}
-                            /> */}
-                            <SubMenuButton
-                                onClick={() => onClickCrossButton(e?.id)}
-                                name={'Delete'}
-                            >
-                                <TrashBasket />
-                            </SubMenuButton>
+                            <SubMenu >
+                                <SubMenuButton
+                                    onClick={null}
+                                    name={'Edit'}
+                                >
+                                    <TrashBasket />
+                                </SubMenuButton>
+
+                                <SubMenuButton
+                                    onClick={() => onClickCrossButton(e?.id)}
+                                    name={'Delete'}
+                                >
+                                    <TrashBasket />
+                                </SubMenuButton>
+                            </SubMenu>
                         </TodoCard>
                     ))}
                 </div>
