@@ -4,14 +4,6 @@ import {
     useState
 } from 'react';
 
-import {
-    ReactComponent as TrashBasket
-} from './Assets/TrashBasket.svg';
-
-import {
-    ReactComponent as Edit
-} from './Assets/Edit.svg';
-
 import AddForm from './components/AddForm/AddForm';
 import Popup from './components/Popup/Popup';
 import Button from './components/Button/Button';
@@ -116,19 +108,25 @@ function App() {
                             todo={e}
                         >
                             <SubMenu >
+
+                                <SubMenuButton
+                                    onClick={() => onClickCrossButton(e?.id)}
+                                    name={'done'}
+                                >
+                                </SubMenuButton>
+
                                 <SubMenuButton
                                     onClick={null}
-                                    name={'Edit'}
+                                    name={'edit'}
                                 >
-                                    <TrashBasket />
                                 </SubMenuButton>
 
                                 <SubMenuButton
                                     onClick={() => onClickCrossButton(e?.id)}
-                                    name={'Delete'}
+                                    name={'delete'}
                                 >
-                                    <TrashBasket />
                                 </SubMenuButton>
+
                             </SubMenu>
                         </TodoCard>
                     ))}

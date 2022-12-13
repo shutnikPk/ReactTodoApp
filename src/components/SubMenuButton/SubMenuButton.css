@@ -1,5 +1,5 @@
 .sub-menu-button{        
-    width: 98px;
+    width: 90px;
     height: 30px;
 
     outline: none;
@@ -11,12 +11,19 @@
     align-items: center;
 
     cursor: pointer;
+
+    border-bottom: 1px solid black
 }
+.sub-menu-button:last-child{
+    border: none;
+}
+
 .sub-menu-button:hover{
     background: #a3a3a3;
 }
 
 .sub-menu-button--text{
+    text-transform: capitalize;
     margin-left: 4px;
     font-family: 'Inter';
     font-style: normal;
@@ -25,8 +32,24 @@
     line-height: 15px;
 }
 
+
+
+.sub-menu-button--icon-edit{
+ background: url('../../Assets/Edit.svg');
+
+}
+
+.sub-menu-button--icon-delete{
+    background: url('../../Assets/TrashBasket.svg');
+
+}
+.sub-menu-button--icon-done{
+    background: url('../../Assets/Like.svg');
+   
+}
 .sub-menu-button--icon{
     width: 14px;
     height: 14px;
     margin-right: 5px;
+    background-repeat: no-repeat;
 }

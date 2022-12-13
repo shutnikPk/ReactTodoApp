@@ -10,7 +10,7 @@ function SubMenuButton({ name = 'Button', children, onClick }) {
             onClick={onClick}
         >
             <span className={'sub-menu-button--text'}>{name}</span>
-            <span className={'sub-menu-button--icon'}>{children}</span>
+            <span className={`sub-menu-button--icon sub-menu-button--icon-${name}`}>{children}</span>
         </button>
     );
 }
