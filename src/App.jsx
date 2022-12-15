@@ -19,6 +19,7 @@ function App() {
     const [visibleAddBtn, setVisibleAddBtn] = useState(true);
 
     const [postId, setPostId] = useState(null);
+    const [isEdit, setIsEdit] = useState(false);
 
     const addTodo = (todo) => {
         todo.id = todoItems.length + 1;

@@ -1,4 +1,7 @@
-import React from 'react';
+import React,
+{
+    useState
+} from 'react';
 
 import './TodoCard.css';
 import PropTypes from 'prop-types';
@@ -8,12 +11,16 @@ import {
 } from '../../constants/constants';
 
 import PriorityIcon from '../PriorityIcon/PriorityIcon';
+import EditForm from '../EditForm/EditForm';
 import Menu from '../Menu/Menu';
 
 function TodoCard({
     todo,
     onDelete
 }) {
+
+
+
     const setFormateDate = () => {
         return new Date(todo?.deadline).toLocaleString([], {
             day: 'numeric', month: 'numeric', year: 'numeric'
@@ -23,8 +30,9 @@ function TodoCard({
     const compareDeadline = () => new Date(todo?.deadline) <= new Date() ?
         ' todo-card--deadline__danger'
         : '';
+
     return (
-        <div className='todo-card'>
+        <div className='todo-card' >
             <p className='todo-card--number'>{todo?.id}</p>
             <p className='todo-card--text'>{todo?.text}</p>
             <p className={'todo-card--deadline' + compareDeadline()}>{setFormateDate()}</p >
@@ -43,7 +51,6 @@ function TodoCard({
             />
         </div>
     );
-
 }
 
 TodoCard.propTypes = {
