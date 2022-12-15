@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {
+    useEffect, useRef
+} from 'react';
 
 import {
     useState
@@ -17,16 +19,36 @@ import {
 function PriorityOption({ setTodoPriority }) {
 
     const [selectedOption, setSelectedOption] = useState(0);
-    const [isOpenList, SetIsOpenList] = useState(false);
+    const [isOpenList, setIsOpenList] = useState(false);
+
+    function useOutside(ref) {
+        useEffect(() => {
+            function handleClickOutside(event) {
+                if (ref.current && !ref.current.contains(event.target)) {
+                    setIsOpenList(false);
+                }
+            }
+            document.addEventListener('mousedown', handleClickOutside);
+            return () => {
+                document.removeEventListener('mousedown', handleClickOutside);
+            };
+        }, [ref]);
+    }
+
+    const wrapperRef = useRef(null);
+    useOutside(wrapperRef);
 
     const handleClick = (value) => {
         setTodoPriority(value);
         setSelectedOption(value);
-        SetIsOpenList(!isOpenList);
+        setIsOpenList(!isOpenList);
     };
 
     return (
-        <div className='priority' >
+        <div
+            ref={wrapperRef}
+            className='priority'
+        >
             <div className={`selected-option ${isOpenList ? 'hidden-list' : ''}`}>
                 <div
                     key={selectedOption}
