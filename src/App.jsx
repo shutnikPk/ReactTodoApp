@@ -110,7 +110,7 @@ function App() {
                             <SubMenu >
 
                                 <SubMenuButton
-                                    onClick={() => onClickCrossButton(e?.id)}
+                                    onClick={null}
                                     name={'done'}
                                 >
                                 </SubMenuButton>
