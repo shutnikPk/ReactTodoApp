@@ -19,7 +19,7 @@ import {
 
 
 function EditForm(
-    { setIsEdit, todo }) {
+    { isEdit, setIsEdit, todo }) {
 
     const { id, deadline, priority, isImportant = true, isFinished = false, text } = todo;
 
@@ -31,7 +31,7 @@ function EditForm(
     const [dangerClassDate, setDangerClassDate] = useState(false);
     const [isCheck, setIsCheck] = useState(true);
     const [todoPriority, setTodoPriority] = useState(0);
-    
+
 
 
     const inputRef = useRef(null);
