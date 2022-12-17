@@ -1,6 +1,7 @@
 {
   "extends": ["react-app", "react-app/jest"],
   "rules": {
+    "eol-last": ["error", "always"],
     "quotes": ["warn", "single"],
     "no-console": "warn",
     "prefer-const": "error",

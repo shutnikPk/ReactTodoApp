@@ -27,9 +27,7 @@ function App() {
         setTodoItems(tmpArr);
     };
 
-    const setId = (id) => setPostId(id);
-
-    const Delete = (id) => {
+    const deleteTodo = (id) => {
         let tmpArr = [...todoItems];
         tmpArr = tmpArr.filter((e) => e.id !== id);
         tmpArr = reCalculateId(tmpArr);
@@ -46,13 +44,13 @@ function App() {
     };
 
     const onConfirmDelete = () => {
-        Delete(postId);
+        deleteTodo(postId);
         setVisiblePopup(false);
     };
 
     const onDelete = (id) => {
         setVisiblePopup(true);
-        setId(id);
+        setPostId(id);
     };
 
     const onAdd = () => {
