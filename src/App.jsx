@@ -18,7 +18,7 @@ function App() {
     const [visiblePopup, setVisiblePopup] = useState(false);
     const [visibleAddBtn, setVisibleAddBtn] = useState(true);
 
-    const [postId, setPostId] = useState(null);
+    const [todoId, setTodoId] = useState(null);
 
     const addTodo = (todo) => {
         todo.id = todoItems.length + 1;
@@ -44,13 +44,13 @@ function App() {
     };
 
     const onConfirmDelete = () => {
-        deleteTodo(postId);
+        deleteTodo(todoId);
         setVisiblePopup(false);
     };
 
     const onDelete = (id) => {
         setVisiblePopup(true);
-        setPostId(id);
+        setTodoId(id);
     };
 
     const onAdd = () => {
