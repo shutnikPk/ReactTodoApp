@@ -1,8 +1,8 @@
 import React from 'react';
 
-import './SubMenuButton.css';
+import './MenuItem.css';
 
-function SubMenuButton({ name = 'Button', children, onClick }) {
+function MenuItem({ name = 'Button', onClick }) {
 
     return (
         <button
@@ -10,9 +10,9 @@ function SubMenuButton({ name = 'Button', children, onClick }) {
             onClick={onClick}
         >
             <span className={'sub-menu-button--text'}>{name}</span>
-            <span className={`sub-menu-button--icon sub-menu-button--icon-${name}`}>{children}</span>
+            <span className={`sub-menu-button--icon sub-menu-button--icon-${name}`}></span>
         </button>
     );
 }
 
-export default SubMenuButton;
+export default MenuItem;

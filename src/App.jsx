@@ -8,8 +8,6 @@ import AddForm from './components/AddForm/AddForm';
 import Popup from './components/Popup/Popup';
 import Button from './components/Button/Button';
 import TodoCard from './components/TodoCard/TodoCard';
-import SubMenuButton from './components/SubMenuButton/SubMenuButton';
-import SubMenu from './components/SubMenu/SubMenu';
 
 function App() {
     const [todoItems, setTodoItems] = useState(
@@ -47,12 +45,12 @@ function App() {
         return tmpArr;
     };
 
-    const onClickDeleteButton = () => {
+    const onClickAcceptDelete = () => {
         onDelete(postId);
         setVisiblePopup(false);
     };
 
-    const onClickCrossButton = (id) => {
+    const onClickDeleteButton = (id) => {
         setVisiblePopup(true);
         setId(id);
     };
@@ -75,7 +73,7 @@ function App() {
                         <Button
                             name={'Delete'}
                             className={'button button__danger  button__danger__delete'}
-                            onClick={() => onClickDeleteButton()}
+                            onClick={() => onClickAcceptDelete()}
                         />
                         <Button
                             name={'Cancel'}
@@ -100,42 +98,25 @@ function App() {
                 />)
             }
 
-            {todoItems.length ? (
-                <div className="todos-container">
-                    {todoItems.map((e) => (
-                        <TodoCard
-                            key={e.id}
-                            todo={e}
-                        >
-                            <SubMenu >
-
-                                <SubMenuButton
-                                    onClick={null}
-                                    name={'done'}
-                                >
-                                </SubMenuButton>
-
-                                <SubMenuButton
-                                    onClick={null}
-                                    name={'edit'}
-                                >
-                                </SubMenuButton>
-
-                                <SubMenuButton
-                                    onClick={() => onClickCrossButton(e?.id)}
-                                    name={'delete'}
-                                >
-                                </SubMenuButton>
-
-                            </SubMenu>
-                        </TodoCard>
-                    ))}
-                </div>
-            ) : (
-                <p>No Tasks Yet</p>
-            )}
-
-        </div>
+            {(() => {
+                if (todoItems.length) {
+                    return (
+                        < div className="todos-container" >
+                            {
+                                todoItems.map((e) => (
+                                    <TodoCard
+                                        key={e.id}
+                                        todo={e}
+                                        onClickDeleteButton={onClickDeleteButton}
+                                    />
+                                ))
+                            }
+                        </div>
+                    );
+                } <p>No Tasks Yet</p>;
+            })()}
+            {/* это сложнее чем тернорка же? */}
+        </div >
     );
 }
 

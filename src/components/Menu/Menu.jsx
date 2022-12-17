@@ -4,9 +4,11 @@ import React, {
     useEffect
 } from 'react';
 
-import './SubMenu.css';
+import MenuItem from '../MenuItem/MenuItem';
 
-function SubMenu({ children }) {
+import './Menu.css';
+
+function Menu({ onClickDeleteButton, id }) {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -27,6 +29,11 @@ function SubMenu({ children }) {
     const wrapperRef = useRef(null);
     useOutside(wrapperRef);
 
+    const onDeleteHandler = () => {
+        setIsOpen(false);
+        onClickDeleteButton(id);
+    };
+
     return (
         <div
             ref={wrapperRef}
@@ -41,7 +48,23 @@ function SubMenu({ children }) {
             {
                 isOpen &&
                 <div className='sub-menu--buttons-container'>
-                    {children}
+                    <MenuItem
+                        onClick={null}
+                        name={'done'}
+                    />
+
+
+                    <MenuItem
+                        onClick={null}
+                        name={'edit'}
+                    />
+
+
+                    <MenuItem
+                        onClick={onDeleteHandler}
+                        name={'delete'}
+                    />
+
                 </div>
             }
 
@@ -49,4 +72,4 @@ function SubMenu({ children }) {
     );
 }
 
-export default SubMenu;
+export default Menu;
