@@ -7,10 +7,8 @@ import TodoCard from '../TodoCard/TodoCard';
 function TodoCardsList({ todoItems, onDelete }) {
 
 
-    if (!todoItems.length) {
+    if (!todoItems.length) <p>No Tasks Yet</p>;
 
-        return <p>No Tasks Yet</p>;
-    }
     return (
         < div className="todos-container" >
             {

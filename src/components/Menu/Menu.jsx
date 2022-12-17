@@ -20,7 +20,7 @@ function Menu({ onDelete }) {
     const wrapperRef = useRef(null);
     useOutside(wrapperRef, setIsOpen);
 
-    const onDeleteHandler = () => {
+    const deleteHandler = () => {
         setIsOpen(false);
         onDelete();
     };
@@ -54,7 +54,7 @@ function Menu({ onDelete }) {
 
 
                     <MenuItem
-                        onClick={onDeleteHandler}
+                        onClick={deleteHandler}
                         name='delete'
                     />
                 </div>

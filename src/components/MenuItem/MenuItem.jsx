@@ -12,7 +12,7 @@ function MenuItem({ name = 'Button', onClick }) {
             onClick={onClick}
         >
             <span className={'sub-menu-button--text'}>{name}</span>
-            <span className={`sub-menu-button--icon sub-menu-button--icon-${name}`}></span>
+            <span className={`sub-menu-button--icon sub-menu-button--icon-${name}`} />
         </button>
     );
 }
