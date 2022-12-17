@@ -7,7 +7,7 @@ import {
 import AddForm from './components/AddForm/AddForm';
 import Popup from './components/Popup/Popup';
 import Button from './components/Button/Button';
-import TodoCard from './components/TodoCard/TodoCard';
+import TodoCardsList from './components/TodoCarsList/TodoCardsList';
 
 function App() {
     const [todoItems, setTodoItems] = useState(
@@ -29,7 +29,7 @@ function App() {
 
     const setId = (id) => setPostId(id);
 
-    const onDelete = (id) => {
+    const Delete = (id) => {
         let tmpArr = [...todoItems];
         tmpArr = tmpArr.filter((e) => e.id !== id);
         tmpArr = reCalculateId(tmpArr);
@@ -45,17 +45,17 @@ function App() {
         return tmpArr;
     };
 
-    const onClickAcceptDelete = () => {
-        onDelete(postId);
+    const onConfirmDelete = () => {
+        Delete(postId);
         setVisiblePopup(false);
     };
 
-    const onClickDeleteButton = (id) => {
+    const onDelete = (id) => {
         setVisiblePopup(true);
         setId(id);
     };
 
-    const onClickAddTodoButton = () => {
+    const onAdd = () => {
         setVisibleForm(true);
         setVisibleAddBtn(false);
     };
@@ -73,14 +73,13 @@ function App() {
                         <Button
                             name={'Delete'}
                             className={'button button__danger  button__danger__delete'}
-                            onClick={() => onClickAcceptDelete()}
+                            onClick={() => onConfirmDelete()}
                         />
                         <Button
                             name={'Cancel'}
                             className={'button'}
                             onClick={() => setVisiblePopup(false)}
                         />
-
                     </Popup>
                 )}
 
@@ -88,7 +87,7 @@ function App() {
                 <Button
                     name={'Add Todo'}
                     className={'button button__add'}
-                    onClick={() => onClickAddTodoButton()}
+                    onClick={() => onAdd()}
                 />}
 
             {visibleForm && (
@@ -98,24 +97,8 @@ function App() {
                 />)
             }
 
-            {(() => {
-                if (todoItems.length) {
-                    return (
-                        < div className="todos-container" >
-                            {
-                                todoItems.map((e) => (
-                                    <TodoCard
-                                        key={e.id}
-                                        todo={e}
-                                        onClickDeleteButton={onClickDeleteButton}
-                                    />
-                                ))
-                            }
-                        </div>
-                    );
-                } <p>No Tasks Yet</p>;
-            })()}
-            {/* это сложнее чем тернорка же? */}
+            <TodoCardsList todoItems={todoItems} onDelete={onDelete} />
+
         </div >
     );
 }

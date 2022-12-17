@@ -1,75 +1,71 @@
 import React, {
     useState,
     useRef,
-    useEffect
 } from 'react';
+
+import PropTypes from 'prop-types';
+
+import {
+    useOutside
+} from '../../hooks/hooks.jsx';
 
 import MenuItem from '../MenuItem/MenuItem';
 
 import './Menu.css';
 
-function Menu({ onClickDeleteButton, id }) {
+function Menu({ onDelete }) {
 
     const [isOpen, setIsOpen] = useState(false);
 
-    function useOutside(ref) {
-        useEffect(() => {
-            function handleClickOutside(event) {
-                if (ref.current && !ref.current.contains(event.target)) {
-                    setIsOpen(false);
-                }
-            }
-            document.addEventListener('mousedown', handleClickOutside);
-            return () => {
-                document.removeEventListener('mousedown', handleClickOutside);
-            };
-        }, [ref]);
-    }
-
     const wrapperRef = useRef(null);
-    useOutside(wrapperRef);
+    useOutside(wrapperRef, setIsOpen);
 
     const onDeleteHandler = () => {
         setIsOpen(false);
-        onClickDeleteButton(id);
+        onDelete();
     };
 
     return (
         <div
             ref={wrapperRef}
             className='sub-menu' >
+
             <div
                 onClick={() => setIsOpen(!isOpen)}
                 className='sub-menu--dots-container'>
-                <span className='sub-menu--dot'></span>
-                <span className='sub-menu--dot'></span>
-                <span className='sub-menu--dot'></span>
+                <span className='sub-menu--dot' />
+                <span className='sub-menu--dot' />
+                <span className='sub-menu--dot' />
             </div>
+
             {
                 isOpen &&
                 <div className='sub-menu--buttons-container'>
                     <MenuItem
-                        onClick={null}
-                        name={'done'}
+                        onClick={() => { }}
+                        name='done'
                     />
 
 
                     <MenuItem
-                        onClick={null}
-                        name={'edit'}
+                        onClick={() => { }}
+                        name='edit'
                     />
 
 
                     <MenuItem
                         onClick={onDeleteHandler}
-                        name={'delete'}
+                        name='delete'
                     />
-
                 </div>
             }
 
         </div >
     );
 }
+
+Menu.propTypes = {
+    onDelete: PropTypes.func.isRequired
+};
 
 export default Menu;

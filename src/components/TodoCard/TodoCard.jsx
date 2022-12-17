@@ -12,7 +12,7 @@ import Menu from '../Menu/Menu';
 
 function TodoCard({
     todo,
-    onClickDeleteButton
+    onDelete
 }) {
     const setFormateDate = () => {
         return new Date(todo?.deadline).toLocaleString([], {
@@ -39,8 +39,7 @@ function TodoCard({
                 />
             </div>
             <Menu
-                id={todo.id}
-                onClickDeleteButton={onClickDeleteButton}
+                onDelete={() => onDelete(todo.id)}
             />
         </div>
     );

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
 import './MenuItem.css';
 
 function MenuItem({ name = 'Button', onClick }) {
@@ -14,5 +16,10 @@ function MenuItem({ name = 'Button', onClick }) {
         </button>
     );
 }
+
+MenuItem.propTypes = {
+    name: PropTypes.string,
+    onClick: PropTypes.func.isRequired
+};
 
 export default MenuItem;

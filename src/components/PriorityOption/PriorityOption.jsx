@@ -1,5 +1,5 @@
 import React, {
-    useEffect, useRef
+    useRef
 } from 'react';
 
 import {
@@ -16,27 +16,19 @@ import {
     options
 } from '../../constants/constants';
 
+import {
+    useOutside
+} from '../../hooks/hooks.jsx';
+
 function PriorityOption({ setTodoPriority }) {
 
     const [selectedOption, setSelectedOption] = useState(0);
     const [isOpenList, setIsOpenList] = useState(false);
 
-    function useOutside(ref) {
-        useEffect(() => {
-            function handleClickOutside(event) {
-                if (ref.current && !ref.current.contains(event.target)) {
-                    setIsOpenList(false);
-                }
-            }
-            document.addEventListener('mousedown', handleClickOutside);
-            return () => {
-                document.removeEventListener('mousedown', handleClickOutside);
-            };
-        }, [ref]);
-    }
+
 
     const wrapperRef = useRef(null);
-    useOutside(wrapperRef);
+    useOutside(wrapperRef, setIsOpenList);
 
     const handleClick = (value) => {
         setTodoPriority(value);
