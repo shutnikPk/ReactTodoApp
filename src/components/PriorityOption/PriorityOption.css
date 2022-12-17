@@ -1,26 +1,45 @@
 .priority{
-    position: absolute;
-    top: 5px;
-    left: 450px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid #000;
+  height: 100%;
+  width: 100%;
+}
+
+.priority-option-list {
+  position: absolute;
+  top: 15px;
+  left: -1px;
+  z-index: 900;
+  background: #fff;
+  width: 48px;
+  border: 1px solid #000;
+  border-top: none;
 }
 
 .selected-option{
-  margin-top: 12px;
+  margin-top: 3px;
+  
 }
 
-.priority-option-container{
-  cursor: pointer;
+.priority-option-container{ 
+  width: 100%;
+  max-width: 41px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 2px;
-
 }
-.priority-option-container:hover{
-  background:rgba(128, 128, 128, 0.1)
+
+.priority-option-container__input{
+  cursor: pointer;
+}
+
+.priority-option-container__input:hover{
+  background:#a3a3a3
 }
 .option-value{
  margin-bottom: 5px;

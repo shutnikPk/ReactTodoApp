@@ -19,7 +19,7 @@
   text-align: center;
 }
 .todo-card--text {
-  /* margin-left: 18px; */
+  margin-left: 5px;
   height: 16px;
   min-width: 170px;
   max-width: 250px;
@@ -33,6 +33,7 @@
   text-align: center;
   padding-top: 3px;
   height: 22px;
+  margin-right: 5px;
   min-width: 150px;
   max-width: 150px;
   font-family: "Inter";

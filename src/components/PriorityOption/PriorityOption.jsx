@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {
+    useRef
+} from 'react';
 
 import {
     useState
@@ -14,23 +16,35 @@ import {
     options
 } from '../../constants/constants';
 
+import {
+    useOutside
+} from '../../hooks/hooks.jsx';
+
 function PriorityOption({ setTodoPriority }) {
 
     const [selectedOption, setSelectedOption] = useState(0);
-    const [isOpenList, SetIsOpenList] = useState(false);
+    const [isOpenList, setIsOpenList] = useState(false);
+
+
+
+    const wrapperRef = useRef(null);
+    useOutside(wrapperRef, setIsOpenList);
 
     const handleClick = (value) => {
         setTodoPriority(value);
         setSelectedOption(value);
-        SetIsOpenList(!isOpenList);
+        setIsOpenList(!isOpenList);
     };
 
     return (
-        <div className='priority' >
+        <div
+            ref={wrapperRef}
+            className='priority'
+        >
             <div className={`selected-option ${isOpenList ? 'hidden-list' : ''}`}>
                 <div
                     key={selectedOption}
-                    className={`priority-option-container priority-option-container${selectedOption}`}
+                    className={'priority-option-container priority-option-container__input'}
                     onClick={() => handleClick(selectedOption)}
                     data-value={selectedOption}
                 >
@@ -46,7 +60,11 @@ function PriorityOption({ setTodoPriority }) {
                     options.map(({ value, label = '' }) => (
                         <div
                             key={value}
-                            className={`priority-option-container priority-option-container${value}`}
+                            className={
+                                `priority-option-container
+                                priority-option-container__input
+                                priority-option-container__input${value}`
+                            }
                             onClick={() => handleClick(value)}
                             data-value={value}
                         >

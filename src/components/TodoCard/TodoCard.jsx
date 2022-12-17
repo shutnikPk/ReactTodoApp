@@ -8,10 +8,11 @@ import {
 } from '../../constants/constants';
 
 import PriorityIcon from '../PriorityIcon/PriorityIcon';
+import Menu from '../Menu/Menu';
 
 function TodoCard({
     todo,
-    children
+    onDelete
 }) {
     const setFormateDate = () => {
         return new Date(todo?.deadline).toLocaleString([], {
@@ -37,7 +38,9 @@ function TodoCard({
                     className={`option-value option-value${todo.priority}`}
                 />
             </div>
-            {children}
+            <Menu
+                onDelete={() => onDelete(todo.id)}
+            />
         </div>
     );
 
