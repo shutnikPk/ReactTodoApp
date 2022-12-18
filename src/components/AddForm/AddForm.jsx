@@ -34,31 +34,39 @@ import {
 } from '../../constants/constants';
 
 function AddForm({
-    addTodo,
     toggleFormVisability,
-
+    todoItem, // todo or null
+    callback //add or edit
 }) {
 
-    const [inputValue, setInputValue] = useState('');
-    const [deadline, setDeadline] = useState(null);
+    let todo = {
+        isImportant: true,
+        isFinished: false,
+    };
+
+    if (todoItem) {
+        todo = todoItem;
+    }
+
+    const [inputValue, setInputValue] = useState(todo.text || '');
+    const [TodoDeadline, setTodoDeadline] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
     const [isDangerClass, setIsDangerClass] = useState(false);
     const [dangerClassDate, setDangerClassDate] = useState(false);
     const [isCheck, setIsCheck] = useState(true);
-    const [todoPriority, setTodoPriority] = useState(0);
-
+    const [todoPriority, setTodoPriority] = useState(todo.priority || 0);
 
     const inputRef = useRef(null);
 
     useEffect(() => {
-        setDeadline(new Date());
+        setTodoDeadline(todo.deadline ? new Date(todo.deadline) : new Date());
         inputRef.current.focus();
 
     }, []);
 
     const isValidationDate = () => {
         const DAY_IN_MS = 86400000;
-        if (!deadline) {
+        if (!TodoDeadline) {
             setErrorMessage(ERROR_MESSAGES.emptyDate);
 
             setDangerClassDate(true);
@@ -67,7 +75,7 @@ function AddForm({
 
         }
 
-        if (deadline <= new Date(Date.now() - DAY_IN_MS)) {
+        if (TodoDeadline <= new Date(Date.now() - DAY_IN_MS)) {
 
             setErrorMessage(ERROR_MESSAGES.wrongDate);
 
@@ -93,34 +101,29 @@ function AddForm({
 
     };
 
-    const todo = {
-        isImportant: true,
-        isFinished: false,
-    };
-
     const addTodoPriority = () => {
         todo.priority = todoPriority;
     };
 
-    const setTodoDeadline = () => {
-        todo.deadline = deadline.toISOString();
+    const setTodoTodoDeadline = () => {
+        todo.deadline = TodoDeadline.toISOString();
     };
 
 
-    const onChangeDeadline = (date) => {
-        setDeadline(date);
+    const onChangeTodoDeadline = (date) => {
+        setTodoDeadline(date);
     };
 
-    const onClearDeadlineInput = () => {
-        setDeadline(null);
+    const onClearTodoDeadlineInput = () => {
+        setTodoDeadline(null);
     };
 
     const setTodoText = () => {
         todo.text = inputValue;
     };
 
-    const addTodoHandler = () => {
-        addTodo(todo);
+    const callbackHandler = () => {
+        callback(todo);
     };
 
     const onClearInput = () => {
@@ -134,7 +137,7 @@ function AddForm({
     const defaultButtonClickAction = () => {
         toggleFormVisability();
         onClearInput();
-        onClearDeadlineInput();
+        onClearTodoDeadlineInput();
         hideerrorMessage();
     };
 
@@ -148,9 +151,9 @@ function AddForm({
             return;
         }
         addTodoPriority();
-        setTodoDeadline();
+        setTodoTodoDeadline();
         setTodoText();
-        addTodoHandler();
+        callbackHandler();
 
         defaultButtonClickAction();
     };
@@ -189,9 +192,9 @@ function AddForm({
                                 + (dangerClassDate ? 'my-datepicker-container__danger' : '')
                             }
                             dateFormat="dd/MM/yyyy"
-                            selected={deadline}
+                            selected={TodoDeadline}
                             onChange={(date) => {
-                                onChangeDeadline(date);
+                                onChangeTodoDeadline(date);
                             }
                             }
                             placeholderText="DD/MM/YYYY"
@@ -226,7 +229,7 @@ function AddForm({
 }
 
 AddForm.propTypes = {
-    addTodo: PropTypes.func.isRequired,
+    callback: PropTypes.func.isRequired,
     toggleFormVisability: PropTypes.func.isRequired
 };
 

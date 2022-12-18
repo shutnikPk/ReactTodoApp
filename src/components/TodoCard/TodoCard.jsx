@@ -11,8 +11,8 @@ import {
 } from '../../constants/constants';
 
 import PriorityIcon from '../PriorityIcon/PriorityIcon';
-import EditForm from '../EditForm/EditForm';
 import Menu from '../Menu/Menu';
+import AddForm from '../AddForm/AddForm';
 
 function TodoCard({
     todo,
@@ -36,10 +36,11 @@ function TodoCard({
 
     if (isEdit) {
         return (
-            <EditForm
-                editTodo={editTodo}
-                onEdit={() => setIsEdit(false)}
-                todo={todo} />
+            <AddForm
+                toggleFormVisability={() => setIsEdit(false)}
+                callback={editTodo}
+                todoItem={todo}
+            />
         );
     }
 

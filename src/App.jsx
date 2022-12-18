@@ -45,7 +45,7 @@ function App() {
 
     const reCalculateId = (arr) => {
         const tmpArr = arr.map((e, i) => {
-            e.id = i + 1;
+            e.id = i;
             return e;
         });
         return tmpArr;
@@ -99,7 +99,7 @@ function App() {
             {visibleForm && (
                 <AddForm
                     toggleFormVisability={() => toggleFormVisability()}
-                    addTodo={addTodo}
+                    callback={addTodo}
                 />)
             }
 
