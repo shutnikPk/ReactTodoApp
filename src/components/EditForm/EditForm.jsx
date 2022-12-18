@@ -2,6 +2,8 @@ import React, {
     useEffect, useRef, useState
 } from 'react';
 
+import PropTypes from 'prop-types';
+
 import DatePicker from 'react-datepicker';
 
 import {
@@ -52,7 +54,6 @@ function EditForm(
             setDangerClassDate(true);
 
             return false;
-
         }
 
         if (todoDeadline <= new Date(Date.now() - DAY_IN_MS)) {
@@ -62,11 +63,9 @@ function EditForm(
             setDangerClassDate(true);
 
             return false;
-
         }
 
         return true;
-
     };
 
     const isValidationName = () => {
@@ -199,5 +198,18 @@ function EditForm(
         </form >
     );
 }
+
+EditForm.propTypes = {
+    editTodo: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired,
+    todo: PropTypes.shape({
+        isImportant: PropTypes.bool,
+        text: PropTypes.string,
+        deadline: PropTypes.string,
+        id: PropTypes.number,
+        isFinished: PropTypes.bool,
+        priority: PropTypes.number
+    }).isRequired
+};
 
 export default EditForm;

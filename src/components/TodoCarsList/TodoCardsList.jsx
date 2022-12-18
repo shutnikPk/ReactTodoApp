@@ -33,7 +33,8 @@ function TodoCardsList({ editTodo, todoItems, onDelete }) {
 
 TodoCardsList.propTypes = {
     todoItems: PropTypes.array.isRequired,
-    onDelete: PropTypes.func.isRequired
+    onDelete: PropTypes.func.isRequired,
+    editTodo: PropTypes.func.isRequired
 };
 
 export default TodoCardsList;

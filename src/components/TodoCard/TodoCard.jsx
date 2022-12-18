@@ -75,6 +75,7 @@ TodoCard.propTypes = {
         isFinished: PropTypes.bool,
         priority: PropTypes.number
     }).isRequired,
+    editTodo: PropTypes.func.isRequired
 };
 
 export default TodoCard;
