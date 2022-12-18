@@ -13,7 +13,7 @@ import MenuItem from '../MenuItem/MenuItem';
 
 import './Menu.css';
 
-function Menu({ onDelete }) {
+function Menu({ onDelete, onEdit }) {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -45,14 +45,10 @@ function Menu({ onDelete }) {
                         onClick={() => { }}
                         name='done'
                     />
-
-
                     <MenuItem
-                        onClick={() => { }}
+                        onClick={onEdit}
                         name='edit'
                     />
-
-
                     <MenuItem
                         onClick={deleteHandler}
                         name='delete'

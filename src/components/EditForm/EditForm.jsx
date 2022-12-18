@@ -19,12 +19,12 @@ import {
 
 
 function EditForm(
-    { isEdit, setIsEdit, todo }) {
+    { editTodo, onEdit, todo }) {
 
     const { id, deadline, priority, isImportant = true, isFinished = false, text } = todo;
 
 
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState(text);
     const [todoDeadline, setTodoDeadline] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
     const [isDangerClass, setIsDangerClass] = useState(false);
@@ -85,8 +85,8 @@ function EditForm(
         todo.priority = todoPriority;
     };
 
-    const setTodotodoDeadline = () => {
-        todo.todoDeadline = todoDeadline.toISOString();
+    const addDeadline = () => {
+        todo.deadline = todoDeadline.toISOString();
     };
 
 
@@ -94,31 +94,21 @@ function EditForm(
         setTodoDeadline(date);
     };
 
-    const onCleartodoDeadlineInput = () => {
-        setTodoDeadline(null);
-    };
-
     const setTodoText = () => {
         todo.text = inputValue;
-    };
-
-    const addTodoHandler = () => {
-        // addTodo(todo);
-
-    };
-
-    const onClearInput = () => {
-        setInputValue('');
     };
 
     const onChangeInput = (e) => {
         setInputValue(e.target.value);
     };
 
+    const editTodoHandler = () => {
+        editTodo(todo);
+    };
+
+
     const defaultButtonClickAction = () => {
-        // toggleFormVisability();
-        onClearInput();
-        onCleartodoDeadlineInput();
+        onEdit(false);
         hideerrorMessage();
     };
 
@@ -132,17 +122,16 @@ function EditForm(
             return;
         }
         addTodoPriority();
-        setTodotodoDeadline();
+        addDeadline();
         setTodoText();
-        addTodoHandler();
+
+        editTodoHandler();
 
         defaultButtonClickAction();
     };
 
     const onCancel = (e) => {
         e.preventDefault();
-
-        setIsEdit(false);
 
         setIsDangerClass(false);
 
@@ -167,7 +156,6 @@ function EditForm(
                         value={inputValue}
                         type='text'
                         onChange={onChangeInput}
-                        placeholder={`${text}`}
                     />
                     <div className='datepicker-row'>
                         <DatePicker

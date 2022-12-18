@@ -19,13 +19,21 @@ function App() {
     const [visibleAddBtn, setVisibleAddBtn] = useState(true);
 
     const [postId, setPostId] = useState(null);
-    const [isEdit, setIsEdit] = useState(false);
+    // const [isEdit, setIsEdit] = useState(false);
 
     const addTodo = (todo) => {
-        todo.id = todoItems.length + 1;
+        todo.id = todoItems.length;
         const tmpArr = [...todoItems, todo];
         localStorage.setItem('Todos', JSON.stringify(tmpArr));
         setTodoItems(tmpArr);
+    };
+
+    const editTodo = (todo) => {
+        const tmpArr = [...todoItems];
+        tmpArr.splice(todo.id, 1, todo);
+        localStorage.setItem('Todos', JSON.stringify(tmpArr));
+        setTodoItems(tmpArr);
+
     };
 
     const deleteTodo = (id) => {
@@ -96,7 +104,11 @@ function App() {
                 />)
             }
 
-            <TodoCardsList todoItems={todoItems} onDelete={onDelete} />
+            <TodoCardsList
+                editTodo={editTodo}
+                todoItems={todoItems}
+                onDelete={onDelete}
+            />
 
         </div >
     );

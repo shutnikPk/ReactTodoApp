@@ -16,10 +16,11 @@ import Menu from '../Menu/Menu';
 
 function TodoCard({
     todo,
-    onDelete
+    onDelete,
+    editTodo
 }) {
 
-
+    const [isEdit, setIsEdit] = useState(false);
 
     const setFormateDate = () => {
         return new Date(todo?.deadline).toLocaleString([], {
@@ -31,9 +32,20 @@ function TodoCard({
         ' todo-card--deadline__danger'
         : '';
 
+
+
+    if (isEdit) {
+        return (
+            <EditForm
+                editTodo={editTodo}
+                onEdit={() => setIsEdit(false)}
+                todo={todo} />
+        );
+    }
+
     return (
         <div className='todo-card' >
-            <p className='todo-card--number'>{todo?.id}</p>
+            <p className='todo-card--number'>{todo?.id + 1}</p>
             <p className='todo-card--text'>{todo?.text}</p>
             <p className={'todo-card--deadline' + compareDeadline()}>{setFormateDate()}</p >
             <div
@@ -48,6 +60,7 @@ function TodoCard({
             </div>
             <Menu
                 onDelete={() => onDelete(todo.id)}
+                onEdit={() => setIsEdit(true)}
             />
         </div>
     );

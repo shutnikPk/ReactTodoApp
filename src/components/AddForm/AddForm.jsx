@@ -121,7 +121,6 @@ function AddForm({
 
     const addTodoHandler = () => {
         addTodo(todo);
-
     };
 
     const onClearInput = () => {

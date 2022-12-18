@@ -4,16 +4,22 @@ import PropTypes from 'prop-types';
 
 import TodoCard from '../TodoCard/TodoCard';
 
-function TodoCardsList({ todoItems, onDelete }) {
+function TodoCardsList({ editTodo, todoItems, onDelete }) {
 
 
-    if (!todoItems.length) <p>No Tasks Yet</p>;
+    if (!todoItems.length) {
+
+        return (
+            <p>No Tasks Yet</p>
+        );
+    }
 
     return (
         < div className="todos-container" >
             {
                 todoItems.map((e) => (
                     <TodoCard
+                        editTodo={editTodo}
                         key={e.id}
                         todo={e}
                         onDelete={onDelete}
