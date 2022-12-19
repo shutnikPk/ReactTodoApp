@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import TodoCard from '../TodoCard/TodoCard';
 import AddForm from '../AddForm/AddForm';
 
-function TodoCardsList({ editTodo, todoItems, onDelete, editTaskId, setEditTaskId, canEdit }) {
+function TodoCardsList({ onEdit, todoItems, onDelete, editTaskId, setEditTaskId, canEdit }) {
 
     if (!todoItems.length) {
 
@@ -24,7 +24,7 @@ function TodoCardsList({ editTodo, todoItems, onDelete, editTaskId, setEditTaskI
                             <AddForm
                                 key={e.id}
                                 toggleFormVisability={() => setEditTaskId(null)}
-                                callback={editTodo}
+                                callback={onEdit}
                                 todoItem={e}
                             />
                         );
@@ -48,7 +48,7 @@ function TodoCardsList({ editTodo, todoItems, onDelete, editTaskId, setEditTaskI
 }
 
 TodoCardsList.propTypes = {
-    editTodo: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired,
     todoItems: PropTypes.array.isRequired,
     onDelete: PropTypes.func.isRequired,
     canEdit: PropTypes.bool.isRequired,

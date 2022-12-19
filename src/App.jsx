@@ -109,7 +109,7 @@ function App() {
                 canEdit={visibleAddBtn}
                 setEditTaskId={setEditTaskId}
                 editTaskId={editTaskId}
-                editTodo={editTodo}
+                onEdit={editTodo}
                 todoItems={todoItems}
                 onDelete={onDelete}
             />
