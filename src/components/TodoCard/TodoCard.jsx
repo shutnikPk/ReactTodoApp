@@ -1,7 +1,4 @@
-import React,
-{
-    useState
-} from 'react';
+import React from 'react';
 
 import './TodoCard.css';
 import PropTypes from 'prop-types';
@@ -12,15 +9,12 @@ import {
 
 import PriorityIcon from '../PriorityIcon/PriorityIcon';
 import Menu from '../Menu/Menu';
-import AddForm from '../AddForm/AddForm';
 
 function TodoCard({
     todo,
     onDelete,
-    editTodo
+    setEditTaskId
 }) {
-
-    const [isEdit, setIsEdit] = useState(false);
 
     const setFormateDate = () => {
         return new Date(todo?.deadline).toLocaleString([], {
@@ -31,18 +25,6 @@ function TodoCard({
     const compareDeadline = () => new Date(todo?.deadline) <= new Date() ?
         ' todo-card--deadline__danger'
         : '';
-
-
-
-    if (isEdit) {
-        return (
-            <AddForm
-                toggleFormVisability={() => setIsEdit(false)}
-                callback={editTodo}
-                todoItem={todo}
-            />
-        );
-    }
 
     return (
         <div className='todo-card' >
@@ -61,7 +43,7 @@ function TodoCard({
             </div>
             <Menu
                 onDelete={() => onDelete(todo.id)}
-                onEdit={() => setIsEdit(true)}
+                onEdit={() => setEditTaskId(todo.id)}
             />
         </div>
     );

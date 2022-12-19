@@ -25,6 +25,10 @@ function Menu({ onDelete, onEdit }) {
         onDelete();
     };
 
+    const editHandler = () => {
+        onEdit();
+    };
+
     return (
         <div
             ref={wrapperRef}
@@ -46,7 +50,7 @@ function Menu({ onDelete, onEdit }) {
                         name='done'
                     />
                     <MenuItem
-                        onClick={onEdit}
+                        onClick={editHandler}
                         name='edit'
                     />
                     <MenuItem

@@ -35,7 +35,7 @@ import {
 
 function AddForm({
     toggleFormVisability,
-    todoItem, // todo or null
+    todoItem, 
     callback //add or edit
 }) {
 
@@ -68,25 +68,19 @@ function AddForm({
         const DAY_IN_MS = 86400000;
         if (!TodoDeadline) {
             setErrorMessage(ERROR_MESSAGES.emptyDate);
-
             setDangerClassDate(true);
 
             return false;
-
         }
 
         if (TodoDeadline <= new Date(Date.now() - DAY_IN_MS)) {
-
             setErrorMessage(ERROR_MESSAGES.wrongDate);
-
             setDangerClassDate(true);
 
             return false;
-
         }
 
         return true;
-
     };
 
     const isValidationName = () => {
@@ -94,11 +88,11 @@ function AddForm({
         if (!inputValue.trim()) {
             setErrorMessage(ERROR_MESSAGES.emptyTask);
             inputRef.current.focus();
+            
             return false;
         };
 
         return true;
-
     };
 
     const addTodoPriority = () => {
