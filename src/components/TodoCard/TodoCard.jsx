@@ -13,7 +13,8 @@ import Menu from '../Menu/Menu';
 function TodoCard({
     todo,
     onDelete,
-    setEditTaskId
+    setEditTaskId,
+    canEdit
 }) {
 
     const setFormateDate = () => {
@@ -43,7 +44,7 @@ function TodoCard({
             </div>
             <Menu
                 onDelete={() => onDelete(todo.id)}
-                onEdit={() => setEditTaskId(todo.id)}
+                onEdit={() => canEdit&&setEditTaskId(todo.id)}
             />
         </div>
     );

@@ -26,6 +26,7 @@ function Menu({ onDelete, onEdit }) {
     };
 
     const editHandler = () => {
+        setIsOpen(false);
         onEdit();
     };
 

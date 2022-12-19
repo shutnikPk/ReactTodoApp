@@ -7,9 +7,7 @@ import PropTypes from 'prop-types';
 import TodoCard from '../TodoCard/TodoCard';
 import AddForm from '../AddForm/AddForm';
 
-function TodoCardsList({ editTodo, todoItems, onDelete }) {
-
-    const [editTaskId, setEditTaskId] = useState(false);
+function TodoCardsList({ editTodo, todoItems, onDelete, editTaskId, setEditTaskId, canEdit }) {
 
     if (!todoItems.length) {
 
@@ -19,12 +17,11 @@ function TodoCardsList({ editTodo, todoItems, onDelete }) {
     }
 
     return (
-
         < div className="todos-container" >
             {
                 todoItems.map((e) => {
 
-                    if (editTaskId === e.id) {
+                    if (editTaskId && editTaskId === e.id) {
                         return (
                             <AddForm
                                 key={e.id}
@@ -37,11 +34,12 @@ function TodoCardsList({ editTodo, todoItems, onDelete }) {
 
                     return (
                         <TodoCard
-                            editTodo={editTodo}
+                            canEdit={canEdit}
                             key={e.id}
                             todo={e}
                             onDelete={onDelete}
                             setEditTaskId={setEditTaskId}
+                            editTaskId={editTaskId}
                         />
                     );
                 })

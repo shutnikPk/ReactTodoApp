@@ -20,6 +20,9 @@ function App() {
 
     const [postId, setPostId] = useState(null);
 
+    const [canEdit, setCanEdit] = useState(true);
+    const [editTaskId, setEditTaskId] = useState(false);
+
     const addTodo = (todo) => {
         todo.id = todoItems.length;
         const tmpArr = [...todoItems, todo];
@@ -62,6 +65,7 @@ function App() {
     };
 
     const onAdd = () => {
+        setEditTaskId(null);
         setVisibleForm(true);
         setVisibleAddBtn(false);
     };
@@ -104,6 +108,9 @@ function App() {
             }
 
             <TodoCardsList
+                canEdit={visibleAddBtn}
+                setEditTaskId={setEditTaskId}
+                editTaskId={editTaskId}
                 editTodo={editTodo}
                 todoItems={todoItems}
                 onDelete={onDelete}
