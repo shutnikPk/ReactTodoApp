@@ -19,8 +19,6 @@ function App() {
     const [visibleAddBtn, setVisibleAddBtn] = useState(true);
 
     const [postId, setPostId] = useState(null);
-
-    const [canEdit, setCanEdit] = useState(true);
     const [editTaskId, setEditTaskId] = useState(false);
 
     const addTodo = (todo) => {

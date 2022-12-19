@@ -1,6 +1,4 @@
-import React, {
-    useState
-} from 'react';
+import React from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -21,7 +19,7 @@ function TodoCardsList({ editTodo, todoItems, onDelete, editTaskId, setEditTaskI
             {
                 todoItems.map((e) => {
 
-                    if (editTaskId && editTaskId === e.id) {
+                    if (editTaskId === e.id) {
                         return (
                             <AddForm
                                 key={e.id}
@@ -50,9 +48,15 @@ function TodoCardsList({ editTodo, todoItems, onDelete, editTaskId, setEditTaskI
 }
 
 TodoCardsList.propTypes = {
+    editTodo: PropTypes.func.isRequired,
     todoItems: PropTypes.array.isRequired,
     onDelete: PropTypes.func.isRequired,
-    editTodo: PropTypes.func.isRequired
+    canEdit: PropTypes.bool.isRequired,
+    editTaskId: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.number,
+    ]),
+    setEditTaskId: PropTypes.func.isRequired,
 };
 
 export default TodoCardsList;

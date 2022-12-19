@@ -44,7 +44,7 @@ function TodoCard({
             </div>
             <Menu
                 onDelete={() => onDelete(todo.id)}
-                onEdit={() => canEdit&&setEditTaskId(todo.id)}
+                onEdit={() => canEdit && setEditTaskId(todo.id)}
             />
         </div>
     );
@@ -59,7 +59,9 @@ TodoCard.propTypes = {
         isFinished: PropTypes.bool,
         priority: PropTypes.number
     }).isRequired,
-    editTodo: PropTypes.func.isRequired
+    canEdit: PropTypes.bool.isRequired,
+    onDelete: PropTypes.func.isRequired,
+    setEditTaskId: PropTypes.func.isRequired,
 };
 
 export default TodoCard;
