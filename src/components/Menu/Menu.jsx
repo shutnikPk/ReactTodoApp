@@ -60,7 +60,6 @@ function Menu({ onDelete, onEdit }) {
                     />
                 </div>
             }
-
         </div >
     );
 }

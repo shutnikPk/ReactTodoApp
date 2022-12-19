@@ -17,7 +17,6 @@ function App() {
     const [visibleForm, setVisibleForm] = useState(false);
     const [visiblePopup, setVisiblePopup] = useState(false);
     const [visibleAddBtn, setVisibleAddBtn] = useState(true);
-
     const [postId, setPostId] = useState(null);
     const [editTaskId, setEditTaskId] = useState(false);
 
@@ -33,7 +32,6 @@ function App() {
         tmpArr.splice(todo.id, 1, todo);
         localStorage.setItem('Todos', JSON.stringify(tmpArr));
         setTodoItems(tmpArr);
-
     };
 
     const deleteTodo = (id) => {
@@ -113,7 +111,6 @@ function App() {
                 todoItems={todoItems}
                 onDelete={onDelete}
             />
-
         </div >
     );
 }
