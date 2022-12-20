@@ -5,15 +5,13 @@ import React, {
 
 import PropTypes from 'prop-types';
 
-import {
-    useOutside
-} from '../../hooks/hooks.jsx';
+import { useOutside } from '../../hooks/hooks.jsx';
 
 import MenuItem from '../MenuItem/MenuItem';
 
 import './Menu.css';
 
-function Menu({ onDelete }) {
+function Menu({ onDelete, onEdit }) {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -23,6 +21,11 @@ function Menu({ onDelete }) {
     const deleteHandler = () => {
         setIsOpen(false);
         onDelete();
+    };
+
+    const editHandler = () => {
+        setIsOpen(false);
+        onEdit();
     };
 
     return (
@@ -45,27 +48,23 @@ function Menu({ onDelete }) {
                         onClick={() => { }}
                         name='done'
                     />
-
-
                     <MenuItem
-                        onClick={() => { }}
+                        onClick={editHandler}
                         name='edit'
                     />
-
-
                     <MenuItem
                         onClick={deleteHandler}
                         name='delete'
                     />
                 </div>
             }
-
         </div >
     );
 }
 
 Menu.propTypes = {
-    onDelete: PropTypes.func.isRequired
+    onDelete: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired
 };
 
 export default Menu;

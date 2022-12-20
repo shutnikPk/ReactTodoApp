@@ -3,17 +3,19 @@ import React from 'react';
 import './TodoCard.css';
 import PropTypes from 'prop-types';
 
-import {
-    options
-} from '../../constants/constants';
+import { options } from '../../constants/constants';
 
 import PriorityIcon from '../PriorityIcon/PriorityIcon';
 import Menu from '../Menu/Menu';
 
 function TodoCard({
     todo,
-    onDelete
+    onDelete,
+    setEditTaskId,
+    editTaskId,
+    closeForm
 }) {
+
     const setFormateDate = () => {
         return new Date(todo?.deadline).toLocaleString([], {
             day: 'numeric', month: 'numeric', year: 'numeric'
@@ -23,11 +25,19 @@ function TodoCard({
     const compareDeadline = () => new Date(todo?.deadline) <= new Date() ?
         ' todo-card--deadline__danger'
         : '';
+
+    const editHandler = () => {
+        if (!editTaskId) {
+            setEditTaskId(todo.id);
+            closeForm();
+        }
+    };
+
     return (
-        <div className='todo-card'>
-            <p className='todo-card--number'>{todo?.id}</p>
+        <div className='todo-card' >
+            <p className='todo-card--number'>{todo?.id + 1}</p>
             <p className='todo-card--text'>{todo?.text}</p>
-            <p className={'todo-card--deadline' + compareDeadline()}>{setFormateDate()}</p >
+            <p className={`todo-card--deadline + ${compareDeadline()}`}>{setFormateDate()}</p >
             <div
                 className={`priority-option-container priority-option-container${todo.priority}`}
                 data-value={todo.priority}
@@ -40,10 +50,10 @@ function TodoCard({
             </div>
             <Menu
                 onDelete={() => onDelete(todo.id)}
+                onEdit={editHandler}
             />
         </div>
     );
-
 }
 
 TodoCard.propTypes = {
@@ -55,6 +65,9 @@ TodoCard.propTypes = {
         isFinished: PropTypes.bool,
         priority: PropTypes.number
     }).isRequired,
+    closeForm: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
+    setEditTaskId: PropTypes.func.isRequired,
 };
 
 export default TodoCard;

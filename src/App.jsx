@@ -4,7 +4,7 @@ import {
     useState
 } from 'react';
 
-import AddForm from './components/AddForm/AddForm';
+import AddForm from './components/TodoForm/TodoForm';
 import Popup from './components/Popup/Popup';
 import Button from './components/Button/Button';
 import TodoCardsList from './components/TodoCarsList/TodoCardsList';
@@ -14,15 +14,21 @@ function App() {
         JSON.parse(localStorage.getItem('Todos')) || []
     );
 
-    const [visibleForm, setVisibleForm] = useState(false);
-    const [visiblePopup, setVisiblePopup] = useState(false);
     const [visibleAddBtn, setVisibleAddBtn] = useState(true);
+    const [deleteTaskId, setDeleteTaskId] = useState(null);
+    const [editTaskId, setEditTaskId] = useState(null);
 
-    const [todoId, setTodoId] = useState(null);
 
     const addTodo = (todo) => {
-        todo.id = todoItems.length + 1;
+        todo.id = todoItems.length;
         const tmpArr = [...todoItems, todo];
+        localStorage.setItem('Todos', JSON.stringify(tmpArr));
+        setTodoItems(tmpArr);
+    };
+
+    const editTodo = (todo) => {
+        const tmpArr = [...todoItems];
+        tmpArr.splice(todo.id, 1, todo);
         localStorage.setItem('Todos', JSON.stringify(tmpArr));
         setTodoItems(tmpArr);
     };
@@ -37,35 +43,26 @@ function App() {
 
     const reCalculateId = (arr) => {
         const tmpArr = arr.map((e, i) => {
-            e.id = i + 1;
+            e.id = i;
             return e;
         });
         return tmpArr;
     };
 
     const onConfirmDelete = () => {
-        deleteTodo(todoId);
-        setVisiblePopup(false);
+        deleteTodo(deleteTaskId);
+        setDeleteTaskId(null);
     };
 
-    const onDelete = (id) => {
-        setVisiblePopup(true);
-        setTodoId(id);
-    };
+    const openForm = () => {
+        setEditTaskId(null);
 
-    const onAdd = () => {
-        setVisibleForm(true);
         setVisibleAddBtn(false);
-    };
-
-    const toggleFormVisability = () => {
-        setVisibleForm(false);
-        setVisibleAddBtn(true);
     };
 
     return (
         <div className="App">
-            {visiblePopup &&
+            {deleteTaskId &&
                 (
                     <Popup>
                         <Button
@@ -76,7 +73,7 @@ function App() {
                         <Button
                             name={'Cancel'}
                             className={'button'}
-                            onClick={() => setVisiblePopup(false)}
+                            onClick={() => setDeleteTaskId(null)}
                         />
                     </Popup>
                 )}
@@ -85,18 +82,24 @@ function App() {
                 <Button
                     name={'Add Todo'}
                     className={'button button__add'}
-                    onClick={() => onAdd()}
+                    onClick={() => openForm()}
                 />}
 
-            {visibleForm && (
+            {!visibleAddBtn && (
                 <AddForm
-                    toggleFormVisability={() => toggleFormVisability()}
-                    addTodo={addTodo}
+                    closeForm={() => setVisibleAddBtn(true)}
+                    onSubmit={addTodo}
                 />)
             }
 
-            <TodoCardsList todoItems={todoItems} onDelete={onDelete} />
-
+            <TodoCardsList
+                closeForm={() => setVisibleAddBtn(true)}
+                setEditTaskId={setEditTaskId}
+                editTaskId={editTaskId}
+                onEdit={editTodo}
+                todoItems={todoItems}
+                onDelete={(id) => setDeleteTaskId(id)}
+            />
         </div >
     );
 }

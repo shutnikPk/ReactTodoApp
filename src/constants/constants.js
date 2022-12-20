@@ -24,3 +24,11 @@ export const options = [
         label: 'Lowest'
     },
 ];
+
+export const ERROR_MESSAGES = {
+    emptyTask: 'Empty tasks Name!',
+    emptyDate: 'Empty tasks Date!',
+    wrongDate: 'Greeting time Travel!'
+};
+
+export const DAY_IN_MS = 86400000;

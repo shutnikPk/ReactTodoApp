@@ -20,9 +20,9 @@ import {
     useOutside
 } from '../../hooks/hooks.jsx';
 
-function PriorityOption({ setTodoPriority }) {
+function PriorityOption({ setTodoPriority, initialPriority }) {
 
-    const [selectedOption, setSelectedOption] = useState(0);
+    const [selectedOption, setSelectedOption] = useState(initialPriority | 0);
     const [isOpenList, setIsOpenList] = useState(false);
 
 
