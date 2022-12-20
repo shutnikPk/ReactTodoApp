@@ -41,7 +41,6 @@ function TodoForm({
     useEffect(() => {
         setTodoDeadline(todo.deadline ? new Date(todo.deadline) : new Date());
         inputRef.current.focus();
-
     }, []);
 
     const isValidationDate = () => {
@@ -72,19 +71,10 @@ function TodoForm({
         return true;
     };
 
-    const addTodoPriority = () => todo.priority = todoPriority;
-    const setTodoTodoDeadline = () => todo.deadline = TodoDeadline.toISOString();
-    const onChangeTodoDeadline = (date) => setTodoDeadline(date);
-    const onClearTodoDeadlineInput = () => setTodoDeadline(null);
-    const setTodoText = () => todo.text = inputValue;
-    const onSubmitHandler = () => onSubmit(todo);
-    const onClearInput = () => setInputValue('');
-    const onChangeInput = (e) => setInputValue(e.target.value);
-
     const defaultButtonClickAction = () => {
         closeForm();
-        onClearInput();
-        onClearTodoDeadlineInput();
+        setInputValue('');
+        setTodoDeadline(null);
         hideerrorMessage();
     };
 
@@ -98,10 +88,10 @@ function TodoForm({
             return;
         }
 
-        addTodoPriority();
-        setTodoTodoDeadline();
-        setTodoText();
-        onSubmitHandler();
+        todo.priority = todoPriority;
+        todo.deadline = TodoDeadline.toISOString();
+        todo.text = inputValue;
+        onSubmit(todo);
         defaultButtonClickAction();
     };
 
@@ -122,7 +112,7 @@ function TodoForm({
                         className='input-field'
                         value={inputValue}
                         type='text'
-                        onChange={onChangeInput}
+                        onChange={(e) => setInputValue(e.target.value)}
                         placeholder='Task name'
                     />
                     <div className='datepicker-row'>
@@ -131,7 +121,7 @@ function TodoForm({
                             ${(dangerClassDate ? 'my-datepicker-container__danger' : '')}`}
                             dateFormat='dd/MM/yyyy'
                             selected={TodoDeadline}
-                            onChange={(date) => { onChangeTodoDeadline(date); }}
+                            onChange={(date) => setTodoDeadline(date)}
                             placeholderText='DD/MM/YYYY'
                         />
                         <CalendarIcon className={`calendar-icon 

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 function Popup({ children }) {
 
     return (
-        <div className={'popup--background '}
+        <div className='popup--background '
         >
             <div className="popup--container">
                 <p className="popup--text">This action can not be undone. Are you sure?</p>
