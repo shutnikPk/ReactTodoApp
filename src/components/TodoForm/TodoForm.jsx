@@ -140,6 +140,7 @@ function TodoForm({
                         ${(dangerClassDate ? 'my-datepicker-container__danger' : '')}`} />
                     </div>
                     <PriorityOption
+                        initialPriority={todoPriority}
                         setTodoPriority={setTodoPriority}
                     />
                 </div>

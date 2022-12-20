@@ -23,7 +23,7 @@ function TodoCardsList({ onEdit, todoItems, onDelete, editTaskId, setEditTaskId,
                         return (
                             <AddForm
                                 key={e.id}
-                                toggleFormVisability={() => setEditTaskId(null)}
+                                closeForm={() => setEditTaskId(null)}
                                 onSubmit={onEdit}
                                 todoItem={e}
                             />
@@ -51,7 +51,7 @@ TodoCardsList.propTypes = {
     onEdit: PropTypes.func.isRequired,
     todoItems: PropTypes.array.isRequired,
     onDelete: PropTypes.func.isRequired,
-    canEdit: PropTypes.bool.isRequired,
+    // canEdit: PropTypes.bool.isRequired,
     editTaskId: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.number,
