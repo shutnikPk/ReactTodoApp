@@ -146,7 +146,7 @@ function TodoForm({
                 </div>
                 {!isCheck && (<ValidationMessage textMsg={errorMessage} />)}
             </div>
-        </form >
+        </form>
     );
 }
 

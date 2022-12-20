@@ -56,7 +56,6 @@ function App() {
 
     const openForm = () => {
         setEditTaskId(null);
-
         setVisibleAddBtn(false);
     };
 
@@ -100,7 +99,7 @@ function App() {
                 todoItems={todoItems}
                 onDelete={(id) => setDeleteTaskId(id)}
             />
-        </div >
+        </div>
     );
 }
 

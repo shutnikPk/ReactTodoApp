@@ -15,7 +15,7 @@ function TodoCardsList({ onEdit, todoItems, onDelete, editTaskId, setEditTaskId,
     }
 
     return (
-        < div className="todos-container" >
+        <div className="todos-container">
             {
                 todoItems.map((e) => {
 
