@@ -5,9 +5,7 @@ import React, {
 
 import PropTypes from 'prop-types';
 
-import {
-    useOutside
-} from '../../hooks/hooks.jsx';
+import { useOutside } from '../../hooks/hooks.jsx';
 
 import MenuItem from '../MenuItem/MenuItem';
 

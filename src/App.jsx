@@ -14,10 +14,8 @@ function App() {
         JSON.parse(localStorage.getItem('Todos')) || []
     );
 
-    const [visibleForm, setVisibleForm] = useState(false);
-    const [visiblePopup, setVisiblePopup] = useState(false);
     const [visibleAddBtn, setVisibleAddBtn] = useState(true);
-    const [postId, setPostId] = useState(null);
+    const [deleteTaskId, setDeleteTaskId] = useState(null);
     const [editTaskId, setEditTaskId] = useState(null);
 
     const addTodo = (todo) => {
@@ -51,29 +49,22 @@ function App() {
     };
 
     const onConfirmDelete = () => {
-        deleteTodo(postId);
-        setVisiblePopup(false);
+        deleteTodo(deleteTaskId);
+        setDeleteTaskId(null);
     };
 
-    const onDelete = (id) => {
-        setVisiblePopup(true);
-        setPostId(id);
-    };
+    const onDelete = (id) => setDeleteTaskId(id);
 
     const openForm = () => {
         setEditTaskId(null);
-        setVisibleForm(true);
         setVisibleAddBtn(false);
     };
 
-    const closeForm = () => {
-        setVisibleForm(false);
-        setVisibleAddBtn(true);
-    };
+    const closeForm = () => setVisibleAddBtn(true);
 
     return (
         <div className="App">
-            {visiblePopup &&
+            {deleteTaskId &&
                 (
                     <Popup>
                         <Button
@@ -84,7 +75,7 @@ function App() {
                         <Button
                             name={'Cancel'}
                             className={'button'}
-                            onClick={() => setVisiblePopup(false)}
+                            onClick={() => setDeleteTaskId(null)}
                         />
                     </Popup>
                 )}
@@ -96,7 +87,7 @@ function App() {
                     onClick={() => openForm()}
                 />}
 
-            {visibleForm && (
+            {!visibleAddBtn && (
                 <AddForm
                     closeForm={() => closeForm()}
                     onSubmit={addTodo}

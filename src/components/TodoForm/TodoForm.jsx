@@ -131,9 +131,7 @@ function TodoForm({
                             ${(dangerClassDate ? 'my-datepicker-container__danger' : '')}`}
                             dateFormat='dd/MM/yyyy'
                             selected={TodoDeadline}
-                            onChange={(date) => {
-                                onChangeTodoDeadline(date);
-                            }}
+                            onChange={(date) => { onChangeTodoDeadline(date); }}
                             placeholderText='DD/MM/YYYY'
                         />
                         <CalendarIcon className={`calendar-icon 
