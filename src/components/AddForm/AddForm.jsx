@@ -26,9 +26,7 @@ function AddForm({
         isFinished: false,
     };
 
-    if (todoItem) {
-        todo = todoItem;
-    }
+    if (todoItem) todo = todoItem;
 
     const [inputValue, setInputValue] = useState(todo.text || '');
     const [TodoDeadline, setTodoDeadline] = useState(null);
@@ -65,7 +63,6 @@ function AddForm({
     };
 
     const isValidationName = () => {
-
         if (!inputValue.trim()) {
             setErrorMessage(ERROR_MESSAGES.emptyTask);
             inputRef.current.focus();
@@ -75,14 +72,14 @@ function AddForm({
         return true;
     };
 
-    const addTodoPriority = () => { todo.priority = todoPriority; };
-    const setTodoTodoDeadline = () => { todo.deadline = TodoDeadline.toISOString(); };
-    const onChangeTodoDeadline = (date) => { setTodoDeadline(date); };
-    const onClearTodoDeadlineInput = () => { setTodoDeadline(null); };
-    const setTodoText = () => { todo.text = inputValue; };
-    const onSubmitHandler = () => { onSubmit(todo); };
-    const onClearInput = () => { setInputValue(''); };
-    const onChangeInput = (e) => { setInputValue(e.target.value); };
+    const addTodoPriority = () => todo.priority = todoPriority;
+    const setTodoTodoDeadline = () => todo.deadline = TodoDeadline.toISOString();
+    const onChangeTodoDeadline = (date) => setTodoDeadline(date);
+    const onClearTodoDeadlineInput = () => setTodoDeadline(null);
+    const setTodoText = () => todo.text = inputValue;
+    const onSubmitHandler = () => onSubmit(todo);
+    const onClearInput = () => setInputValue('');
+    const onChangeInput = (e) => setInputValue(e.target.value);
 
     const defaultButtonClickAction = () => {
         toggleFormVisability();
@@ -114,7 +111,7 @@ function AddForm({
         defaultButtonClickAction();
     };
 
-    const hideerrorMessage = () => { setIsCheck(true); };
+    const hideerrorMessage = () => setIsCheck(true);
 
     return (
         <form className='add-form' >
