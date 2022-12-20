@@ -53,14 +53,10 @@ function App() {
         setDeleteTaskId(null);
     };
 
-    const onDelete = (id) => setDeleteTaskId(id);
-
     const openForm = () => {
         setEditTaskId(null);
         setVisibleAddBtn(false);
     };
-
-    const closeForm = () => setVisibleAddBtn(true);
 
     return (
         <div className="App">
@@ -89,18 +85,18 @@ function App() {
 
             {!visibleAddBtn && (
                 <AddForm
-                    closeForm={() => closeForm()}
+                    closeForm={() => setVisibleAddBtn(true)}
                     onSubmit={addTodo}
                 />)
             }
 
             <TodoCardsList
-                closeForm={closeForm}
+                closeForm={() => setVisibleAddBtn(true)}
                 setEditTaskId={setEditTaskId}
                 editTaskId={editTaskId}
                 onEdit={editTodo}
                 todoItems={todoItems}
-                onDelete={onDelete}
+                onDelete={(id) => setDeleteTaskId(id)}
             />
         </div >
     );
