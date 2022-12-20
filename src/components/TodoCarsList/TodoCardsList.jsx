@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import TodoCard from '../TodoCard/TodoCard';
 import AddForm from '../AddForm/AddForm';
 
-function TodoCardsList({ onEdit, todoItems, onDelete, editTaskId, setEditTaskId, canEdit }) {
+function TodoCardsList({ onEdit, todoItems, onDelete, editTaskId, setEditTaskId, closeForm }) {
 
     if (!todoItems.length) {
 
@@ -32,7 +32,7 @@ function TodoCardsList({ onEdit, todoItems, onDelete, editTaskId, setEditTaskId,
 
                     return (
                         <TodoCard
-                            canEdit={canEdit}
+                            closeForm={closeForm}
                             key={e.id}
                             todo={e}
                             onDelete={onDelete}

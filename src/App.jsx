@@ -66,7 +66,7 @@ function App() {
         setVisibleAddBtn(false);
     };
 
-    const toggleFormVisability = () => {
+    const closeForm = () => {
         setVisibleForm(false);
         setVisibleAddBtn(true);
     };
@@ -98,13 +98,13 @@ function App() {
 
             {visibleForm && (
                 <AddForm
-                    toggleFormVisability={() => toggleFormVisability()}
+                    closeForm={() => closeForm()}
                     callback={addTodo}
                 />)
             }
 
             <TodoCardsList
-                canEdit={visibleAddBtn}
+                closeForm={closeForm}
                 setEditTaskId={setEditTaskId}
                 editTaskId={editTaskId}
                 onEdit={editTodo}

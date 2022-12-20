@@ -1,41 +1,24 @@
-import React from 'react';
-
-import './AddForm.css';
-
-import {
-    useState
-} from 'react';
-import PropTypes from 'prop-types';
-
-import {
-    useEffect
-} from 'react';
-
-import {
+import React, {
+    useState,
+    useEffect,
     useRef
 } from 'react';
 
+import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
 
-import {
-    ReactComponent as CalendarIcon
-} from '../../Assets/monthly-calendar-svgrepo-com.svg';
-
-
 import Button from '../Button/Button';
-
 import ValidationMessage from '../ValidationMessage/ValidationMessage';
-
-import 'react-datepicker/dist/react-datepicker.css';
 import PriorityOption from '../PriorityOption/PriorityOption';
 
-import {
-    ERROR_MESSAGES
-} from '../../constants/constants';
+import { ReactComponent as CalendarIcon } from '../../Assets/monthly-calendar-svgrepo-com.svg';
+import './AddForm.css';
+import 'react-datepicker/dist/react-datepicker.css';
+import { ERROR_MESSAGES } from '../../constants/constants';
 
 function AddForm({
     toggleFormVisability,
-    todoItem, 
+    todoItem,
     callback //add or edit
 }) {
 
@@ -88,7 +71,7 @@ function AddForm({
         if (!inputValue.trim()) {
             setErrorMessage(ERROR_MESSAGES.emptyTask);
             inputRef.current.focus();
-            
+
             return false;
         };
 
