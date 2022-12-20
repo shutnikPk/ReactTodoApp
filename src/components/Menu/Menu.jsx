@@ -31,7 +31,7 @@ function Menu({ onDelete, onEdit }) {
     return (
         <div
             ref={wrapperRef}
-            className='sub-menu' >
+            className='sub-menu'>
 
             <div
                 onClick={() => setIsOpen(!isOpen)}

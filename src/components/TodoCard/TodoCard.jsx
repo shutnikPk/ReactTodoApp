@@ -34,10 +34,10 @@ function TodoCard({
     };
 
     return (
-        <div className='todo-card' >
+        <div className='todo-card'>
             <p className='todo-card--number'>{todo?.id + 1}</p>
             <p className='todo-card--text'>{todo?.text}</p>
-            <p className={`todo-card--deadline + ${compareDeadline()}`}>{setFormateDate()}</p >
+            <p className={`todo-card--deadline + ${compareDeadline()}`}>{setFormateDate()}</p>
             <div
                 className={`priority-option-container priority-option-container${todo.priority}`}
                 data-value={todo.priority}
