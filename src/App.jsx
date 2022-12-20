@@ -18,6 +18,7 @@ function App() {
     const [deleteTaskId, setDeleteTaskId] = useState(null);
     const [editTaskId, setEditTaskId] = useState(null);
 
+
     const addTodo = (todo) => {
         todo.id = todoItems.length;
         const tmpArr = [...todoItems, todo];
@@ -55,6 +56,7 @@ function App() {
 
     const openForm = () => {
         setEditTaskId(null);
+
         setVisibleAddBtn(false);
     };
 
