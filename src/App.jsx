@@ -18,7 +18,7 @@ function App() {
     const [visiblePopup, setVisiblePopup] = useState(false);
     const [visibleAddBtn, setVisibleAddBtn] = useState(true);
     const [postId, setPostId] = useState(null);
-    const [editTaskId, setEditTaskId] = useState(false);
+    const [editTaskId, setEditTaskId] = useState(null);
 
     const addTodo = (todo) => {
         todo.id = todoItems.length;
@@ -60,7 +60,7 @@ function App() {
         setPostId(id);
     };
 
-    const onAdd = () => {
+    const openForm = () => {
         setEditTaskId(null);
         setVisibleForm(true);
         setVisibleAddBtn(false);
@@ -93,7 +93,7 @@ function App() {
                 <Button
                     name={'Add Todo'}
                     className={'button button__add'}
-                    onClick={() => onAdd()}
+                    onClick={() => openForm()}
                 />}
 
             {visibleForm && (

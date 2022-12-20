@@ -51,7 +51,6 @@ TodoCardsList.propTypes = {
     onEdit: PropTypes.func.isRequired,
     todoItems: PropTypes.array.isRequired,
     onDelete: PropTypes.func.isRequired,
-    // canEdit: PropTypes.bool.isRequired,
     editTaskId: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.number,
