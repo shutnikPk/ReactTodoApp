@@ -17,7 +17,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { ERROR_MESSAGES, DAY_IN_MS } from '../../constants/constants';
 
 function TodoForm({
-    toggleFormVisability,
+    closeForm,
     todoItem,
     onSubmit
 }) {
@@ -82,7 +82,7 @@ function TodoForm({
     const onChangeInput = (e) => setInputValue(e.target.value);
 
     const defaultButtonClickAction = () => {
-        toggleFormVisability();
+        closeForm();
         onClearInput();
         onClearTodoDeadlineInput();
         hideerrorMessage();
@@ -163,7 +163,7 @@ function TodoForm({
 
 TodoForm.propTypes = {
     onSubmit: PropTypes.func.isRequired,
-    toggleFormVisability: PropTypes.func.isRequired
+    closeForm: PropTypes.func.isRequired
 };
 
 
