@@ -14,14 +14,13 @@ import PriorityOption from '../PriorityOption/PriorityOption';
 import { ReactComponent as CalendarIcon } from '../../Assets/monthly-calendar-svgrepo-com.svg';
 import './AddForm.css';
 import 'react-datepicker/dist/react-datepicker.css';
-import { ERROR_MESSAGES } from '../../constants/constants';
+import { ERROR_MESSAGES, DAY_IN_MS } from '../../constants/constants';
 
 function AddForm({
     toggleFormVisability,
     todoItem,
-    callback //add or edit
+    onSubmit
 }) {
-
     let todo = {
         isImportant: true,
         isFinished: false,
@@ -48,7 +47,7 @@ function AddForm({
     }, []);
 
     const isValidationDate = () => {
-        const DAY_IN_MS = 86400000;
+
         if (!TodoDeadline) {
             setErrorMessage(ERROR_MESSAGES.emptyDate);
             setDangerClassDate(true);
@@ -62,7 +61,6 @@ function AddForm({
 
             return false;
         }
-
         return true;
     };
 
@@ -74,42 +72,17 @@ function AddForm({
 
             return false;
         };
-
         return true;
     };
 
-    const addTodoPriority = () => {
-        todo.priority = todoPriority;
-    };
-
-    const setTodoTodoDeadline = () => {
-        todo.deadline = TodoDeadline.toISOString();
-    };
-
-
-    const onChangeTodoDeadline = (date) => {
-        setTodoDeadline(date);
-    };
-
-    const onClearTodoDeadlineInput = () => {
-        setTodoDeadline(null);
-    };
-
-    const setTodoText = () => {
-        todo.text = inputValue;
-    };
-
-    const callbackHandler = () => {
-        callback(todo);
-    };
-
-    const onClearInput = () => {
-        setInputValue('');
-    };
-
-    const onChangeInput = (e) => {
-        setInputValue(e.target.value);
-    };
+    const addTodoPriority = () => { todo.priority = todoPriority; };
+    const setTodoTodoDeadline = () => { todo.deadline = TodoDeadline.toISOString(); };
+    const onChangeTodoDeadline = (date) => { setTodoDeadline(date); };
+    const onClearTodoDeadlineInput = () => { setTodoDeadline(null); };
+    const setTodoText = () => { todo.text = inputValue; };
+    const onSubmitHandler = () => { onSubmit(todo); };
+    const onClearInput = () => { setInputValue(''); };
+    const onChangeInput = (e) => { setInputValue(e.target.value); };
 
     const defaultButtonClickAction = () => {
         toggleFormVisability();
@@ -127,37 +100,29 @@ function AddForm({
             setIsCheck(false);
             return;
         }
+
         addTodoPriority();
         setTodoTodoDeadline();
         setTodoText();
-        callbackHandler();
-
+        onSubmitHandler();
         defaultButtonClickAction();
     };
 
     const onCancel = (e) => {
         e.preventDefault();
-
         setIsDangerClass(false);
-
         defaultButtonClickAction();
     };
 
-    const hideerrorMessage = () => {
-        setIsCheck(true);
-    };
-
-
+    const hideerrorMessage = () => { setIsCheck(true); };
 
     return (
         <form className='add-form' >
             <div className='add-form--row-container'>
-                <div className={'input-container ' +
-                    (isDangerClass ? 'danger' : '')
-                }>
+                <div className={`input-container ${(isDangerClass ? 'danger' : '')} `}>
                     <input
                         ref={inputRef}
-                        className={'input-field'}
+                        className='input-field'
                         value={inputValue}
                         type='text'
                         onChange={onChangeInput}
@@ -165,22 +130,17 @@ function AddForm({
                     />
                     <div className='datepicker-row'>
                         <DatePicker
-                            className={'my-datepicker-container '
-                                + (dangerClassDate ? 'my-datepicker-container__danger' : '')
-                            }
-                            dateFormat="dd/MM/yyyy"
+                            className={`my-datepicker-container 
+                            ${(dangerClassDate ? 'my-datepicker-container__danger' : '')}`}
+                            dateFormat='dd/MM/yyyy'
                             selected={TodoDeadline}
                             onChange={(date) => {
                                 onChangeTodoDeadline(date);
-                            }
-                            }
-                            placeholderText="DD/MM/YYYY"
+                            }}
+                            placeholderText='DD/MM/YYYY'
                         />
-                        <CalendarIcon className={'calendar-icon ' +
-                            (dangerClassDate
-                                ? 'my-datepicker-container__danger'
-                                : ''
-                            )} />
+                        <CalendarIcon className={`calendar-icon 
+                        ${(dangerClassDate ? 'my-datepicker-container__danger' : '')}`} />
                     </div>
                     <PriorityOption
                         setTodoPriority={setTodoPriority}
@@ -188,25 +148,24 @@ function AddForm({
                 </div>
                 <div className='add-form--btn-container'>
                     <Button
-                        name={'Save'}
-                        className={'button button__save'}
+                        name='Save'
+                        className='button button__save'
                         onClick={onSave}
                     />
                     <Button
-                        name={'Cancel'}
-                        className={'button button__danger'}
+                        name='Cancel'
+                        className='button button__danger'
                         onClick={onCancel}
                     />
                 </div>
                 {!isCheck && (<ValidationMessage textMsg={errorMessage} />)}
             </div>
-
         </form >
     );
 }
 
 AddForm.propTypes = {
-    callback: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
     toggleFormVisability: PropTypes.func.isRequired
 };
 

@@ -3,9 +3,7 @@ import React from 'react';
 import './TodoCard.css';
 import PropTypes from 'prop-types';
 
-import {
-    options
-} from '../../constants/constants';
+import { options } from '../../constants/constants';
 
 import PriorityIcon from '../PriorityIcon/PriorityIcon';
 import Menu from '../Menu/Menu';
@@ -67,7 +65,7 @@ TodoCard.propTypes = {
         isFinished: PropTypes.bool,
         priority: PropTypes.number
     }).isRequired,
-    // canEdit: PropTypes.bool.isRequired,
+    closeForm: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     setEditTaskId: PropTypes.func.isRequired,
 };

@@ -99,7 +99,7 @@ function App() {
             {visibleForm && (
                 <AddForm
                     closeForm={() => closeForm()}
-                    callback={addTodo}
+                    onSubmit={addTodo}
                 />)
             }
 

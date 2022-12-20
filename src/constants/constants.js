@@ -30,3 +30,5 @@ export const ERROR_MESSAGES = {
     emptyDate: 'Empty tasks Date!',
     wrongDate: 'Greeting time Travel!'
 };
+
+export const DAY_IN_MS = 86400000;

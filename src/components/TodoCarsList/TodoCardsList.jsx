@@ -24,7 +24,7 @@ function TodoCardsList({ onEdit, todoItems, onDelete, editTaskId, setEditTaskId,
                             <AddForm
                                 key={e.id}
                                 toggleFormVisability={() => setEditTaskId(null)}
-                                callback={onEdit}
+                                onSubmit={onEdit}
                                 todoItem={e}
                             />
                         );
@@ -32,12 +32,12 @@ function TodoCardsList({ onEdit, todoItems, onDelete, editTaskId, setEditTaskId,
 
                     return (
                         <TodoCard
-                            closeForm={closeForm}
                             key={e.id}
                             todo={e}
                             onDelete={onDelete}
                             setEditTaskId={setEditTaskId}
                             editTaskId={editTaskId}
+                            closeForm={closeForm}
                         />
                     );
                 })
