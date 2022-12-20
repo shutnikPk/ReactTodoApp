@@ -12,11 +12,11 @@ import ValidationMessage from '../ValidationMessage/ValidationMessage';
 import PriorityOption from '../PriorityOption/PriorityOption';
 
 import { ReactComponent as CalendarIcon } from '../../Assets/monthly-calendar-svgrepo-com.svg';
-import './AddForm.css';
+import './TodoForm.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ERROR_MESSAGES, DAY_IN_MS } from '../../constants/constants';
 
-function AddForm({
+function TodoForm({
     toggleFormVisability,
     todoItem,
     onSubmit
@@ -161,10 +161,10 @@ function AddForm({
     );
 }
 
-AddForm.propTypes = {
+TodoForm.propTypes = {
     onSubmit: PropTypes.func.isRequired,
     toggleFormVisability: PropTypes.func.isRequired
 };
 
 
-export default AddForm;
+export default TodoForm;

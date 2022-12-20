@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import TodoCard from '../TodoCard/TodoCard';
-import AddForm from '../AddForm/AddForm';
+import AddForm from '../TodoForm/TodoForm';
 
 function TodoCardsList({ onEdit, todoItems, onDelete, editTaskId, setEditTaskId, closeForm }) {
 
