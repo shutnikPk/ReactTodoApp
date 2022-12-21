@@ -28,9 +28,9 @@ function TodoCard({
         ' todo-card--deadline__danger'
         : '';
 
-    const togleIsDone = () => {
+    const toggleIsDone = () => {
         todo.isDone = !isDone;
-        setIsDone(!todo.isDone);
+        setIsDone(!isDone);
         const tmpArr = JSON.parse(localStorage.getItem('Todos'));
         tmpArr.splice(todo.id, 1, todo);
         localStorage.setItem('Todos', JSON.stringify(tmpArr));
@@ -42,9 +42,7 @@ function TodoCard({
             closeForm();
         }
     };
-
-
-
+    
     return (
         <div className={`todo-card ${isDone ? 'todo-card__done' : ''}`}>
             <p className='todo-card--number'>{todo?.id + 1}</p>
@@ -61,7 +59,7 @@ function TodoCard({
                 />
             </div>
             <Menu
-                onDone={togleIsDone}
+                onDone={toggleIsDone}
                 onDelete={() => onDelete(todo.id)}
                 onEdit={editHandler}
             />
