@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './TodoCard.css';
 import PropTypes from 'prop-types';
@@ -16,6 +16,8 @@ function TodoCard({
     closeForm
 }) {
 
+    const [isDone, setIsDone] = useState(todo.isDone || false);
+
     const setFormateDate = () => {
         return new Date(todo?.deadline).toLocaleString([], {
             day: 'numeric', month: 'numeric', year: 'numeric'
@@ -26,6 +28,14 @@ function TodoCard({
         ' todo-card--deadline__danger'
         : '';
 
+    const togleIsDone = () => {
+        todo.isDone = !isDone;
+        setIsDone(!todo.isDone);
+        const tmpArr = JSON.parse(localStorage.getItem('Todos'));
+        tmpArr.splice(todo.id, 1, todo);
+        localStorage.setItem('Todos', JSON.stringify(tmpArr));
+    };
+
     const editHandler = () => {
         if (!editTaskId) {
             setEditTaskId(todo.id);
@@ -33,8 +43,10 @@ function TodoCard({
         }
     };
 
+
+
     return (
-        <div className='todo-card'>
+        <div className={`todo-card ${isDone ? 'todo-card__done' : ''}`}>
             <p className='todo-card--number'>{todo?.id + 1}</p>
             <p className='todo-card--text'>{todo?.text}</p>
             <p className={`todo-card--deadline + ${compareDeadline()}`}>{setFormateDate()}</p>
@@ -49,6 +61,7 @@ function TodoCard({
                 />
             </div>
             <Menu
+                onDone={togleIsDone}
                 onDelete={() => onDelete(todo.id)}
                 onEdit={editHandler}
             />

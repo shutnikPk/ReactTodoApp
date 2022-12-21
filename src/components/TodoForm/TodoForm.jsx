@@ -19,14 +19,11 @@ import { ERROR_MESSAGES, DAY_IN_MS } from '../../constants/constants';
 function TodoForm({
     closeForm,
     todoItem,
-    onSubmit
+    onSubmit,
 }) {
-    let todo = {
-        isImportant: true,
-        isFinished: false,
+    const todo = {
+        ...todoItem
     };
-
-    if (todoItem) todo = todoItem;
 
     const [inputValue, setInputValue] = useState(todo.text || '');
     const [TodoDeadline, setTodoDeadline] = useState(null);
@@ -35,6 +32,7 @@ function TodoForm({
     const [dangerClassDate, setDangerClassDate] = useState(false);
     const [isCheck, setIsCheck] = useState(true);
     const [todoPriority, setTodoPriority] = useState(todo.priority || 0);
+
 
     const inputRef = useRef(null);
 

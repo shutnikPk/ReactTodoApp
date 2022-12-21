@@ -61,7 +61,7 @@ function App() {
 
     return (
         <div className="App">
-            {deleteTaskId &&
+            {deleteTaskId !== null &&
                 (
                     <Popup>
                         <Button

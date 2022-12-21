@@ -5,7 +5,14 @@ import PropTypes from 'prop-types';
 import TodoCard from '../TodoCard/TodoCard';
 import AddForm from '../TodoForm/TodoForm';
 
-function TodoCardsList({ onEdit, todoItems, onDelete, editTaskId, setEditTaskId, closeForm }) {
+function TodoCardsList({
+    onEdit,
+    todoItems,
+    onDelete,
+    editTaskId,
+    setEditTaskId,
+    closeForm
+}) {
 
     if (!todoItems.length) {
 
