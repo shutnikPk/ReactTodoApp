@@ -11,7 +11,8 @@ function TodoCardsList({
     onDelete,
     editTaskId,
     setEditTaskId,
-    closeForm
+    closeForm,
+    toggleIsDone
 }) {
 
     if (!todoItems.length) {
@@ -40,6 +41,7 @@ function TodoCardsList({
                     return (
                         <TodoCard
                             key={e.id}
+                            toggleIsDone={toggleIsDone}
                             todo={e}
                             onDelete={onDelete}
                             setEditTaskId={setEditTaskId}
@@ -63,6 +65,7 @@ TodoCardsList.propTypes = {
         PropTypes.number,
     ]),
     setEditTaskId: PropTypes.func.isRequired,
+    toggleIsDone: PropTypes.func.isRequired
 };
 
 export default TodoCardsList;

@@ -89,6 +89,7 @@ function TodoForm({
         todo.priority = todoPriority;
         todo.deadline = TodoDeadline.toISOString();
         todo.text = inputValue;
+        todo.isDone = false;
         onSubmit(todo);
         defaultButtonClickAction();
     };

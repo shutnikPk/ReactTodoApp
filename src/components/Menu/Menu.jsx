@@ -73,7 +73,8 @@ function Menu({
 
 Menu.propTypes = {
     onDelete: PropTypes.func.isRequired,
-    onEdit: PropTypes.func.isRequired
+    onEdit: PropTypes.func.isRequired,
+    onDone: PropTypes.func.isRequired
 };
 
 export default Menu;
