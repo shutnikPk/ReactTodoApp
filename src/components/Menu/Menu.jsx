@@ -11,7 +11,11 @@ import MenuItem from '../MenuItem/MenuItem';
 
 import './Menu.css';
 
-function Menu({ onDelete, onEdit }) {
+function Menu({
+    onDelete,
+    onEdit,
+    onDone
+}) {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -28,10 +32,15 @@ function Menu({ onDelete, onEdit }) {
         onEdit();
     };
 
+    const doneHandler = () => {
+        setIsOpen(false);
+        onDone();
+    };
+
     return (
         <div
             ref={wrapperRef}
-            className='sub-menu' >
+            className='sub-menu'>
 
             <div
                 onClick={() => setIsOpen(!isOpen)}
@@ -45,7 +54,7 @@ function Menu({ onDelete, onEdit }) {
                 isOpen &&
                 <div className='sub-menu--buttons-container'>
                     <MenuItem
-                        onClick={() => { }}
+                        onClick={doneHandler}
                         name='done'
                     />
                     <MenuItem
@@ -64,7 +73,8 @@ function Menu({ onDelete, onEdit }) {
 
 Menu.propTypes = {
     onDelete: PropTypes.func.isRequired,
-    onEdit: PropTypes.func.isRequired
+    onEdit: PropTypes.func.isRequired,
+    onDone: PropTypes.func.isRequired
 };
 
 export default Menu;

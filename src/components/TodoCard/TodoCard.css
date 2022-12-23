@@ -1,4 +1,5 @@
 .todo-card {
+  position: relative;
   border: 1px black solid;
   width: 500px;
   min-height: 50px;
@@ -6,6 +7,20 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.todo-card__done{
+  border-color: #1ea943;
+  color: #1ea943;
+}
+.todo-card__done::before{
+  content: '';
+  z-index: 1;
+  position: absolute;
+  width: 90%;;
+  height: 5px;
+  background-color: rgb(1, 55, 18);
+}
+
 .todo-card--number {
   width: 48px;
   height: 48px;

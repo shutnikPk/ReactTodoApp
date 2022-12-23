@@ -13,8 +13,11 @@ function TodoCard({
     onDelete,
     setEditTaskId,
     editTaskId,
-    closeForm
+    closeForm,
+    toggleIsDone
 }) {
+
+
 
     const setFormateDate = () => {
         return new Date(todo?.deadline).toLocaleString([], {
@@ -34,10 +37,10 @@ function TodoCard({
     };
 
     return (
-        <div className='todo-card' >
+        <div className={`todo-card ${todo.isDone ? 'todo-card__done' : ''}`}>
             <p className='todo-card--number'>{todo?.id + 1}</p>
             <p className='todo-card--text'>{todo?.text}</p>
-            <p className={`todo-card--deadline + ${compareDeadline()}`}>{setFormateDate()}</p >
+            <p className={`todo-card--deadline + ${compareDeadline()}`}>{setFormateDate()}</p>
             <div
                 className={`priority-option-container priority-option-container${todo.priority}`}
                 data-value={todo.priority}
@@ -49,6 +52,7 @@ function TodoCard({
                 />
             </div>
             <Menu
+                onDone={() => toggleIsDone(todo.id)}
                 onDelete={() => onDelete(todo.id)}
                 onEdit={editHandler}
             />
@@ -68,6 +72,7 @@ TodoCard.propTypes = {
     closeForm: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     setEditTaskId: PropTypes.func.isRequired,
+    toggleIsDone: PropTypes.func.isRequired
 };
 
 export default TodoCard;

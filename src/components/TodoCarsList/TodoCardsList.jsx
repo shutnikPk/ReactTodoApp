@@ -5,7 +5,15 @@ import PropTypes from 'prop-types';
 import TodoCard from '../TodoCard/TodoCard';
 import AddForm from '../TodoForm/TodoForm';
 
-function TodoCardsList({ onEdit, todoItems, onDelete, editTaskId, setEditTaskId, closeForm }) {
+function TodoCardsList({
+    onEdit,
+    todoItems,
+    onDelete,
+    editTaskId,
+    setEditTaskId,
+    closeForm,
+    toggleIsDone
+}) {
 
     if (!todoItems.length) {
 
@@ -15,7 +23,7 @@ function TodoCardsList({ onEdit, todoItems, onDelete, editTaskId, setEditTaskId,
     }
 
     return (
-        < div className="todos-container" >
+        <div className="todos-container">
             {
                 todoItems.map((e) => {
 
@@ -33,6 +41,7 @@ function TodoCardsList({ onEdit, todoItems, onDelete, editTaskId, setEditTaskId,
                     return (
                         <TodoCard
                             key={e.id}
+                            toggleIsDone={toggleIsDone}
                             todo={e}
                             onDelete={onDelete}
                             setEditTaskId={setEditTaskId}
@@ -56,6 +65,7 @@ TodoCardsList.propTypes = {
         PropTypes.number,
     ]),
     setEditTaskId: PropTypes.func.isRequired,
+    toggleIsDone: PropTypes.func.isRequired
 };
 
 export default TodoCardsList;

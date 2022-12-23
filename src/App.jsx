@@ -19,6 +19,7 @@ function App() {
     const [editTaskId, setEditTaskId] = useState(null);
 
 
+
     const addTodo = (todo) => {
         todo.id = todoItems.length;
         const tmpArr = [...todoItems, todo];
@@ -29,6 +30,13 @@ function App() {
     const editTodo = (todo) => {
         const tmpArr = [...todoItems];
         tmpArr.splice(todo.id, 1, todo);
+        localStorage.setItem('Todos', JSON.stringify(tmpArr));
+        setTodoItems(tmpArr);
+    };
+
+    const toggleIsDone = (id) => {
+        const tmpArr = [...todoItems];
+        tmpArr[id].isDone = !tmpArr[id].isDone;
         localStorage.setItem('Todos', JSON.stringify(tmpArr));
         setTodoItems(tmpArr);
     };
@@ -56,13 +64,12 @@ function App() {
 
     const openForm = () => {
         setEditTaskId(null);
-
         setVisibleAddBtn(false);
     };
 
     return (
         <div className="App">
-            {deleteTaskId &&
+            {deleteTaskId !== null &&
                 (
                     <Popup>
                         <Button
@@ -93,6 +100,7 @@ function App() {
             }
 
             <TodoCardsList
+                toggleIsDone={toggleIsDone}
                 closeForm={() => setVisibleAddBtn(true)}
                 setEditTaskId={setEditTaskId}
                 editTaskId={editTaskId}
@@ -100,7 +108,7 @@ function App() {
                 todoItems={todoItems}
                 onDelete={(id) => setDeleteTaskId(id)}
             />
-        </div >
+        </div>
     );
 }
 
