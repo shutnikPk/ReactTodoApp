@@ -8,6 +8,7 @@ import AddForm from './components/TodoForm/TodoForm';
 import Popup from './components/Popup/Popup';
 import Button from './components/Button/Button';
 import TodoCardsList from './components/TodoCarsList/TodoCardsList';
+import Portal from './components/Portal/Portal';
 
 function App() {
     const [todoItems, setTodoItems] = useState(
@@ -71,18 +72,12 @@ function App() {
         <div className="App">
             {deleteTaskId !== null &&
                 (
-                    <Popup>
-                        <Button
-                            name={'Delete'}
-                            className={'button button__danger  button__danger__delete'}
-                            onClick={() => onConfirmDelete()}
+                    <Portal>
+                        <Popup
+                            onConfirmDelete={onConfirmDelete}
+                            setDeleteTaskId={setDeleteTaskId}
                         />
-                        <Button
-                            name={'Cancel'}
-                            className={'button'}
-                            onClick={() => setDeleteTaskId(null)}
-                        />
-                    </Popup>
+                    </Portal>
                 )}
 
             {visibleAddBtn &&

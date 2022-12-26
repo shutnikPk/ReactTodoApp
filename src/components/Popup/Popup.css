@@ -1,6 +1,7 @@
 .popup--background {
   width: 100vw;
   height: 100vh;
+  top: 0;
   position: absolute;
   z-index: 1;
   background: #6d6d6d99 60%;
