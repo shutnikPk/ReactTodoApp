@@ -1,15 +1,13 @@
 import React from 'react';
-import './Popup.css';
-import PropTypes from 'prop-types';
-
 import { createPortal } from 'react-dom';
+
+import PropTypes from 'prop-types';
 
 import Button from '../Button/Button';
 
-
+import './Popup.css';
 
 function Popup({ onConfirmDelete, setDeleteTaskId }) {
-
     const popup = document.getElementById('popup');
 
     return (
