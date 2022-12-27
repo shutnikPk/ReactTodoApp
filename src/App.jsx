@@ -1,8 +1,6 @@
 import './App.css';
 
-import {
-    useState
-} from 'react';
+import { useState } from 'react';
 
 import AddForm from './components/TodoForm/TodoForm';
 import Popup from './components/Popup/Popup';
@@ -71,18 +69,10 @@ function App() {
         <div className="App">
             {deleteTaskId !== null &&
                 (
-                    <Popup>
-                        <Button
-                            name={'Delete'}
-                            className={'button button__danger  button__danger__delete'}
-                            onClick={() => onConfirmDelete()}
-                        />
-                        <Button
-                            name={'Cancel'}
-                            className={'button'}
-                            onClick={() => setDeleteTaskId(null)}
-                        />
-                    </Popup>
+                    <Popup
+                        onConfirmDelete={onConfirmDelete}
+                        setDeleteTaskId={setDeleteTaskId}
+                    />
                 )}
 
             {visibleAddBtn &&
