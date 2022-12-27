@@ -72,12 +72,10 @@ function App() {
         <div className="App">
             {deleteTaskId !== null &&
                 (
-                    <Portal>
-                        <Popup
-                            onConfirmDelete={onConfirmDelete}
-                            setDeleteTaskId={setDeleteTaskId}
-                        />
-                    </Portal>
+                    <Popup
+                        onConfirmDelete={onConfirmDelete}
+                        setDeleteTaskId={setDeleteTaskId}
+                    />
                 )}
 
             {visibleAddBtn &&
