@@ -1,14 +1,11 @@
 import './App.css';
 
-import {
-    useState
-} from 'react';
+import { useState } from 'react';
 
 import AddForm from './components/TodoForm/TodoForm';
 import Popup from './components/Popup/Popup';
 import Button from './components/Button/Button';
 import TodoCardsList from './components/TodoCarsList/TodoCardsList';
-import Portal from './components/Portal/Portal';
 
 function App() {
     const [todoItems, setTodoItems] = useState(
