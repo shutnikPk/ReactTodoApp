@@ -16,6 +16,7 @@ function App() {
     const [visibleAddBtn, setVisibleAddBtn] = useState(true);
     const [deleteTaskId, setDeleteTaskId] = useState(null);
     const [editTaskId, setEditTaskId] = useState(null);
+
     const [showTooltip, setShowTooltip] = useState(false);
     const [tooltipCoords, setTooltipCoords] = useState(null);
     const [tooltipMsg, setTooltipMsg] = useState('');
@@ -72,7 +73,7 @@ function App() {
 
 
     const showTooltipHandler = e => {
-        if (e.target.classList.contains('sub-menu--dots-container')) {
+        if (e.target.getAttribute('tooltip')) {
             const elem = e.target;
             elem.getBoundingClientRect();
             setShowTooltip(true);
@@ -100,6 +101,8 @@ function App() {
 
             {!visibleAddBtn && (
                 <AddForm
+                    onMouseEnter={(e) => showTooltipHandler(e)}
+                    onMouseLeave={() => setShowTooltip(false)}
                     closeForm={() => setVisibleAddBtn(true)}
                     onSubmit={addTodo}
                 />)

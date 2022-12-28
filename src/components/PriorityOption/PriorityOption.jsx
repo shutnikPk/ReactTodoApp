@@ -20,7 +20,11 @@ import {
     useOutside
 } from '../../hooks/hooks.jsx';
 
-function PriorityOption({ setTodoPriority, initialPriority }) {
+function PriorityOption({ setTodoPriority,
+    initialPriority,
+    onMouseEnter,
+    onMouseLeave,
+}) {
 
     const [selectedOption, setSelectedOption] = useState(initialPriority | 0);
     const [isOpenList, setIsOpenList] = useState(false);
@@ -38,6 +42,9 @@ function PriorityOption({ setTodoPriority, initialPriority }) {
 
     return (
         <div
+            onMouseLeave={onMouseLeave}
+            onMouseEnter={onMouseEnter}
+            tooltip={'Select priority'}
             ref={wrapperRef}
             className='priority'
         >

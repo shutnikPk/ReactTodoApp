@@ -32,6 +32,8 @@ function TodoCardsList({
                     if (editTaskId === e.id) {
                         return (
                             <AddForm
+                                onMouseLeave={onMouseLeave}
+                                onMouseEnter={onMouseEnter}
                                 key={e.id}
                                 closeForm={() => setEditTaskId(null)}
                                 onSubmit={onEdit}

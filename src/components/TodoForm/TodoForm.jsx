@@ -20,6 +20,8 @@ function TodoForm({
     closeForm,
     todoItem,
     onSubmit,
+    onMouseEnter,
+    onMouseLeave
 }) {
     const todo = {
         ...todoItem
@@ -127,6 +129,8 @@ function TodoForm({
                         ${(dangerClassDate ? 'my-datepicker-container__danger' : '')}`} />
                     </div>
                     <PriorityOption
+                        onMouseEnter={onMouseEnter}
+                        onMouseLeave={onMouseLeave}
                         initialPriority={todoPriority}
                         setTodoPriority={setTodoPriority}
                     />
