@@ -6,6 +6,7 @@ import AddForm from './components/TodoForm/TodoForm';
 import Popup from './components/Popup/Popup';
 import Button from './components/Button/Button';
 import TodoCardsList from './components/TodoCarsList/TodoCardsList';
+import Tooltip from './components/Tooltip/Tooltip';
 
 function App() {
     const [todoItems, setTodoItems] = useState(
@@ -15,6 +16,9 @@ function App() {
     const [visibleAddBtn, setVisibleAddBtn] = useState(true);
     const [deleteTaskId, setDeleteTaskId] = useState(null);
     const [editTaskId, setEditTaskId] = useState(null);
+    const [showTooltip, setShowTooltip] = useState(false);
+    const [tooltipCoords, setTooltipCoords] = useState(null);
+    const [tooltipMsg, setTooltipMsg] = useState('');
 
 
 
@@ -65,6 +69,18 @@ function App() {
         setVisibleAddBtn(false);
     };
 
+
+
+    const showTooltipHandler = e => {
+        if (e.target.classList.contains('sub-menu--dots-container')) {
+            const elem = e.target;
+            elem.getBoundingClientRect();
+            setShowTooltip(true);
+            setTooltipCoords({ x: elem.getBoundingClientRect().x, y: elem.getBoundingClientRect().y });
+            setTooltipMsg(elem.getAttribute('tooltip'));
+        }
+    };
+
     return (
         <div className="App">
             {deleteTaskId !== null &&
@@ -90,6 +106,8 @@ function App() {
             }
 
             <TodoCardsList
+                onMouseEnter={(e) => showTooltipHandler(e)}
+                onMouseLeave={() => setShowTooltip(false)}
                 toggleIsDone={toggleIsDone}
                 closeForm={() => setVisibleAddBtn(true)}
                 setEditTaskId={setEditTaskId}
@@ -98,6 +116,10 @@ function App() {
                 todoItems={todoItems}
                 onDelete={(id) => setDeleteTaskId(id)}
             />
+            {showTooltip && < Tooltip
+                msg={tooltipMsg}
+                x={tooltipCoords.x}
+                y={tooltipCoords.y} />}
         </div>
     );
 }

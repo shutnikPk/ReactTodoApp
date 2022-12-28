@@ -14,7 +14,9 @@ function TodoCard({
     setEditTaskId,
     editTaskId,
     closeForm,
-    toggleIsDone
+    toggleIsDone,
+    onMouseLeave,
+    onMouseEnter
 }) {
 
 
@@ -52,6 +54,8 @@ function TodoCard({
                 />
             </div>
             <Menu
+                onMouseLeave={onMouseLeave}
+                onMouseEnter={onMouseEnter}
                 onDone={() => toggleIsDone(todo.id)}
                 onDelete={() => onDelete(todo.id)}
                 onEdit={editHandler}

@@ -14,7 +14,9 @@ import './Menu.css';
 function Menu({
     onDelete,
     onEdit,
-    onDone
+    onDone,
+    onMouseLeave,
+    onMouseEnter
 }) {
 
     const [isOpen, setIsOpen] = useState(false);
@@ -39,10 +41,14 @@ function Menu({
 
     return (
         <div
+
             ref={wrapperRef}
             className='sub-menu'>
 
             <div
+                tooltip={'Menu'}
+                onMouseLeave={onMouseLeave}
+                onMouseEnter={onMouseEnter}
                 onClick={() => setIsOpen(!isOpen)}
                 className='sub-menu--dots-container'>
                 <span className='sub-menu--dot' />
