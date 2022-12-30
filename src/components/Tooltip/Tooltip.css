@@ -28,3 +28,7 @@
     border-style: solid;
     border-color: transparent #555 transparent transparent;
 }
+
+.tooltip-hiden{
+    display: none;
+}
