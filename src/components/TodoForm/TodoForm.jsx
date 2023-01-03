@@ -124,9 +124,12 @@ function TodoForm({
                             selected={TodoDeadline}
                             onChange={(date) => setTodoDeadline(date)}
                             placeholderText='DD/MM/YYYY'
+                            id="DatePicker"
                         />
-                        <CalendarIcon className={`calendar-icon 
-                        ${(dangerClassDate ? 'my-datepicker-container__danger' : '')}`} />
+                        <label htmlFor="DatePicker">
+                            <CalendarIcon className={`calendar-icon 
+                             ${(dangerClassDate ? 'my-datepicker-container__danger' : '')}`} />
+                        </label>
                     </div>
                     <PriorityOption
                         onMouseEnter={onMouseEnter}

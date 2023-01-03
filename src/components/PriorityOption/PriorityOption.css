@@ -11,23 +11,26 @@
 
 .priority-option-list {
   position: absolute;
-  top: 15px;
-  left: -1px;
-  z-index: 900;
+  top: 0px;
+  padding-top: 15px;
+  
+  z-index: 1;
   background: #fff;
-  width: 48px;
+  width: 104%;
   border: 1px solid #000;
   border-top: none;
 }
 
 .selected-option{
-  margin-top: 3px;
-  
+  /* margin-top: 3px; */
+  width: 100%;
+  height: 100%;
 }
+
 
 .priority-option-container{ 
   width: 100%;
-  max-width: 41px;
+  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,6 +39,7 @@
 
 .priority-option-container__input{
   cursor: pointer;
+  height: 100%;
 }
 
 .priority-option-container__input:hover{
@@ -94,3 +98,4 @@
 .hidden-list{
   display: none;
 }
+

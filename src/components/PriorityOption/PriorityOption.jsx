@@ -42,8 +42,7 @@ function PriorityOption({ setTodoPriority,
 
     return (
         <div
-            onMouseLeave={onMouseLeave}
-            onMouseEnter={onMouseEnter}
+
             tooltip={'Select priority'}
             ref={wrapperRef}
             className='priority'
@@ -54,6 +53,9 @@ function PriorityOption({ setTodoPriority,
                     className={'priority-option-container priority-option-container__input'}
                     onClick={() => handleClick(selectedOption)}
                     data-value={selectedOption}
+                    onMouseLeave={onMouseLeave}
+                    onMouseEnter={onMouseEnter}
+                    tooltip={options[selectedOption].label}
                 >
                     <PriorityIcon
                         value={selectedOption}
@@ -74,6 +76,9 @@ function PriorityOption({ setTodoPriority,
                             }
                             onClick={() => handleClick(value)}
                             data-value={value}
+                            tooltip={label}
+                            onMouseLeave={onMouseLeave}
+                            onMouseEnter={onMouseEnter}
                         >
                             <PriorityIcon
                                 value={value}

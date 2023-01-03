@@ -46,6 +46,7 @@ function TodoCard({
             <div
                 className={`priority-option-container priority-option-container${todo.priority}`}
                 data-value={todo.priority}
+                tooltip={options[todo.priority].label}
             >
                 <PriorityIcon
                     value={todo.priority}

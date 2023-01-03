@@ -73,8 +73,8 @@ function App() {
 
 
     const showTooltipHandler = e => {
-        if (e.target.getAttribute('tooltip')) {
-            const elem = e.target;
+        if (e.currentTarget.getAttribute('tooltip')) {
+            const elem = e.currentTarget;
             elem.getBoundingClientRect();
             setShowTooltip(true);
             setTooltipCoords({ x: elem.getBoundingClientRect().x, y: elem.getBoundingClientRect().y });
