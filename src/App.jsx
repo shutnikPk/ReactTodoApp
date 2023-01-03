@@ -127,10 +127,12 @@ function App() {
                 todoItems={todoItems}
                 onDelete={(id) => setDeleteTaskId(id)}
             />
-            {showTooltip && < Tooltip
-                msg={tooltipMsg}
-                x={tooltipCoords.x}
-                y={tooltipCoords.y} />}
+            {showTooltip &&
+                < Tooltip
+                    msg={tooltipMsg}
+                    x={tooltipCoords.x}
+                    y={tooltipCoords.y}
+                />}
         </div>
     );
 }

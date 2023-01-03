@@ -1,4 +1,5 @@
 .todo-card {
+  position: relative;
   border: 1px black solid;
   width: 500px;
   min-height: 50px;

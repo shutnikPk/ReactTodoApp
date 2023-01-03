@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+import PropTypes from 'prop-types';
 import './Tooltip.css';
 
-function Tooltip({ x, y, msg = '', waitBeforeShow = 500 }) {
+function Tooltip({ x, y, msg, waitBeforeShow = 500 }) {
 
     const tooltip = document.getElementById('tooltip');
     const styleTooltip = {
@@ -26,5 +27,12 @@ function Tooltip({ x, y, msg = '', waitBeforeShow = 500 }) {
         </div >, tooltip
     );
 }
+
+Tooltip.propTypes = {
+    x: PropTypes.number,
+    y: PropTypes.number,
+    msg: PropTypes.string.isRequired,
+    waitBeforeShow: PropTypes.number
+};
 
 export default Tooltip;
