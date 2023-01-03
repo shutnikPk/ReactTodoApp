@@ -6,7 +6,7 @@ function Tooltip({ x, y, msg = '', waitBeforeShow = 500 }) {
 
     const tooltip = document.getElementById('tooltip');
     const styleTooltip = {
-        left: `${x + 55}px`,
+        left: `${x + 50}px`,
         top: `${y + 5}px`
     };
 

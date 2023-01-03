@@ -77,8 +77,16 @@ function App() {
             const elem = e.currentTarget;
             elem.getBoundingClientRect();
             setShowTooltip(true);
-            setTooltipCoords({ x: elem.getBoundingClientRect().x, y: elem.getBoundingClientRect().y });
             setTooltipMsg(elem.getAttribute('tooltip'));
+            if (elem.getAttribute('tooltip-pos') === 'top') {
+                setTooltipCoords({
+                    x: elem.getBoundingClientRect().x - 50,
+                    y: elem.getBoundingClientRect().y - 50
+                });
+            } else {
+                setTooltipCoords({ x: elem.getBoundingClientRect().x, y: elem.getBoundingClientRect().y });
+            }
+
         }
     };
 

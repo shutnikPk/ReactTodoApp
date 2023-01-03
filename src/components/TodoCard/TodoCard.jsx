@@ -31,6 +31,15 @@ function TodoCard({
         ' todo-card--deadline__danger'
         : '';
 
+    const tooltipMSg = () => {
+        let days = new Date(todo?.deadline) - new Date();
+        days = Math.floor(days / (1000 * 60 * 60 * 24) % 30);
+        if (days > 0) {
+            return `${days} days left`;
+        }
+        return `${Math.abs(days)} days overdue`;
+    };
+
     const editHandler = () => {
         if (!editTaskId) {
             setEditTaskId(todo.id);
@@ -42,11 +51,21 @@ function TodoCard({
         <div className={`todo-card ${todo.isDone ? 'todo-card__done' : ''}`}>
             <p className='todo-card--number'>{todo?.id + 1}</p>
             <p className='todo-card--text'>{todo?.text}</p>
-            <p className={`todo-card--deadline + ${compareDeadline()}`}>{setFormateDate()}</p>
+            <p
+                onMouseLeave={onMouseLeave}
+                onMouseEnter={onMouseEnter}
+                tooltip-pos='top'
+                tooltip={tooltipMSg()}
+                className={`todo-card--deadline + ${compareDeadline()}`}>
+                {setFormateDate()}
+            </p>
             <div
+                onMouseLeave={onMouseLeave}
+                onMouseEnter={onMouseEnter}
                 className={`priority-option-container priority-option-container${todo.priority}`}
                 data-value={todo.priority}
                 tooltip={options[todo.priority].label}
+                tooltip-pos='top'
             >
                 <PriorityIcon
                     value={todo.priority}
@@ -55,8 +74,6 @@ function TodoCard({
                 />
             </div>
             <Menu
-                onMouseLeave={onMouseLeave}
-                onMouseEnter={onMouseEnter}
                 onDone={() => toggleIsDone(todo.id)}
                 onDelete={() => onDelete(todo.id)}
                 onEdit={editHandler}
