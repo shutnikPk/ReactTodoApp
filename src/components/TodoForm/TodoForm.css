@@ -27,7 +27,7 @@
   display: flex;
   width: 500px;
   height: 50px;
-  padding: 0 5px;
+  padding-left: 10px;
   align-items: center;
   justify-content: start;
   gap: 20px;
@@ -37,7 +37,7 @@
 }
 .input-field {
   border: none;
-
+  width: 250px;
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
@@ -62,11 +62,12 @@
 
 .datepicker-row{
   display: flex;
+  width: 160px;
 }
 
 .my-datepicker-container {
   border: none;
-  width: 110px;
+  width: 115px;
 
   font-family: "Inter";
   font-style: normal;
@@ -75,6 +76,7 @@
   line-height: 15px;
 
   outline: none;
+  cursor: pointer
 }
 
 .my-datepicker-container::placeholder {
@@ -97,6 +99,7 @@
 .calendar-icon {
 width: 20px;
 height: 20px;
+cursor: pointer
 }
 
 @keyframes my-datepicker-container__danger {

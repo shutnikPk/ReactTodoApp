@@ -20,7 +20,11 @@ import {
     useOutside
 } from '../../hooks/hooks.jsx';
 
-function PriorityOption({ setTodoPriority, initialPriority }) {
+function PriorityOption({ setTodoPriority,
+    initialPriority,
+    onMouseEnter,
+    onMouseLeave,
+}) {
 
     const [selectedOption, setSelectedOption] = useState(initialPriority | 0);
     const [isOpenList, setIsOpenList] = useState(false);
@@ -38,6 +42,8 @@ function PriorityOption({ setTodoPriority, initialPriority }) {
 
     return (
         <div
+
+            tooltip={'Select priority'}
             ref={wrapperRef}
             className='priority'
         >
@@ -47,6 +53,9 @@ function PriorityOption({ setTodoPriority, initialPriority }) {
                     className={'priority-option-container priority-option-container__input'}
                     onClick={() => handleClick(selectedOption)}
                     data-value={selectedOption}
+                    onMouseLeave={onMouseLeave}
+                    onMouseEnter={onMouseEnter}
+                    tooltip={options[selectedOption].label}
                 >
                     <PriorityIcon
                         value={selectedOption}
@@ -67,6 +76,9 @@ function PriorityOption({ setTodoPriority, initialPriority }) {
                             }
                             onClick={() => handleClick(value)}
                             data-value={value}
+                            tooltip={label}
+                            onMouseLeave={onMouseLeave}
+                            onMouseEnter={onMouseEnter}
                         >
                             <PriorityIcon
                                 value={value}

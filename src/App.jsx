@@ -6,6 +6,7 @@ import AddForm from './components/TodoForm/TodoForm';
 import Popup from './components/Popup/Popup';
 import Button from './components/Button/Button';
 import TodoCardsList from './components/TodoCarsList/TodoCardsList';
+import Tooltip from './components/Tooltip/Tooltip';
 
 function App() {
     const [todoItems, setTodoItems] = useState(
@@ -15,6 +16,10 @@ function App() {
     const [visibleAddBtn, setVisibleAddBtn] = useState(true);
     const [deleteTaskId, setDeleteTaskId] = useState(null);
     const [editTaskId, setEditTaskId] = useState(null);
+
+    const [showTooltip, setShowTooltip] = useState(false);
+    const [tooltipCoords, setTooltipCoords] = useState(null);
+    const [tooltipMsg, setTooltipMsg] = useState('');
 
 
 
@@ -65,6 +70,21 @@ function App() {
         setVisibleAddBtn(false);
     };
 
+
+
+    const showTooltipHandler = e => {
+        if (e.currentTarget.getAttribute('tooltip')) {
+            const elem = e.currentTarget;
+            elem.getBoundingClientRect();
+            setShowTooltip(true);
+            setTooltipMsg(elem.getAttribute('tooltip'));
+            const coords = elem.getAttribute('tooltip-pos') === 'top' ?
+                { x: elem.getBoundingClientRect().x - 50, y: elem.getBoundingClientRect().y - 50 } :
+                { x: elem.getBoundingClientRect().x, y: elem.getBoundingClientRect().y };
+            setTooltipCoords(coords);
+        }
+    };
+
     return (
         <div className="App">
             {deleteTaskId !== null &&
@@ -84,12 +104,16 @@ function App() {
 
             {!visibleAddBtn && (
                 <AddForm
+                    onMouseEnter={(e) => showTooltipHandler(e)}
+                    onMouseLeave={() => setShowTooltip(false)}
                     closeForm={() => setVisibleAddBtn(true)}
                     onSubmit={addTodo}
                 />)
             }
 
             <TodoCardsList
+                onMouseEnter={(e) => showTooltipHandler(e)}
+                onMouseLeave={() => setShowTooltip(false)}
                 toggleIsDone={toggleIsDone}
                 closeForm={() => setVisibleAddBtn(true)}
                 setEditTaskId={setEditTaskId}
@@ -98,6 +122,12 @@ function App() {
                 todoItems={todoItems}
                 onDelete={(id) => setDeleteTaskId(id)}
             />
+            {showTooltip &&
+                < Tooltip
+                    msg={tooltipMsg}
+                    x={tooltipCoords.x}
+                    y={tooltipCoords.y}
+                />}
         </div>
     );
 }

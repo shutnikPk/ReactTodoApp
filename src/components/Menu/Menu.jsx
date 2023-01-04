@@ -14,7 +14,7 @@ import './Menu.css';
 function Menu({
     onDelete,
     onEdit,
-    onDone
+    onDone,
 }) {
 
     const [isOpen, setIsOpen] = useState(false);
@@ -39,6 +39,7 @@ function Menu({
 
     return (
         <div
+
             ref={wrapperRef}
             className='sub-menu'>
 
