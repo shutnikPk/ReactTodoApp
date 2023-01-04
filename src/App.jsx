@@ -78,15 +78,10 @@ function App() {
             elem.getBoundingClientRect();
             setShowTooltip(true);
             setTooltipMsg(elem.getAttribute('tooltip'));
-            if (elem.getAttribute('tooltip-pos') === 'top') {
-                setTooltipCoords({
-                    x: elem.getBoundingClientRect().x - 50,
-                    y: elem.getBoundingClientRect().y - 50
-                });
-            } else {
-                setTooltipCoords({ x: elem.getBoundingClientRect().x, y: elem.getBoundingClientRect().y });
-            }
-
+            const coords = elem.getAttribute('tooltip-pos') === 'top' ?
+                { x: elem.getBoundingClientRect().x - 50, y: elem.getBoundingClientRect().y - 50 } :
+                { x: elem.getBoundingClientRect().x, y: elem.getBoundingClientRect().y };
+            setTooltipCoords(coords);
         }
     };
 
