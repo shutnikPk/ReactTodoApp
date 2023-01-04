@@ -28,7 +28,7 @@ function TodoCard({
     };
 
     const compareDeadline = () => new Date(todo?.deadline) <= new Date() ?
-        ' todo-card--deadline__danger'
+        '__danger'
         : '';
 
     const tooltipMSg = () => {
@@ -48,7 +48,7 @@ function TodoCard({
     };
 
     return (
-        <div className={`todo-card ${todo.isDone ? 'todo-card__done' : ''}`}>
+        <div className={`todo-card todo-card${compareDeadline()} ${todo.isDone ? 'todo-card__done' : ''}`}>
             <p className='todo-card--number'>{todo?.id + 1}</p>
             <p className='todo-card--text'>{todo?.text}</p>
             <p
@@ -56,7 +56,7 @@ function TodoCard({
                 onMouseEnter={onMouseEnter}
                 tooltip-pos='top'
                 tooltip={tooltipMSg()}
-                className={`todo-card--deadline + ${compareDeadline()}`}>
+                className={`todo-card--deadline todo-card--deadline${compareDeadline()}`}>
                 {setFormateDate()}
             </p>
             <div

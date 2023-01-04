@@ -21,6 +21,10 @@
   background-color: #00752587;
 }
 
+.todo-card__danger{
+  border-color: #ff0000;
+}
+
 .todo-card--number {
   min-width: 48px;
   height: 48px;
@@ -63,8 +67,8 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 15px;
+
 }
 .todo-card--deadline__danger {
-  background: red;
-  color: aliceblue;
+  color: #ff0000;
 }
