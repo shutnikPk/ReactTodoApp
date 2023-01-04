@@ -48,7 +48,7 @@ function TodoCard({
     };
 
     return (
-        <div className={`todo-card todo-card${compareDeadline()} ${todo.isDone ? 'todo-card__done' : ''}`}>
+        <div className={`todo-card todo-card${compareDeadline()} ${todo?.isDone ? 'todo-card__done' : ''}`}>
             <p className='todo-card--number'>{todo?.id + 1}</p>
             <p className='todo-card--text'>{todo?.text}</p>
             <p
@@ -62,15 +62,15 @@ function TodoCard({
             <div
                 onMouseLeave={onMouseLeave}
                 onMouseEnter={onMouseEnter}
-                className={`priority-option-container priority-option-container${todo.priority}`}
-                data-value={todo.priority}
-                tooltip={options[todo.priority].label}
+                className={`priority-option-container priority-option-container${todo?.priority}`}
+                data-value={todo?.priority}
+                tooltip={options[todo?.priority]?.label}
                 tooltip-pos='top'
             >
                 <PriorityIcon
-                    value={todo.priority}
-                    label={options[todo.priority].label}
-                    className={`option-value option-value${todo.priority}`}
+                    value={todo?.priority}
+                    label={options[todo?.priority]?.label}
+                    className={`option-value option-value${todo?.priority}`}
                 />
             </div>
             <Menu
