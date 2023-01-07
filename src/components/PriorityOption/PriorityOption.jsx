@@ -42,8 +42,6 @@ function PriorityOption({ setTodoPriority,
 
     return (
         <div
-
-            tooltip={'Select priority'}
             ref={wrapperRef}
             className='priority'
         >

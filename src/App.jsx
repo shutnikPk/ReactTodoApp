@@ -5,7 +5,7 @@ import { useState } from 'react';
 import AddForm from './components/TodoForm/TodoForm';
 import Popup from './components/Popup/Popup';
 import Button from './components/Button/Button';
-import TodoCardsList from './components/TodoCarsList/TodoCardsList';
+import TodoCardsList from './components/TodoCardsList/TodoCardsList';
 import Tooltip from './components/Tooltip/Tooltip';
 
 function App() {
