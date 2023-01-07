@@ -22,7 +22,6 @@
 }
 
 .selected-option{
-  /* margin-top: 3px; */
   width: 100%;
   height: 100%;
 }
@@ -99,3 +98,23 @@
   display: none;
 }
 
+
+@media (max-width: 768px) {
+  .priority{
+    width: 35px;
+    padding-left: 2px;
+    padding-top: 2px;
+  }
+  .priority-option-container{ 
+    width:30px;
+  }
+  
+  .priority-option-container__input{
+    width:30px;
+  }
+  .priority-option-list {
+    width: 105%;
+    left: -2%;
+  }
+
+}

@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import TodoCard from '../TodoCard/TodoCard';
 import AddForm from '../TodoForm/TodoForm';
 
+import './TodoCardsList.css';
+
 function TodoCardsList({
     onEdit,
     todoItems,

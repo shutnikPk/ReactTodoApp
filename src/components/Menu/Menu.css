@@ -33,3 +33,19 @@
     border: 1px solid #000;
     background-color: #fff;
 }
+
+@media (max-width: 768px) {
+    .sub-menu--dots-container{
+        width: 28px;
+    }
+
+    .sub-menu--dot{
+        width: 2px;
+        height: 2px;
+    }
+
+    .sub-menu--buttons-container{
+        right: 5px;
+    }
+
+}

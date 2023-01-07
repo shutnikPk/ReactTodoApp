@@ -110,3 +110,59 @@ cursor: pointer
     color: #ff0000;
   }
 }
+
+
+@media (max-width: 768px) {
+  .add-form {
+    width: 330px;
+    padding: 0 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .add-form--row-container {
+
+    gap: 5px;
+}
+
+  .input-container {
+    width: 100%;
+    height: 30px;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .input-field {
+    width: 150px;
+    font-size: 10px;
+    line-height: 10px;
+  }
+  
+  .input-field::placeholder {
+    font-size: 10px;
+    line-height: 10px;
+  }
+
+  
+  .datepicker-row{
+    width: 60px;
+    padding-bottom: 6px;
+  }
+
+  .my-datepicker-container {
+    width: 60px;
+    font-size: 10px;
+    line-height: 0px;
+  }
+
+  .my-datepicker-container::placeholder {
+    font-size: 10px;
+    line-height: 15px;
+  }
+
+  .calendar-icon {
+    width: 10px;
+    height: 10px;
+    }
+
+}
